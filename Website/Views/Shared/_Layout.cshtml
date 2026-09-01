@@ -49,14 +49,15 @@
     </a>
     <nav class="nav-links">
         <a href="/" class="@(IsActive("/") ? "active" : "")">Home</a>
-        <a href="/services" class="@(IsActive("/services") ? "active" : "")">Services</a>
+        <a href="/services?category=lashes" class="@(IsActive("/services") ? "active" : "")">Lashes</a>
+        <a href="/services?category=brows">Brows &amp; Beauty</a>
         <a href="/lookbook" class="@(IsActive("/lookbook") ? "active" : "")">Lookbook</a>
-        <a href="/about" class="@(IsActive("/about") ? "active" : "")">About</a>
         <a href="/academy" class="@(IsActive("/academy") ? "active" : "")">Academy</a>
-        <a href="/contact" class="@(IsActive("/contact") ? "active" : "")">Contact</a>
+        <a href="/about" class="@(IsActive("/about") ? "active" : "")">About Ekta</a>
+        <a href="/contact" class="@(IsActive("/contact") ? "active" : "")">Studio</a>
     </nav>
     <div style="display:flex;align-items:center;gap:14px">
-        <a href="/book" class="btn btn-primary nav-cta">Book now</a>
+        <a href="/book" class="btn btn-primary nav-cta">Book appointment</a>
         <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">&#9776;</button>
     </div>
 </header>
@@ -64,12 +65,13 @@
 <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-menu-btn" id="mobileMenuClose" aria-label="Close menu" style="align-self:flex-end;display:block;font-size:26px">&times;</button>
     <a href="/">Home</a>
-    <a href="/services">Services</a>
+    <a href="/services?category=lashes">Lashes</a>
+    <a href="/services?category=brows">Brows &amp; Beauty</a>
     <a href="/lookbook">Lookbook</a>
-    <a href="/about">About</a>
     <a href="/academy">Academy</a>
-    <a href="/contact">Contact</a>
-    <a href="/book">Book now</a>
+    <a href="/about">About Ekta</a>
+    <a href="/contact">Studio</a>
+    <a href="/book">Book appointment</a>
 </div>
 
 <main>

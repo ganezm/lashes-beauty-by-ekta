@@ -30,7 +30,7 @@
             <p class="hero-body">@c.HeroSlides[0].Body</p>
             <div class="hero-actions">
                 <a href="/book" class="btn btn-primary">Book appointment &rarr;</a>
-                <a href="/services" class="btn btn-secondary">View services</a>
+                <a href="/services?category=lashes" class="btn btn-secondary">Explore services</a>
             </div>
         </div>
         @if (c.HeroSlides.Count > 1)
@@ -39,7 +39,7 @@
                 @for (var i = 0; i < c.HeroSlides.Count; i++)
                 {
                     <button class="hero-tab @(i == 0 ? "active" : "")" data-hero-tab="@i">
-                        @c.HeroSlides[i].Kicker
+                        @(string.IsNullOrWhiteSpace(c.HeroSlides[i].TabLabel) ? c.HeroSlides[i].Kicker : c.HeroSlides[i].TabLabel)
                         <span class="hero-tab-bar"><span class="hero-tab-fill"></span></span>
                     </button>
                 }
@@ -68,22 +68,41 @@ else
     </div>
 }
 
-@if (featured.Count > 0)
+@if (!string.IsNullOrWhiteSpace(c.PhilosophyHeadline))
 {
     <section class="section" data-reveal>
         <div class="container">
+            <div class="eyebrow">our philosophy</div>
+            <h2 class="section-title">@c.PhilosophyHeadline</h2>
+            @if (!string.IsNullOrWhiteSpace(c.PhilosophyBody))
+            {
+                <p class="section-copy">@c.PhilosophyBody</p>
+            }
+            <a href="/about" class="btn btn-secondary" style="margin-top:26px">Discover our story &rarr;</a>
+        </div>
+    </section>
+}
+
+@if (featured.Count > 0)
+{
+    <section class="section soft" data-reveal>
+        <div class="container">
             <div class="eyebrow">the lash edit</div>
-            <h2 class="section-title">Signature services</h2>
+            <h2 class="section-title">Find the look that feels unmistakably you</h2>
             <div class="grid grid-3" style="margin-top:40px">
+                @{ var fi = 0; }
                 @foreach (var svc in featured)
                 {
+                    fi++;
                     <a class="service-card" href="/book?service=@svc.Id">
+                        <div class="row"><span class="idx">@(fi.ToString("00"))</span></div>
                         <div class="row"><span class="name">@svc.Name</span><span class="price">&#8377;@svc.Price.ToString("N0")</span></div>
                         <div class="meta">@svc.DurationMinutes min</div>
                         @if (!string.IsNullOrWhiteSpace(svc.Description))
                         {
                             <div class="desc">@svc.Description</div>
                         }
+                        <div class="book-look-cta">Book this look &rarr;</div>
                     </a>
                 }
             </div>
@@ -93,7 +112,7 @@ else
 
 @if (c.QuizResults.Count > 0)
 {
-    <section class="section soft" data-reveal>
+    <section class="section" data-reveal id="find-your-look">
         <div class="container">
             <div class="eyebrow">find your look</div>
             <h2 class="section-title">What&rsquo;s your lash personality?</h2>
@@ -101,35 +120,70 @@ else
                 @for (var i = 0; i < c.QuizResults.Count; i++)
                 {
                     var q = c.QuizResults[i];
-                    <button class="card" style="text-align:left;border:0;cursor:pointer" data-quiz-btn="@i">
+                    <button class="card @(i == 0 ? "active" : "")" style="text-align:left;border:0;cursor:pointer" data-quiz-btn="@i">
                         <div class="tag">@q.Name</div>
                         <p style="margin-top:8px">@q.Descriptor</p>
                     </button>
                 }
             </div>
             <div class="card" style="margin-top:20px;padding:26px" data-quiz-result>
-                <p style="margin:0;font:300 14px/1.7 'Jost',sans-serif;color:var(--body-text)">@c.QuizResults[0].ResultCopy</p>
+                <div class="label-sm" data-quiz-name>Your match &middot; @c.QuizResults[0].Name</div>
+                <p style="margin:10px 0 0;font:300 14px/1.7 'Jost',sans-serif;color:var(--body-text)" data-quiz-copy>@c.QuizResults[0].ResultCopy</p>
                 <a href="/book?service=@c.QuizResults[0].RecommendedServiceId" class="btn btn-primary" style="margin-top:16px" data-quiz-cta>
                     Book @c.QuizResults[0].RecommendedServiceName &rarr;
                 </a>
+            </div>
+            <script type="application/json" id="quiz-data">@Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(c.QuizResults.Select(q => new { q.Name, q.ResultCopy, q.RecommendedServiceId, q.RecommendedServiceName })))</script>
+        </div>
+    </section>
+}
+
+@if (c.BeforeAfterPairs.Count > 0)
+{
+    <section class="section soft" data-reveal>
+        <div class="container">
+            <div class="eyebrow">real results</div>
+            <h2 class="section-title">Before &amp; after</h2>
+            <div class="before-after" style="margin-top:40px">
+                @foreach (var pair in c.BeforeAfterPairs.Take(2))
+                {
+                    <div class="before-after-card"><img src="@pair.BeforeImageUrl" alt="Before" /><span class="before-after-label">Before</span></div>
+                    <div class="before-after-card"><img src="@pair.AfterImageUrl" alt="After" /><span class="before-after-label">After</span></div>
+                }
             </div>
         </div>
     </section>
 }
 
-@if (c.HowItWorksSteps.Count > 0)
+@if (c.MembershipPlans.Count > 0)
 {
-    <section class="section" data-reveal>
+    <section class="section" data-reveal id="memberships">
         <div class="container">
-            <div class="eyebrow">the process</div>
-            <h2 class="section-title">How it works</h2>
-            <div class="grid grid-4" style="margin-top:40px">
-                @for (var i = 0; i < c.HowItWorksSteps.Count; i++)
+            <div class="eyebrow">memberships</div>
+            <h2 class="section-title">Keep the look on retainer</h2>
+            <div class="grid grid-3" style="margin-top:40px">
+                @foreach (var plan in c.MembershipPlans)
                 {
-                    <div class="card">
-                        <div class="step-num">0@(i + 1)</div>
-                        <h3>@c.HowItWorksSteps[i].Title</h3>
-                        <p>@c.HowItWorksSteps[i].Body</p>
+                    <div class="card plan-card @(!string.IsNullOrWhiteSpace(plan.BadgeLabel) && plan.BadgeLabel.Equals("Most chosen", StringComparison.OrdinalIgnoreCase) ? "featured" : "")">
+                        @if (!string.IsNullOrWhiteSpace(plan.BadgeLabel))
+                        {
+                            <span class="plan-badge">@plan.BadgeLabel</span>
+                        }
+                        <div class="plan-name">@plan.Name</div>
+                        <div class="plan-price">
+                            <span class="amt">&#8377;@plan.MonthlyPrice.ToString("N0")</span>
+                            <span class="per">/ month</span>
+                        </div>
+                        @if (!string.IsNullOrWhiteSpace(plan.PerksText))
+                        {
+                            <ul class="plan-perks">
+                                @foreach (var perk in plan.PerksText.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+                                {
+                                    <li>@perk</li>
+                                }
+                            </ul>
+                        }
+                        <a href="/contact" class="btn btn-secondary btn-block" style="margin-top:22px">Choose plan</a>
                     </div>
                 }
             </div>
@@ -186,26 +240,9 @@ else
     </section>
 }
 
-@if (c.BeforeAfterPairs.Count > 0)
-{
-    <section class="section soft" data-reveal>
-        <div class="container">
-            <div class="eyebrow">real results</div>
-            <h2 class="section-title">Before &amp; after</h2>
-            <div class="before-after" style="margin-top:40px">
-                @foreach (var pair in c.BeforeAfterPairs.Take(2))
-                {
-                    <div class="before-after-card"><img src="@pair.BeforeImageUrl" alt="Before" /><span class="before-after-label">Before</span></div>
-                    <div class="before-after-card"><img src="@pair.AfterImageUrl" alt="After" /><span class="before-after-label">After</span></div>
-                }
-            </div>
-        </div>
-    </section>
-}
-
 @if (c.Testimonials.Count > 0)
 {
-    <section class="section" data-reveal data-testimonials>
+    <section class="section soft" data-reveal data-testimonials>
         <div class="container" style="text-align:center">
             <div class="eyebrow">reviews</div>
             <div class="testimonial-quote" style="margin:24px auto 0" data-testimonial-quote>&ldquo;@c.Testimonials[0].QuoteText&rdquo;</div>
@@ -221,6 +258,29 @@ else
         </div>
     </section>
 }
+
+<section class="section" data-reveal id="gift-cards">
+    <div class="container">
+        <div class="giftcards-layout" style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center">
+            <div>
+                <div class="eyebrow">gift cards</div>
+                <h2 class="section-title">Give the set, not the guesswork.</h2>
+                <p class="section-copy">Digital gift cards delivered instantly, redeemable against any service or infill.</p>
+                <div class="giftcard-denoms">
+                    @foreach (var amount in new[] { 2000, 3800, 5000, 7100 })
+                    {
+                        <span class="giftcard-denom">&#8377;@amount.ToString("N0")</span>
+                    }
+                </div>
+                <a href="/contact" class="btn btn-primary" style="margin-top:26px">Buy a gift card &rarr;</a>
+            </div>
+            <div class="giftcard-visual">
+                <div class="amt">&#8377;5,000</div>
+                <div class="note">Gift card &middot; no expiry</div>
+            </div>
+        </div>
+    </div>
+</section>
 
 @if (!string.IsNullOrWhiteSpace(c.CtaHeadline))
 {

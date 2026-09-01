@@ -78,14 +78,24 @@
     var quizContainer = document.querySelector("[data-quiz]");
     if (!quizContainer) return;
 
+    var dataEl = document.getElementById("quiz-data");
+    var nameEl = document.querySelector("[data-quiz-name]");
+    var copyEl = document.querySelector("[data-quiz-copy]");
+    var ctaEl = document.querySelector("[data-quiz-cta]");
+    var results = [];
+    if (dataEl) { try { results = JSON.parse(dataEl.textContent) || []; } catch (e) { results = []; } }
+
     buttons.forEach(function (btn, i) {
       btn.addEventListener("click", function () {
-        buttons.forEach(function (b) { b.style.borderColor = ""; b.style.background = ""; });
-        btn.style.borderColor = "rgba(190,17,160,.45)";
-        btn.style.background = "linear-gradient(158deg,#fff,#fbf0f6)";
-        // The result panel's copy/CTA are server-rendered per-result only for the first quiz
-        // result today (kept simple); re-fetching per click would need an endpoint this static
-        // marketing page doesn't need. Selecting a different card still visually highlights it.
+        buttons.forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+
+        var result = results[i];
+        if (!result || !nameEl || !copyEl || !ctaEl) return;
+        nameEl.textContent = "Your match · " + result.name;
+        copyEl.textContent = result.resultCopy;
+        ctaEl.setAttribute("href", "/book?service=" + result.recommendedServiceId);
+        ctaEl.textContent = "Book " + result.recommendedServiceName + " →";
       });
     });
   })();

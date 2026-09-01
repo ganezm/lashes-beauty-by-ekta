@@ -5,7 +5,7 @@ namespace LashesWebsite.Models;
 // duplicated here rather than shared). System.Text.Json's case-insensitive property matching
 // handles the camelCase JSON <-> PascalCase C# translation with no attributes needed.
 
-public sealed class PublicHeroSlide { public Guid Id { get; set; } public string Kicker { get; set; } = ""; public string HeadlineLine1 { get; set; } = ""; public string HeadlineLine2 { get; set; } = ""; public string Body { get; set; } = ""; public string? PosterImageUrl { get; set; } public string? VideoUrl { get; set; } }
+public sealed class PublicHeroSlide { public Guid Id { get; set; } public string Kicker { get; set; } = ""; public string? TabLabel { get; set; } public string HeadlineLine1 { get; set; } = ""; public string HeadlineLine2 { get; set; } = ""; public string Body { get; set; } = ""; public string? PosterImageUrl { get; set; } public string? VideoUrl { get; set; } }
 public sealed class PublicTrustStat { public Guid Id { get; set; } public string Number { get; set; } = ""; public string Label { get; set; } = ""; }
 public sealed class PublicTestimonial { public Guid Id { get; set; } public string QuoteText { get; set; } = ""; public string AttributionFreeText { get; set; } = ""; }
 public sealed class PublicGalleryItem { public Guid Id { get; set; } public string ImageUrl { get; set; } = ""; public string Category { get; set; } = ""; public string? LayoutHint { get; set; } public bool FeaturedOnHome { get; set; } }
@@ -21,7 +21,7 @@ public sealed class PublicQuizResult { public Guid Id { get; set; } public strin
 public sealed class PublicTeamMember { public Guid Id { get; set; } public string Name { get; set; } = ""; public string? Designation { get; set; } public string? Bio { get; set; } public string? PhotoUrl { get; set; } }
 public sealed class PublicAcademyIntake { public Guid Id { get; set; } public DateOnly StartDate { get; set; } public DateOnly EndDate { get; set; } public int SeatsTotal { get; set; } public int SeatsBooked { get; set; } }
 public sealed class PublicAcademyCourse { public Guid Id { get; set; } public string Level { get; set; } = ""; public string Name { get; set; } = ""; public string? Meta { get; set; } public decimal Price { get; set; } public List<string> Modules { get; set; } = new(); public List<PublicAcademyIntake> Intakes { get; set; } = new(); }
-public sealed class PublicMembershipPlan { public Guid Id { get; set; } public string Name { get; set; } = ""; public decimal MonthlyPrice { get; set; } public int? SessionAllowance { get; set; } }
+public sealed class PublicMembershipPlan { public Guid Id { get; set; } public string Name { get; set; } = ""; public decimal MonthlyPrice { get; set; } public int? SessionAllowance { get; set; } public string? PerksText { get; set; } public string? BadgeLabel { get; set; } }
 
 public sealed class PublicWebsiteContent
 {
@@ -37,6 +37,8 @@ public sealed class PublicWebsiteContent
     public string? CtaHeadline { get; set; }
     public string? CtaBody { get; set; }
     public string? CtaButtonLabel { get; set; }
+    public string? PhilosophyHeadline { get; set; }
+    public string? PhilosophyBody { get; set; }
     public List<PublicHeroSlide> HeroSlides { get; set; } = new();
     public List<PublicTrustStat> TrustStats { get; set; } = new();
     public List<PublicTestimonial> Testimonials { get; set; } = new();
