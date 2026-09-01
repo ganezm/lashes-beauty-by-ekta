@@ -1,0 +1,70 @@
+@model LashesWebsite.Models.PublicWebsiteContent
+<section class="section" data-reveal>
+    <div class="container">
+        <div class="eyebrow">about the studio</div>
+        <h1 class="section-title">@Model.BusinessName</h1>
+        @if (!string.IsNullOrWhiteSpace(Model.MetaDescription))
+        {
+            <p class="section-copy">@Model.MetaDescription</p>
+        }
+    </div>
+</section>
+
+@if (Model.Team.Count > 0)
+{
+    <section class="section soft" data-reveal>
+        <div class="container">
+            <h2 class="section-title" style="font-size:36px">The team</h2>
+            <div class="grid grid-3" style="margin-top:36px">
+                @foreach (var t in Model.Team)
+                {
+                    <div class="team-card">
+                        @if (!string.IsNullOrWhiteSpace(t.PhotoUrl))
+                        {
+                            <img class="team-photo" src="@t.PhotoUrl" alt="@t.Name" />
+                        }
+                        <div class="team-name">@t.Name</div>
+                        <div class="team-role">@t.Designation</div>
+                        @if (!string.IsNullOrWhiteSpace(t.Bio))
+                        {
+                            <p class="team-bio">@t.Bio</p>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+@if (Model.Credentials.Count > 0)
+{
+    <section class="section" data-reveal>
+        <div class="container">
+            <h2 class="section-title" style="font-size:36px">Credentials</h2>
+            <div class="grid grid-4" style="margin-top:36px">
+                @foreach (var cred in Model.Credentials)
+                {
+                    <div class="card"><div class="tag">@cred.Tag</div><p>@cred.Body</p></div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+@if (Model.TimelineEntries.Count > 0)
+{
+    <section class="section soft" data-reveal>
+        <div class="container">
+            <h2 class="section-title" style="font-size:36px">The studio timeline</h2>
+            <div class="grid grid-4" style="margin-top:36px">
+                @foreach (var t in Model.TimelineEntries)
+                {
+                    <div class="timeline-item">
+                        <div class="timeline-year">@t.Year</div>
+                        <div class="timeline-body">@t.Body</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}

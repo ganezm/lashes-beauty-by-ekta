@@ -1,0 +1,116 @@
+@model LashesWebsite.Models.PublicBookingStorefront
+@{
+    var apiBase = ViewData["GessFlowApiBase"] as string ?? "";
+    var slug = ViewData["GessFlowSlug"] as string ?? "";
+    var preselected = ViewData["PreselectedServiceId"] as Guid?;
+}
+<section class="section tight" data-reveal>
+    <div class="container">
+        <div class="eyebrow">book your visit</div>
+        <h1 class="section-title" style="font-size:42px">@(Model.Headline ?? "Book an appointment")</h1>
+
+        <div class="booking-steps" data-book-steps>
+            <div class="booking-step active" data-step-indicator="1"><span class="n">1</span> Service</div>
+            <div class="booking-step" data-step-indicator="2"><span class="n">2</span> Date &amp; artist</div>
+            <div class="booking-step" data-step-indicator="3"><span class="n">3</span> Details</div>
+            <div class="booking-step" data-step-indicator="4"><span class="n">4</span> Confirm</div>
+        </div>
+
+        <div class="booking-shell">
+            <div class="booking-panel">
+                <!-- Step 1: service -->
+                <div data-book-panel="1">
+                    <div class="eyebrow">select a service</div>
+                    <div class="grid grid-2" style="margin-top:20px" data-service-list>
+                        @foreach (var svc in Model.Services.OrderBy(s => s.Name))
+                        {
+                            <button type="button" class="service-card" data-svc-id="@svc.Id" data-svc-name="@svc.Name" data-svc-price="@svc.Price" data-svc-duration="@svc.DurationMinutes">
+                                <div class="row"><span class="name">@svc.Name</span><span class="price">&#8377;@svc.Price.ToString("N0")</span></div>
+                                <div class="meta">@svc.DurationMinutes min</div>
+                            </button>
+                        }
+                    </div>
+                </div>
+
+                <!-- Step 2: artist + date + slot -->
+                <div data-book-panel="2" style="display:none">
+                    <div id="storefrontNotReady" class="pageSub" style="display:none">Loading real-time availability&hellip;</div>
+                    <div id="step2Body">
+                        <div class="eyebrow">choose artist</div>
+                        <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap" data-artist-list></div>
+
+                        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:32px">
+                            <div class="eyebrow" data-month-label>Pick a date</div>
+                            <div style="display:flex;gap:8px">
+                                <button type="button" class="btn btn-secondary" style="padding:8px 14px" data-prev-month>&larr;</button>
+                                <button type="button" class="btn btn-secondary" style="padding:8px 14px" data-next-month>&rarr;</button>
+                            </div>
+                        </div>
+                        <div class="calendar-grid" data-calendar-days-header>
+                            <div class="calendar-day-label">Mon</div><div class="calendar-day-label">Tue</div><div class="calendar-day-label">Wed</div>
+                            <div class="calendar-day-label">Thu</div><div class="calendar-day-label">Fri</div><div class="calendar-day-label">Sat</div><div class="calendar-day-label">Sun</div>
+                        </div>
+                        <div class="calendar-grid" data-calendar-grid></div>
+
+                        <div class="eyebrow" style="margin-top:28px">available slots</div>
+                        <div id="slotsPrompt" class="pageSub" style="margin-top:12px">Choose an artist and date to see real available times.</div>
+                        <div id="slotsLoading" class="pageSub" style="margin-top:12px;display:none">Loading available times&hellip;</div>
+                        <div id="slotsEmpty" class="pageSub" style="margin-top:12px;display:none">No open times for this artist on this date. Please try another date.</div>
+                        <div class="slot-row" data-slot-list></div>
+                    </div>
+                </div>
+
+                <!-- Step 3: details -->
+                <div data-book-panel="3" style="display:none">
+                    <div class="eyebrow">your details</div>
+                    <div class="grid grid-2" style="margin-top:10px">
+                        <div class="book-field"><label>First name *</label><input data-field="firstName" /></div>
+                        <div class="book-field"><label>Last name</label><input data-field="lastName" /></div>
+                        <div class="book-field"><label>Mobile</label><input data-field="mobile" /></div>
+                        <div class="book-field"><label>Email</label><input data-field="email" type="email" /></div>
+                    </div>
+                    <div class="book-field" style="grid-column:span 2"><label>Anything we should know</label><textarea data-field="notes" rows="3"></textarea></div>
+                </div>
+
+                <!-- Step 4: confirmation -->
+                <div data-book-panel="4" style="display:none">
+                    <div class="confirm-check">&#10003;</div>
+                    <h2 style="margin:24px 0 0;font:400 40px/1.05 'Instrument Serif',serif">Your booking request is in.</h2>
+                    <p style="margin-top:14px;max-width:460px;font:300 14px/1.8 'Jost',sans-serif;color:var(--body-text)">
+                        We&rsquo;ve captured your appointment request and will confirm shortly.
+                    </p>
+                    <div class="label-sm" style="margin-top:12px" data-confirmation-id></div>
+                </div>
+
+                <div id="bookingError" class="booking-error" style="display:none"></div>
+
+                <div style="display:flex;gap:12px;margin-top:36px">
+                    <button type="button" class="btn btn-secondary" data-book-back>&larr; Back</button>
+                    <button type="button" class="btn btn-primary" data-book-next>Continue &rarr;</button>
+                </div>
+            </div>
+
+            <div class="booking-summary">
+                <div class="eyebrow">your booking</div>
+                <div class="booking-summary-row"><span class="k">Service</span><span class="v" data-summary-service>Not selected</span></div>
+                <div class="booking-summary-row"><span class="k">Artist</span><span class="v" data-summary-artist>Not selected</span></div>
+                <div class="booking-summary-row"><span class="k">Date</span><span class="v" data-summary-date>Not selected</span></div>
+                <div class="booking-summary-row"><span class="k">Time</span><span class="v" data-summary-time>Not selected</span></div>
+                <div class="booking-summary-row"><span class="k">Duration</span><span class="v" data-summary-duration>&mdash;</span></div>
+                <div class="booking-total"><span class="k" style="text-transform:uppercase">Total</span><span class="amt" data-summary-total>&#8377;0</span></div>
+                <div class="booking-note" data-summary-policy></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    window.GESSFLOW_API_BASE = @Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(apiBase));
+    window.BOOKING_SLUG = @Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(slug));
+    window.STOREFRONT = @Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(Model));
+    window.PRESELECTED_SERVICE_ID = @Html.Raw(preselected.HasValue ? LashesWebsite.Services.JsonHelper.ToCamelJson(preselected.Value.ToString()) : "null");
+</script>
+
+@section Scripts {
+    <script src="~/js/book.js" asp-append-version="true"></script>
+}

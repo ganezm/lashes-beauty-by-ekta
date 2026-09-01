@@ -1,0 +1,47 @@
+@model LashesWebsite.Models.PublicBookingStorefront
+@{
+    var groups = Model.Services.GroupBy(s => s.CategoryName ?? "Other").ToList();
+}
+<section class="section" data-reveal>
+    <div class="container">
+        <div class="eyebrow">the menu</div>
+        <h1 class="section-title">Services</h1>
+        @if (!string.IsNullOrWhiteSpace(Model.Description))
+        {
+            <p class="section-copy">@Model.Description</p>
+        }
+
+        @if (groups.Count == 0)
+        {
+            <p class="section-copy">Services are being updated — check back shortly, or get in touch directly.</p>
+        }
+
+        @foreach (var group in groups)
+        {
+            <div style="margin-top:48px">
+                <h2 style="font:400 30px/1 'Instrument Serif',serif;margin-bottom:20px">@group.Key</h2>
+                <div class="grid grid-3">
+                    @foreach (var svc in group.OrderBy(s => s.Name))
+                    {
+                        <a class="service-card" href="/book?service=@svc.Id">
+                            <div class="row"><span class="name">@svc.Name</span><span class="price">&#8377;@svc.Price.ToString("N0")</span></div>
+                            <div class="meta">@svc.DurationMinutes min</div>
+                            @if (!string.IsNullOrWhiteSpace(svc.Description))
+                            {
+                                <div class="desc">@svc.Description</div>
+                            }
+                        </a>
+                    }
+                </div>
+            </div>
+        }
+
+        @if (Model.Policy is not null && Model.Policy.DepositRequired)
+        {
+            <div class="booking-note" style="margin-top:40px;max-width:520px">
+                A @Model.Policy.DepositPercent% deposit is required to confirm your appointment.
+                Cancellations within @Model.Policy.CancellationWindowHours hours forfeit the deposit.
+            </div>
+        }
+    </div>
+</section>

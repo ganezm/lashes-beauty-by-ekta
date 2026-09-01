@@ -1,0 +1,63 @@
+@model LashesWebsite.Models.PublicWebsiteContent
+<section class="section dark" data-reveal>
+    <div class="container">
+        <div class="eyebrow" style="color:var(--accent-pink-2)">lash academy</div>
+        <h1 class="section-title" style="color:#fff">Train with @Model.BusinessName</h1>
+        <p class="section-copy" style="color:rgba(255,255,255,.8)">Small-group certification courses with kit, models and post-course mentoring.</p>
+    </div>
+</section>
+
+@if (Model.AcademyCourses.Count == 0)
+{
+    <section class="section"><div class="container"><p class="section-copy">Course dates are being finalized — check back soon.</p></div></section>
+}
+else
+{
+    <section class="section" data-reveal>
+        <div class="container">
+            <div class="grid grid-3">
+                @foreach (var course in Model.AcademyCourses)
+                {
+                    <div class="card">
+                        <div class="tag">@course.Level</div>
+                        <h3>@course.Name</h3>
+                        @if (!string.IsNullOrWhiteSpace(course.Meta))
+                        {
+                            <div class="label-sm" style="margin-top:10px">@course.Meta</div>
+                        }
+                        <div style="margin:16px 0;height:1px;background:var(--border-hairline)"></div>
+                        @foreach (var m in course.Modules)
+                        {
+                            <div style="display:flex;gap:10px;padding:5px 0;font:300 13px/1.5 'Jost',sans-serif;color:var(--body-text)">
+                                <span style="color:var(--magenta)">&#9670;</span>@m
+                            </div>
+                        }
+                        <div style="margin-top:20px;font:400 32px/1 'Instrument Serif',serif;color:var(--magenta)">&#8377;@course.Price.ToString("N0")</div>
+                        <a href="/contact" class="btn btn-secondary btn-block" style="margin-top:16px">Reserve a seat</a>
+                    </div>
+                }
+            </div>
+
+            @{
+                var allIntakes = Model.AcademyCourses.SelectMany(c => c.Intakes.Select(i => new { Course = c.Name, Intake = i })).OrderBy(x => x.Intake.StartDate).ToList();
+            }
+            @if (allIntakes.Count > 0)
+            {
+                <div class="intake-table">
+                    <div class="intake-row head">
+                        <span>Upcoming dates</span><span>Course</span><span>Seats left</span><span></span>
+                    </div>
+                    @foreach (var row in allIntakes)
+                    {
+                        <div class="intake-row">
+                            <span style="font:400 18px/1 'Instrument Serif',serif;color:var(--ink-2)">@row.Intake.StartDate.ToString("d MMM") &ndash; @row.Intake.EndDate.ToString("d MMM yyyy")</span>
+                            <span>@row.Course</span>
+                            <span style="color:var(--magenta)">@(row.Intake.SeatsTotal - row.Intake.SeatsBooked) of @row.Intake.SeatsTotal</span>
+                            <span><a href="/contact" class="btn btn-secondary" style="padding:10px 16px">Enquire</a></span>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </section>
+}

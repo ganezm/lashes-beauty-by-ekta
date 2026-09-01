@@ -1,0 +1,234 @@
+@model LashesWebsite.Controllers.HomeViewModel
+@{
+    var c = Model.Content;
+    var s = Model.Storefront;
+    var featured = s.Services.Where(x => x.Featured).ToList();
+    if (featured.Count == 0) featured = s.Services.Take(5).ToList();
+}
+
+@if (c.HeroSlides.Count > 0)
+{
+    <section class="hero">
+        <div class="hero-media">
+            @for (var i = 0; i < c.HeroSlides.Count; i++)
+            {
+                var slide = c.HeroSlides[i];
+                if (!string.IsNullOrWhiteSpace(slide.VideoUrl))
+                {
+                    <video data-hero-media="@i" class="@(i == 0 ? "active" : "")" muted playsinline loop poster="@slide.PosterImageUrl" src="@slide.VideoUrl"></video>
+                }
+                else if (!string.IsNullOrWhiteSpace(slide.PosterImageUrl))
+                {
+                    <img data-hero-media="@i" class="@(i == 0 ? "active" : "")" src="@slide.PosterImageUrl" alt="" />
+                }
+            }
+        </div>
+        <div class="hero-scrim"></div>
+        <div class="hero-content" data-hero-text>
+            <div class="hero-kicker">@c.HeroSlides[0].Kicker</div>
+            <h1 class="hero-title">@c.HeroSlides[0].HeadlineLine1 <em>@c.HeroSlides[0].HeadlineLine2</em></h1>
+            <p class="hero-body">@c.HeroSlides[0].Body</p>
+            <div class="hero-actions">
+                <a href="/book" class="btn btn-primary">Book appointment &rarr;</a>
+                <a href="/services" class="btn btn-secondary">View services</a>
+            </div>
+        </div>
+        @if (c.HeroSlides.Count > 1)
+        {
+            <div class="hero-tabs" data-hero-tabs>
+                @for (var i = 0; i < c.HeroSlides.Count; i++)
+                {
+                    <button class="hero-tab @(i == 0 ? "active" : "")" data-hero-tab="@i">
+                        @c.HeroSlides[i].Kicker
+                        <span class="hero-tab-bar"><span class="hero-tab-fill"></span></span>
+                    </button>
+                }
+            </div>
+        }
+    </section>
+}
+else
+{
+    <section class="section dark">
+        <div class="container">
+            <h1 class="section-title" style="color:#fff">@c.BusinessName</h1>
+            <p class="section-copy" style="color:rgba(255,255,255,.75)">@c.CtaBody</p>
+            <a href="/book" class="btn btn-primary" style="margin-top:20px">Book appointment &rarr;</a>
+        </div>
+    </section>
+}
+
+@if (c.TrustStats.Count > 0)
+{
+    <div class="trust-bar">
+        @foreach (var t in c.TrustStats)
+        {
+            <div class="trust-stat"><div class="num">@t.Number</div><div class="lbl">@t.Label</div></div>
+        }
+    </div>
+}
+
+@if (featured.Count > 0)
+{
+    <section class="section" data-reveal>
+        <div class="container">
+            <div class="eyebrow">the lash edit</div>
+            <h2 class="section-title">Signature services</h2>
+            <div class="grid grid-3" style="margin-top:40px">
+                @foreach (var svc in featured)
+                {
+                    <a class="service-card" href="/book?service=@svc.Id">
+                        <div class="row"><span class="name">@svc.Name</span><span class="price">&#8377;@svc.Price.ToString("N0")</span></div>
+                        <div class="meta">@svc.DurationMinutes min</div>
+                        @if (!string.IsNullOrWhiteSpace(svc.Description))
+                        {
+                            <div class="desc">@svc.Description</div>
+                        }
+                    </a>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+@if (c.QuizResults.Count > 0)
+{
+    <section class="section soft" data-reveal>
+        <div class="container">
+            <div class="eyebrow">find your look</div>
+            <h2 class="section-title">What&rsquo;s your lash personality?</h2>
+            <div class="grid grid-4" style="margin-top:40px" data-quiz>
+                @for (var i = 0; i < c.QuizResults.Count; i++)
+                {
+                    var q = c.QuizResults[i];
+                    <button class="card" style="text-align:left;border:0;cursor:pointer" data-quiz-btn="@i">
+                        <div class="tag">@q.Name</div>
+                        <p style="margin-top:8px">@q.Descriptor</p>
+                    </button>
+                }
+            </div>
+            <div class="card" style="margin-top:20px;padding:26px" data-quiz-result>
+                <p style="margin:0;font:300 14px/1.7 'Jost',sans-serif;color:var(--body-text)">@c.QuizResults[0].ResultCopy</p>
+                <a href="/book?service=@c.QuizResults[0].RecommendedServiceId" class="btn btn-primary" style="margin-top:16px" data-quiz-cta>
+                    Book @c.QuizResults[0].RecommendedServiceName &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+}
+
+@if (c.HowItWorksSteps.Count > 0)
+{
+    <section class="section" data-reveal>
+        <div class="container">
+            <div class="eyebrow">the process</div>
+            <h2 class="section-title">How it works</h2>
+            <div class="grid grid-4" style="margin-top:40px">
+                @for (var i = 0; i < c.HowItWorksSteps.Count; i++)
+                {
+                    <div class="card">
+                        <div class="step-num">0@(i + 1)</div>
+                        <h3>@c.HowItWorksSteps[i].Title</h3>
+                        <p>@c.HowItWorksSteps[i].Body</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+@if (c.GalleryItems.Count > 0)
+{
+    var homeGallery = c.GalleryItems.Where(g => g.FeaturedOnHome).Take(8).ToList();
+    if (homeGallery.Count == 0) homeGallery = c.GalleryItems.Take(8).ToList();
+    <section class="section soft" data-reveal>
+        <div class="container">
+            <div class="eyebrow">work from the chair</div>
+            <h2 class="section-title">Lookbook</h2>
+            <div class="gallery-grid">
+                @foreach (var g in homeGallery)
+                {
+                    <div class="gallery-tile @g.LayoutHint" onclick="location.href='/lookbook'">
+                        <img src="@g.ImageUrl" alt="@g.Category" loading="lazy" />
+                        <span class="tag">@g.Category</span>
+                    </div>
+                }
+            </div>
+            <div style="text-align:center;margin-top:30px"><a href="/lookbook" class="btn btn-secondary">View full lookbook</a></div>
+        </div>
+    </section>
+}
+
+@if (c.Team.Count > 0)
+{
+    <section class="section" data-reveal>
+        <div class="container">
+            <div class="eyebrow">the studio</div>
+            <h2 class="section-title">Meet the artists</h2>
+            <div class="grid grid-3" style="margin-top:40px">
+                @foreach (var t in c.Team)
+                {
+                    <div class="team-card">
+                        @if (!string.IsNullOrWhiteSpace(t.PhotoUrl))
+                        {
+                            <img class="team-photo" src="@t.PhotoUrl" alt="@t.Name" />
+                        }
+                        <div class="team-name">@t.Name</div>
+                        <div class="team-role">@t.Designation</div>
+                        @if (!string.IsNullOrWhiteSpace(t.Bio))
+                        {
+                            <p class="team-bio">@t.Bio</p>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+@if (c.BeforeAfterPairs.Count > 0)
+{
+    <section class="section soft" data-reveal>
+        <div class="container">
+            <div class="eyebrow">real results</div>
+            <h2 class="section-title">Before &amp; after</h2>
+            <div class="before-after" style="margin-top:40px">
+                @foreach (var pair in c.BeforeAfterPairs.Take(2))
+                {
+                    <div class="before-after-card"><img src="@pair.BeforeImageUrl" alt="Before" /><span class="before-after-label">Before</span></div>
+                    <div class="before-after-card"><img src="@pair.AfterImageUrl" alt="After" /><span class="before-after-label">After</span></div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+@if (c.Testimonials.Count > 0)
+{
+    <section class="section" data-reveal data-testimonials>
+        <div class="container" style="text-align:center">
+            <div class="eyebrow">reviews</div>
+            <div class="testimonial-quote" style="margin:24px auto 0" data-testimonial-quote>&ldquo;@c.Testimonials[0].QuoteText&rdquo;</div>
+            <div class="testimonial-attr" data-testimonial-attr>@c.Testimonials[0].AttributionFreeText</div>
+            @if (c.Testimonials.Count > 1)
+            {
+                <div style="display:flex;gap:14px;justify-content:center;margin-top:24px">
+                    <button class="btn btn-secondary" data-testimonial-prev>&larr;</button>
+                    <button class="btn btn-secondary" data-testimonial-next>&rarr;</button>
+                </div>
+                <script type="application/json" id="testimonials-data">@Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(c.Testimonials.Select(t => new { t.QuoteText, t.AttributionFreeText })))</script>
+            }
+        </div>
+    </section>
+}
+
+@if (!string.IsNullOrWhiteSpace(c.CtaHeadline))
+{
+    <section class="final-cta">
+        <div class="container">
+            <h2>@c.CtaHeadline</h2>
+            <p>@c.CtaBody</p>
+            <a href="/book" class="btn btn-primary">@(c.CtaButtonLabel ?? "Book now")</a>
+        </div>
+    </section>
+}

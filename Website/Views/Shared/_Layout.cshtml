@@ -1,0 +1,122 @@
+@using LashesWebsite.Models
+@{
+    var content = ViewData["Content"] as PublicWebsiteContent;
+    var path = Context.Request.Path.Value ?? "/";
+    bool IsActive(string href) => href == "/" ? path == "/" : path.StartsWith(href, StringComparison.OrdinalIgnoreCase);
+    var brandColor = content?.PrimaryColor ?? "#be11a0";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="@brandColor" />
+    <title>@(ViewData["Title"] as string ?? content?.BusinessName ?? "Lashes & Beauty")</title>
+    @if (!string.IsNullOrWhiteSpace(content?.MetaDescription))
+    {
+        <meta name="description" content="@content.MetaDescription" />
+    }
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Jost:wght@200;300;400;500;600&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>:root{--magenta:@brandColor;}</style>
+</head>
+<body class="ek-root">
+
+@if (content?.MarqueeMessages.Count > 0)
+{
+    <div class="marquee">
+        <div class="marquee-track">
+            @for (var i = 0; i < 2; i++)
+            {
+                foreach (var m in content.MarqueeMessages)
+                {
+                    <span class="marquee-item">@m.Text <span class="dot">&#9670;</span></span>
+                }
+            }
+        </div>
+    </div>
+}
+
+<header class="nav-bar">
+    <a class="nav-brand" href="/">
+        @if (!string.IsNullOrWhiteSpace(content?.LogoUrl))
+        {
+            <img src="@content.LogoUrl" alt="@content.BusinessName" />
+        }
+        @(content?.BusinessName ?? "Studio")
+    </a>
+    <nav class="nav-links">
+        <a href="/" class="@(IsActive("/") ? "active" : "")">Home</a>
+        <a href="/services" class="@(IsActive("/services") ? "active" : "")">Services</a>
+        <a href="/lookbook" class="@(IsActive("/lookbook") ? "active" : "")">Lookbook</a>
+        <a href="/about" class="@(IsActive("/about") ? "active" : "")">About</a>
+        <a href="/academy" class="@(IsActive("/academy") ? "active" : "")">Academy</a>
+        <a href="/contact" class="@(IsActive("/contact") ? "active" : "")">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:14px">
+        <a href="/book" class="btn btn-primary nav-cta">Book now</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">&#9776;</button>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-btn" id="mobileMenuClose" aria-label="Close menu" style="align-self:flex-end;display:block;font-size:26px">&times;</button>
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/lookbook">Lookbook</a>
+    <a href="/about">About</a>
+    <a href="/academy">Academy</a>
+    <a href="/contact">Contact</a>
+    <a href="/book">Book now</a>
+</div>
+
+<main>
+    @RenderBody()
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div>
+            <div class="nav-brand" style="color:#fff">@(content?.BusinessName ?? "Studio")</div>
+            <p class="footer-tagline">@(content?.FooterTagline ?? "Beauty, designed around you.")</p>
+        </div>
+        @if (content is not null)
+        {
+            foreach (var column in content.FooterLinks.Select(l => l.Column).Distinct())
+            {
+                <div class="footer-col">
+                    <h4>@column</h4>
+                    @foreach (var link in content.FooterLinks.Where(l => l.Column == column))
+                    {
+                        if (string.IsNullOrWhiteSpace(link.Url)) { <span>@link.Text</span> }
+                        else { <a href="@link.Url">@link.Text</a> }
+                    }
+                </div>
+            }
+        }
+    </div>
+    <div class="container footer-bottom">
+        <span>@(content?.CopyrightText ?? $"© {DateTime.UtcNow.Year} {content?.BusinessName}")</span>
+        <span>
+            @if (!string.IsNullOrWhiteSpace(content?.SocialInstagramUrl)) { <a href="@content.SocialInstagramUrl" style="margin-right:16px">Instagram</a> }
+            @if (!string.IsNullOrWhiteSpace(content?.SocialFacebookUrl)) { <a href="@content.SocialFacebookUrl">Facebook</a> }
+        </span>
+    </div>
+</footer>
+
+@{
+    var location = (ViewData["Storefront"] as PublicBookingStorefront)?.Locations.FirstOrDefault();
+}
+@if (!string.IsNullOrWhiteSpace(location?.WhatsAppNumber))
+{
+    <a class="fab-whatsapp" href="https://wa.me/@location.WhatsAppNumber" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        &#128172;
+    </a>
+}
+
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

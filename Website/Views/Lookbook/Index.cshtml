@@ -1,0 +1,49 @@
+@model LashesWebsite.Models.PublicWebsiteContent
+@{
+    var categories = Model.GalleryItems.Select(g => g.Category).Distinct().OrderBy(x => x).ToList();
+}
+<section class="section" data-reveal>
+    <div class="container">
+        <div class="eyebrow">the work</div>
+        <h1 class="section-title">Lookbook</h1>
+
+        @if (categories.Count > 0)
+        {
+            <div class="pill-row" data-lookbook-filters>
+                <button class="category-pill active" data-filter="All">All</button>
+                @foreach (var cat in categories)
+                {
+                    <button class="category-pill" data-filter="@cat">@cat</button>
+                }
+            </div>
+        }
+
+        @if (Model.GalleryItems.Count == 0)
+        {
+            <p class="section-copy">New work is on the way — check back soon.</p>
+        }
+        else
+        {
+            <div class="gallery-grid" data-lookbook-grid style="margin-top:30px">
+                @foreach (var g in Model.GalleryItems)
+                {
+                    <div class="gallery-tile @g.LayoutHint" data-category="@g.Category" data-open-image="@g.ImageUrl" data-open-category="@g.Category">
+                        <img src="@g.ImageUrl" alt="@g.Category" loading="lazy" />
+                        <span class="tag">@g.Category</span>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+<div class="gallery-modal" id="galleryModal">
+    <div class="gallery-modal-panel">
+        <button class="gallery-modal-close" id="galleryModalClose">&times;</button>
+        <img id="galleryModalImage" src="" alt="" />
+        <div style="padding:20px 24px">
+            <div class="eyebrow" id="galleryModalCategory"></div>
+            <div style="margin-top:16px"><a href="/book" class="btn btn-primary">Book this look &rarr;</a></div>
+        </div>
+    </div>
+</div>

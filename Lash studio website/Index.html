@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#BE11A0">
+<title>Lashes & Beauty by Ekta | Lash, Brow & Beauty Studio</title>
+<meta name="description" content="Precision-crafted lashes, brows and beauty by Ekta. Explore services, view the lookbook and request an appointment.">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#ffffff}
+*{box-sizing:border-box}
+a{color:#be11a0;text-decoration:none}
+a:hover{color:#8e0b78}
+input,button,select,textarea{font-family:inherit}
+::selection{background:rgba(190,17,160,.18)}
+@keyframes ekKen{0%{transform:scale(1) translateZ(0)}100%{transform:scale(1.12)}}
+@keyframes ekMarquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes ekProgress{0%{width:0}100%{width:100%}}
+@keyframes ekSheen{0%{transform:translateX(-140%) skewX(-18deg)}100%{transform:translateX(340%) skewX(-18deg)}}
+@keyframes ekRise{0%{opacity:0;transform:translateY(26px)}100%{opacity:1;transform:none}}
+@keyframes ekFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes ekPulse{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:.85;transform:scale(1.06)}}
+@keyframes ekSpin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+/* P1 + P2 enhancement layer */
+@keyframes ekPageIn{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:none}}
+@keyframes ekModalIn{0%{opacity:0;transform:scale(.97) translateY(8px)}100%{opacity:1;transform:none}}
+.ek-enhance-card{transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s ease,border-color .45s ease}
+.ek-enhance-card:hover{transform:translateY(-5px);box-shadow:0 20px 44px rgba(26,16,22,.10);border-color:rgba(190,17,160,.25)!important}
+.ek-clickable{cursor:pointer}
+.ek-gallery-modal{position:fixed;inset:0;z-index:120;background:rgba(12,6,10,.88);display:flex;align-items:center;justify-content:center;padding:28px;backdrop-filter:blur(16px);animation:ekModalIn .35s ease both}
+.ek-gallery-panel{position:relative;width:min(1080px,96vw);max-height:92vh;overflow:auto;background:#fff;box-shadow:0 40px 100px rgba(0,0,0,.35);animation:ekModalIn .45s ease both}
+.ek-gallery-image{display:block;width:100%;max-height:72vh;object-fit:cover}
+.ek-sticky-book{position:fixed;left:18px;right:18px;bottom:18px;z-index:88;display:none}
+@media(max-width:767px){.ek-sticky-book{display:block}.ek-gallery-modal{padding:12px}.ek-gallery-panel{width:100%;max-height:94vh}.ek-gallery-image{max-height:60vh}.ek-root [style*="grid-template-columns:repeat(6,1fr)"]{grid-template-columns:repeat(2,1fr)!important}.ek-root [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important}.ek-root [style*="gap:88px"]{gap:36px!important}.ek-root [style*="min-height:680px"]{min-height:520px!important}}
+
+
+/* P0 production + responsive layer */
+.ek-dev-toolbar{display:none!important}
+.ek-root{overflow-x:hidden}
+.ek-root img{max-width:100%}
+.ek-root button,.ek-root a{touch-action:manipulation}
+.ek-root input:focus,.ek-root textarea:focus{border-color:#be11a0!important;box-shadow:0 3px 0 rgba(190,17,160,.08)}
+.ek-book-error{margin-top:18px;padding:12px 14px;border-left:2px solid #be11a0;background:#fff3fb;color:#6a5a63;font:400 12px/1.6 'Jost',sans-serif}
+@media (prefers-reduced-motion:reduce){
+  .ek-root *, .ek-root *::before, .ek-root *::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}
+}
+@media (max-width:1100px){
+  .ek-root [style*="grid-template-columns:repeat(5,1fr)"]{grid-template-columns:repeat(3,1fr)!important}
+  .ek-root [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:repeat(3,1fr)!important}
+  .ek-root [style*="padding:130px 64px"]{padding:90px 36px!important}
+  .ek-root [style*="padding:120px 64px"]{padding:90px 36px!important}
+  .ek-root [style*="padding:120px 64px 120px"]{padding:90px 36px!important}
+  .ek-root [style*="padding:96px 64px"]{padding:76px 36px!important}
+  .ek-root [style*="padding:80px 64px"]{padding:70px 36px!important}
+}
+@media (max-width:767px){
+  .ek-root{font-size:16px}
+  .ek-root [style*="height:780px"]{height:680px!important;min-height:0}
+  .ek-root [style*="left:64px;top:50%"]{left:22px!important;right:22px!important;max-width:none!important}
+  .ek-root [style*="left:64px;bottom:56px"]{left:22px!important;bottom:26px!important;gap:14px!important}
+  .ek-root [style*="right:48px;bottom:56px"]{right:22px!important;bottom:22px!important}
+  .ek-root [style*="font:400 96px/.9"]{font-size:62px!important;line-height:.92!important}
+  .ek-root [style*="font:400 82px/.95"]{font-size:56px!important}
+  .ek-root [style*="font:400 74px/1"]{font-size:54px!important}
+  .ek-root [style*="font:400 68px/1"]{font-size:52px!important}
+  .ek-root [style*="font:400 62px/1.02"]{font-size:44px!important}
+  .ek-root [style*="font:400 54px/1.06"]{font-size:42px!important}
+  .ek-root [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
+  .ek-root [style*="grid-template-columns:1.05fr 1fr"]{grid-template-columns:1fr!important}
+  .ek-root [style*="grid-template-columns:1.5fr 1fr"]{grid-template-columns:1fr!important}
+  .ek-root [style*="grid-template-columns:repeat(5,1fr)"]{grid-template-columns:1fr 1fr!important}
+  .ek-root [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr 1fr!important}
+  .ek-root [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important}
+  .ek-root [style*="grid-template-columns:1fr 1fr;gap:18px"]{grid-template-columns:1fr!important}
+  .ek-root [style*="padding:130px 64px"]{padding:72px 22px!important}
+  .ek-root [style*="padding:120px 64px"]{padding:72px 22px!important}
+  .ek-root [style*="padding:120px 64px 120px"]{padding:72px 22px!important}
+  .ek-root [style*="padding:96px 64px"]{padding:64px 22px!important}
+  .ek-root [style*="padding:80px 64px"]{padding:60px 22px!important}
+  .ek-root [style*="padding:74px 64px 120px"]{padding:54px 16px 80px!important}
+  .ek-root [style*="padding:80px 64px 110px"]{padding:54px 22px 80px!important}
+  .ek-root [style*="padding:15px 48px"]{padding:12px 18px!important}
+  .ek-root [style*="padding:15px 36px"]{padding:12px 18px!important}
+  .ek-root [style*="gap:88px"]{gap:42px!important}
+  .ek-root [style*="gap:76px"]{gap:36px!important}
+  .ek-root [style*="gap:56px"]{gap:30px!important}
+  .ek-root [style*="min-width:1312px"]{min-width:0!important;width:100%!important}
+  .ek-root [style*="width:calc(100vw - 128px)"]{width:calc(100vw - 44px)!important}
+  .ek-root [style*="min-width:150px"]{min-width:0!important}
+  .ek-root [style*="height:560px"]{height:420px!important}
+  .ek-root [style*="min-height:680px"]{min-height:420px!important}
+  .ek-root [style*="display:flex;gap:28px;margin-left:12px"]{display:none!important}
+  .ek-root [style*="padding:15px 22px"]{padding:12px 16px!important}
+  .ek-root [style*="padding:15px 30px"]{padding:13px 20px!important}
+  .ek-root [style*="padding:18px 34px"]{padding:15px 22px!important}
+  .ek-root [style*="display:flex;gap:14px;margin-top:40px"]{flex-wrap:wrap}
+  .ek-root [style*="grid-auto-rows:230px"]{grid-auto-rows:170px!important}
+  .ek-root [style*="grid-auto-rows:210px"]{grid-auto-rows:150px!important}
+  .ek-root [style*="grid-row:span 2"]{grid-row:span 2!important}
+  .ek-root [style*="position:sticky;top:170px"]{position:relative!important;top:auto!important}
+  .ek-root [style*="display:flex;margin-top:40px"]{overflow-x:auto!important}
+  .ek-root [style*="display:flex;gap:12px;margin-top:44px"]{overflow-x:auto!important}
+  .ek-root [style*="display:flex;gap:14px;margin-top:44px"]{overflow-x:auto!important}
+  .ek-root [style*="display:flex;gap:10px;margin-top:16px"]{display:grid!important;grid-template-columns:repeat(2,1fr)!important}
+  .ek-root [style*="display:flex;gap:12px;margin-top:22px"]{display:grid!important;grid-template-columns:1fr!important}
+  .ek-root [style*="display:flex;gap:12px;margin-top:32px"]{flex-wrap:wrap}
+  .ek-root [style*="padding:40px 36px"]{padding:26px 20px!important}
+  .ek-root [style*="padding:30px"]{padding:22px!important}
+  .ek-root [style*="padding:24px 20px 26px"]{padding:20px 16px 22px!important}
+  .ek-root h1,.ek-root h2{max-width:100%}
+  .ek-root p{max-width:100%!important}
+}
+@media (max-width:420px){
+  .ek-root [style*="font:400 96px/.9"]{font-size:52px!important}
+  .ek-root [style*="font:400 62px/1.02"]{font-size:39px!important}
+  .ek-root [style*="font:400 54px/1.06"]{font-size:36px!important}
+  .ek-root [style*="grid-template-columns:repeat(5,1fr)"]{grid-template-columns:1fr!important}
+  .ek-root [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr!important}
+}
+
+/* =========================================================
+   TEMPLATE V3 — FINAL PRE-BACKEND CONTENT STRUCTURE
+   Visual template only. Content is intentionally CMS-ready.
+   ========================================================= */
+.ek-template-section{position:relative;padding:112px 64px;border-top:1px solid #f2dfeb;background:#fff}
+.ek-template-section.soft{background:linear-gradient(180deg,#fbf0f6,#fff)}
+.ek-template-eyebrow{font:500 10px/1 'Jost',sans-serif;letter-spacing:.4em;color:#be11a0;text-transform:uppercase}
+.ek-template-title{margin:18px 0 0;font:400 54px/1.05 'Instrument Serif',serif;letter-spacing:-.015em}
+.ek-template-copy{max-width:520px;margin:22px 0 0;font:300 14px/1.85 'Jost',sans-serif;color:#6a5a63}
+.ek-template-grid{display:grid;gap:18px;margin-top:48px}
+.ek-template-grid.four{grid-template-columns:repeat(4,1fr)}
+.ek-template-grid.three{grid-template-columns:repeat(3,1fr)}
+.ek-template-grid.two{grid-template-columns:repeat(2,1fr)}
+.ek-template-card{padding:30px;border:1px solid #f0e2ec;background:#fff;box-shadow:0 16px 40px rgba(26,16,22,.055);transition:transform .45s ease,box-shadow .45s ease,border-color .45s ease}
+.ek-template-card:hover{transform:translateY(-6px);box-shadow:0 28px 58px rgba(190,17,160,.13);border-color:rgba(190,17,160,.28)}
+.ek-template-num{font:400 34px/1 'Instrument Serif',serif;color:#be11a0}
+.ek-template-card h3{margin:16px 0 0;font:400 27px/1.1 'Instrument Serif',serif;color:#1a1016}
+.ek-template-card p{margin:12px 0 0;font:300 13px/1.75 'Jost',sans-serif;color:#6a5a63}
+.ek-template-pill{display:inline-flex;padding:8px 12px;border:1px solid #ecd9e6;border-radius:30px;font:500 8.5px/1 'Jost',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#be11a0}
+.ek-template-table{margin-top:46px;border:1px solid #f0e2ec;overflow:hidden;background:#fff}
+.ek-template-row{display:grid;grid-template-columns:1.35fr repeat(4,1fr);border-bottom:1px solid #f0e2ec}
+.ek-template-row:last-child{border-bottom:0}
+.ek-template-cell{padding:18px 20px;border-right:1px solid #f0e2ec;font:300 12px/1.5 'Jost',sans-serif;color:#6a5a63}
+.ek-template-cell:last-child{border-right:0}
+.ek-template-row.head .ek-template-cell{font:500 9px/1.4 'Jost',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#1a1016;background:#fdf6fa}
+.ek-template-row .feature{font-weight:500;color:#1a1016}
+.ek-template-compare-cta{display:flex;justify-content:center;margin-top:28px}
+.ek-beforeafter{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:48px}
+.ek-ba-card{position:relative;min-height:430px;overflow:hidden;border:1px solid #f0e2ec;background:#be11a0}
+.ek-ba-card img{width:100%;height:100%;display:block;object-fit:cover}
+.ek-ba-label{position:absolute;left:18px;bottom:18px;padding:9px 13px;background:#fff;color:#be11a0;font:500 9px/1 'Jost',sans-serif;letter-spacing:.22em;text-transform:uppercase}
+.ek-consult{display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:center}
+.ek-consult-list{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ek-consult-item{padding:16px 18px;border:1px solid #f0e2ec;background:#fff;font:300 12.5px/1.5 'Jost',sans-serif;color:#6a5a63}
+.ek-final-cta{padding:120px 64px;background:#be11a0;color:#fff;text-align:center}
+.ek-final-cta h2{margin:0;font:400 76px/.95 'Instrument Serif',serif}
+.ek-final-cta p{max-width:560px;margin:22px auto 0;font:300 14px/1.8 'Jost',sans-serif;color:rgba(255,255,255,.84)}
+.ek-final-cta button{margin-top:34px;padding:17px 34px;border:0;background:#fff;color:#be11a0;font:500 10px/1 'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase;cursor:pointer}
+@media(max-width:1100px){
+  .ek-template-grid.four{grid-template-columns:repeat(2,1fr)}
+  .ek-template-section{padding:90px 36px}
+  .ek-final-cta{padding:100px 36px}
+}
+@media(max-width:767px){
+  .ek-template-section{padding:72px 22px}
+  .ek-template-title{font-size:43px}
+  .ek-template-grid.four,.ek-template-grid.three,.ek-template-grid.two{grid-template-columns:1fr}
+  .ek-template-table{overflow-x:auto}
+  .ek-template-row{min-width:720px}
+  .ek-beforeafter{grid-template-columns:1fr}
+  .ek-ba-card{min-height:340px}
+  .ek-consult{grid-template-columns:1fr;gap:34px}
+  .ek-consult-list{grid-template-columns:1fr}
+  .ek-final-cta{padding:82px 22px}
+  .ek-final-cta h2{font-size:56px}
+}
+
+</style>
+</helmet>
+
+<div ref="{{ root }}" class="ek-root" style="{{ rootStyle }}">
+
+<div class="ek-dev-toolbar" style="position:sticky;top:0;z-index:95;display:flex;align-items:center;gap:18px;padding:10px 22px;background:rgba(255,255,255,.82);backdrop-filter:blur(24px) saturate(1.4);border-bottom:1px solid #f0e2ec">
+  <span style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.3em;color:#b0a0a9;text-transform:uppercase">mockups</span>
+  <div style="display:flex;flex-wrap:wrap;gap:6px">
+    <sc-for list="{{ screens }}" as="s" hint-placeholder-count="8">
+      <button onClick="{{ s.go }}" style="{{ s.style }}">{{ s.label }}</button>
+    </sc-for>
+  </div>
+  <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+    <span style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.24em;color:#b0a0a9;text-transform:uppercase">currency</span>
+    <sc-for list="{{ currencies }}" as="c" hint-placeholder-count="4">
+      <button onClick="{{ c.go }}" style="{{ c.style }}">{{ c.code }}</button>
+    </sc-for>
+  </div>
+</div>
+
+<sc-if value="{{ isSite }}" hint-placeholder-val="{{ true }}">
+<div style="position:relative">
+
+  <div style="overflow:hidden;background:linear-gradient(90deg,#160b12,#3a0c31 40%,#160b12);border-bottom:1px solid rgba(255,255,255,.08)">
+    <div style="display:flex;width:200%;animation:ekMarquee 34s linear infinite">
+      <div style="flex:none;width:50%;display:flex;gap:56px;padding:10px 28px;font:400 10px/1 'Jost',sans-serif;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.72);white-space:nowrap">
+        <span>Free patch test with every first set</span><span style="color:#ff85dd">◆</span><span>Appointments available by advance booking</span><span style="color:#ff85dd">◆</span><span>Academy intake — September 2026</span><span style="color:#ff85dd">◆</span><span>Gift cards delivered instantly</span><span style="color:#ff85dd">◆</span>
+      </div>
+      <div style="flex:none;width:50%;display:flex;gap:56px;padding:10px 28px;font:400 10px/1 'Jost',sans-serif;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.72);white-space:nowrap">
+        <span>Free patch test with every first set</span><span style="color:#ff85dd">◆</span><span>Appointments available by advance booking</span><span style="color:#ff85dd">◆</span><span>Academy intake — September 2026</span><span style="color:#ff85dd">◆</span><span>Gift cards delivered instantly</span><span style="color:#ff85dd">◆</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:sticky;top:0;z-index:80;display:flex;align-items:center;gap:36px;padding:15px 48px;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,255,255,.78));backdrop-filter:blur(26px) saturate(1.5);border-bottom:1px solid rgba(190,17,160,.1);box-shadow:0 10px 34px rgba(26,16,22,.05)">
+    <img src="assets/logo-magenta.png" alt="Lashes &amp; Beauty by Ekta" style="height:48px;width:auto;display:block">
+    <div style="display:flex;gap:28px;margin-left:12px">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="7">
+        <a href="#" onClick="{{ n.go }}" style="{{ n.style }}">{{ n.label }}<span style="{{ n.barStyle }}"></span></a>
+      </sc-for>
+    </div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:16px">
+      <button onClick="{{ goBooking }}" style="position:relative;overflow:hidden;padding:13px 26px;border:0;border-radius:2px;background:linear-gradient(180deg,#d919b8,#a80c8c);color:#fff;font:500 10px/1 'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;box-shadow:0 12px 28px rgba(190,17,160,.3),inset 0 1px 0 rgba(255,255,255,.4);transition:box-shadow .4s ease,filter .4s ease" style-hover="filter:brightness(1.08);box-shadow:0 16px 38px rgba(190,17,160,.45),inset 0 1px 0 rgba(255,255,255,.5)">Book appointment</button>
+      <button onClick="{{ toggleMobileMenu }}" aria-label="Open menu" style="display:flex;flex-direction:column;gap:5px;padding:8px;border:0;background:transparent;cursor:pointer">
+        <span style="display:block;width:22px;height:1px;background:#1a1016"></span>
+        <span style="display:block;width:22px;height:1px;background:#1a1016"></span>
+        <span style="display:block;width:12px;height:1px;background:#be11a0"></span>
+      </button>
+    </div>
+  </div>
+
+  <sc-if value="{{ mobileMenu }}">
+  <div style="position:fixed;inset:0;z-index:120;background:rgba(255,255,255,.98);backdrop-filter:blur(24px);padding:92px 24px 28px;overflow:auto">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:34px">
+      <img src="assets/logo-magenta.png" alt="Lashes &amp; Beauty by Ekta" style="height:42px;width:auto;display:block">
+      <button onClick="{{ toggleMobileMenu }}" aria-label="Close menu" style="width:44px;height:44px;border:1px solid #ecd9e6;background:#fff;color:#1a1016;font:400 22px/1 'Jost',sans-serif;cursor:pointer">×</button>
+    </div>
+    <nav aria-label="Mobile navigation" style="display:flex;flex-direction:column;border-top:1px solid #f0e2ec">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="7">
+        <a href="#" onClick="{{ n.go }}" style="display:block;padding:20px 0;border-bottom:1px solid #f0e2ec;font:400 24px/1 'Instrument Serif',serif;color:#1a1016;text-decoration:none">{{ n.label }}</a>
+      </sc-for>
+    </nav>
+    <button onClick="{{ goBooking }}" style="width:100%;margin-top:28px;padding:17px 20px;border:0;background:linear-gradient(180deg,#d919b8,#a80c8c);color:#fff;font:500 10px/1 'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase;cursor:pointer">Book appointment</button>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <div style="position:relative;height:780px;overflow:hidden;background:#120810">
+      <video ref="{{ v0 }}" autoplay muted loop playsinline preload="metadata" data-ek-video="0" poster="https://images.pexels.com/photos/36930354/pexels-photo-36930354.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1800&amp;h=1000&amp;fit=crop" src="https://videos.pexels.com/video-files/7754495/7754495-hd_1920_1080_30fps.mp4" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:ekKen 20s ease-in-out infinite alternate;opacity:{{ o0 }};transition:opacity 1.3s ease"></video>
+      <video ref="{{ v1 }}" autoplay muted loop playsinline preload="metadata" data-ek-video="1" poster="https://images.pexels.com/photos/8554941/pexels-photo-8554941.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1800&amp;h=1000&amp;fit=crop" src="https://videos.pexels.com/video-files/10491732/10491732-hd_1920_1080_25fps.mp4" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:ekKen 22s ease-in-out infinite alternate;opacity:{{ o1 }};transition:opacity 1.3s ease"></video>
+      <video ref="{{ v2 }}" autoplay muted loop playsinline preload="metadata" data-ek-video="2" poster="https://images.pexels.com/photos/3724431/pexels-photo-3724431.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1800&amp;h=1000&amp;fit=crop" src="https://videos.pexels.com/video-files/7298092/7298092-hd_1920_1080_30fps.mp4" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:ekKen 24s ease-in-out infinite alternate;opacity:{{ o2 }};transition:opacity 1.3s ease"></video>
+      <div style="position:absolute;inset:0;background:linear-gradient(102deg,rgba(14,6,11,.9) 2%,rgba(14,6,11,.62) 38%,rgba(14,6,11,.08) 76%)"></div>
+      <div style="position:absolute;inset:0;background:radial-gradient(120% 80% at 92% 8%,rgba(190,17,160,.42),transparent 58%)"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;height:180px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.14))"></div>
+
+      <div style="position:absolute;left:64px;top:50%;transform:translateY(-50%);max-width:660px;color:#fff">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px;animation:ekRise .9s cubic-bezier(.2,.7,.2,1) both">
+          <span style="display:block;width:56px;height:1px;background:linear-gradient(90deg,#ff85dd,rgba(217,219,228,.2))"></span>
+          <span style="font:500 10px/1 'Jost',sans-serif;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.86)">{{ heroKicker }}</span>
+        </div>
+        <h1 style="margin:0;font:400 96px/.9 'Instrument Serif',serif;letter-spacing:-.015em;animation:ekRise 1s cubic-bezier(.2,.7,.2,1) .08s both">{{ heroLine1 }}<br><em style="font-style:italic;background:linear-gradient(96deg,#ff9ae4,#be11a0 60%,#d9dbe4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">{{ heroLine2 }}</em></h1>
+        <p style="margin:28px 0 0;max-width:420px;font:300 15px/1.85 'Jost',sans-serif;color:rgba(255,255,255,.78);text-wrap:pretty;animation:ekRise 1s cubic-bezier(.2,.7,.2,1) .16s both">{{ heroBody }}</p>
+        <div style="display:flex;gap:14px;margin-top:40px;animation:ekRise 1s cubic-bezier(.2,.7,.2,1) .24s both">
+          <button onClick="{{ goBooking }}" style="position:relative;overflow:hidden;padding:18px 34px;border:0;border-radius:2px;background:linear-gradient(180deg,#e11cc0,#a80c8c);color:#fff;font:500 10px/1 'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;box-shadow:0 18px 44px rgba(190,17,160,.45),inset 0 1px 0 rgba(255,255,255,.45);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s ease" style-hover="transform:translateY(-2px);box-shadow:0 24px 54px rgba(190,17,160,.6),inset 0 1px 0 rgba(255,255,255,.55)" style-after="content:'';position:absolute;top:0;left:0;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:ekSheen 4.5s ease-in-out infinite">Book appointment</button>
+          <button onClick="{{ goServices }}" style="padding:18px 34px;border:1px solid rgba(255,255,255,.4);border-radius:2px;background:rgba(255,255,255,.1);backdrop-filter:blur(14px);color:#fff;font:500 10px/1 'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;transition:.4s ease" style-hover="background:rgba(255,255,255,.94);color:#1a1016;border-color:#fff">Explore services</button>
+        </div>
+      </div>
+
+      <div style="position:absolute;left:64px;bottom:56px;display:flex;align-items:flex-end;gap:30px">
+        <sc-for list="{{ heroTabs }}" as="h" hint-placeholder-count="3">
+          <button onClick="{{ h.go }}" style="{{ h.style }}">
+            <span style="display:block;text-align:left">{{ h.num }}</span>
+            <span style="{{ h.trackStyle }}"><span style="{{ h.fillStyle }}"></span></span>
+            <span style="display:block;margin-top:9px;font:400 9px/1 'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase;text-align:left">{{ h.tag }}</span>
+          </button>
+        </sc-for>
+      </div>
+
+      <div style="position:absolute;right:48px;bottom:56px;display:flex;align-items:center;gap:14px;padding:10px 12px 10px 20px;border-radius:60px;background:rgba(255,255,255,.12);backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(255,255,255,.28);box-shadow:0 14px 40px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.4)">
+        <span style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.26em;color:rgba(255,255,255,.9);text-transform:uppercase">{{ playLabel }}</span>
+        <button onClick="{{ togglePlay }}" style="width:40px;height:40px;border-radius:50%;border:0;background:linear-gradient(180deg,#fff,#e9dfe6);color:#1a1016;font:400 10px/1 'Jost',sans-serif;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.25)">{{ playIcon }}</button>
+      </div>
+    </div>
+
+    <div style="display:flex;background:linear-gradient(180deg,#fdf6fa,#fbf0f6);border-bottom:1px solid #f2dfeb">
+      <sc-for list="{{ trust }}" as="t" hint-placeholder-count="4">
+        <div style="flex:1;padding:30px 34px;border-right:1px solid rgba(190,17,160,.08);transition:background .4s ease" style-hover="background:rgba(255,255,255,.75)">
+          <div style="font:400 30px/1 'Instrument Serif',serif;color:#be11a0">{{ t.n }}</div>
+          <div style="margin-top:10px;font:400 9px/1.5 'Jost',sans-serif;letter-spacing:.28em;color:#8a7a83;text-transform:uppercase">{{ t.l }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div data-reveal="1" style="display:grid;grid-template-columns:1fr 1fr;gap:88px;padding:130px 64px;align-items:center;background:#fff">
+      <div>
+        <div style="font:500 10px/1 'Jost',sans-serif;letter-spacing:.4em;color:#be11a0;text-transform:uppercase">our philosophy</div>
+        <h2 style="margin:28px 0 0;font:400 62px/1.02 'Instrument Serif',serif;letter-spacing:-.015em">Your eyes are the statement. We create <em style="font-style:italic;color:#be11a0">the signature.</em></h2>
+        <p style="margin:32px 0 0;max-width:430px;font:300 15px/1.9 'Jost',sans-serif;color:#6a5a63;text-wrap:pretty">Precision-crafted lashes, brows and beauty designed around your individual style. Every set is mapped to your eye shape, lash health and the way you actually live.</p>
+        <button onClick="{{ goAbout }}" style="margin-top:46px;padding:15px 30px;border:1px solid #e6d0e0;border-radius:2px;background:linear-gradient(180deg,#fff,#fdf6fa);color:#be11a0;font:500 10px/1 'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;box-shadow:0 8px 22px rgba(26,16,22,.05);transition:.4s ease" style-hover="border-color:#be11a0;box-shadow:0 14px 34px rgba(190,17,160,.2);transform:translateY(-2px)">Discover our story →</button>
+      </div>
+      <div style="position:relative;padding:22px">
+        <div style="position:absolute;left:0;top:0;width:104px;height:104px;border-left:1px solid #be11a0;border-top:1px solid #be11a0"></div>
+        <div style="position:absolute;right:0;bottom:0;width:104px;height:104px;border-right:1px solid #d9dbe4;border-bottom:1px solid #d9dbe4"></div>
+        <div style="position:relative;overflow:hidden;box-shadow:0 30px 70px rgba(26,16,22,.16)">
+          <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/3724431/pexels-photo-3724431.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1000&amp;h=1200&amp;fit=crop" alt="Close-up of lashes" style="display:block;width:100%;height:560px;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)">
+          <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,255,255,.28),transparent 42%);pointer-events:none"></div>
+        </div>
+      </div>
+    </div>
+
+    <div data-reveal="1" style="padding:100px 64px;background:#fff;border-top:1px solid #f2dfeb">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px">
+        <div>
+          <div style="font:500 10px/1 'Jost',sans-serif;letter-spacing:.4em;color:#be11a0;text-transform:uppercase">why ekta</div>
+          <h2 style="margin:20px 0 0;font:400 54px/1.06 'Instrument Serif',serif">Precision you can feel.</h2>
+        </div>
+        <div style="max-width:390px;font:300 13.5px/1.8 'Jost',sans-serif;color:#6a5a63">A considered studio experience built around mapping, lash health, hygiene and a result that fits the way you actually live.</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px">
+        <div class="ek-enhance-card" style="padding:28px;border:1px solid #f0e2ec;background:linear-gradient(158deg,#fff,#fdf7fb)"><div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.28em;color:#be11a0;text-transform:uppercase">01 · mapping</div><div style="margin-top:14px;font:400 27px/1.1 'Instrument Serif',serif">Designed for your eyes</div><div style="margin-top:12px;font:300 13px/1.7 'Jost',sans-serif;color:#6a5a63">Every set is mapped to eye shape, natural lash health and your preferred level of drama.</div></div>
+        <div class="ek-enhance-card" style="padding:28px;border:1px solid #f0e2ec;background:linear-gradient(158deg,#fff,#fdf7fb)"><div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.28em;color:#be11a0;text-transform:uppercase">02 · care</div><div style="margin-top:14px;font:400 27px/1.1 'Instrument Serif',serif">Lash health first</div><div style="margin-top:12px;font:300 13px/1.7 'Jost',sans-serif;color:#6a5a63">Patch testing, aftercare guidance and retention checks are built into the studio experience.</div></div>
+        <div class="ek-enhance-card" style="padding:28px;border:1px solid #f0e2ec;background:linear-gradient(158deg,#fff,#fdf7fb)"><div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.28em;color:#be11a0;text-transform:uppercase">03 · artistry</div><div style="margin-top:14px;font:400 27px/1.1 'Instrument Serif',serif">From natural to iconic</div><div style="margin-top:12px;font:300 13px/1.7 'Jost',sans-serif;color:#6a5a63">Classic, hybrid, volume and mega volume work are selected around the look you want—not a one-size-fits-all set.</div></div>
+      </div>
+    </div>
+
+
+    <!-- TEMPLATE V3: CUSTOMER JOURNEY -->
+    <section class="ek-template-section soft" data-cms-key="home.howItWorks">
+      <div style="display:flex;justify-content:space-between;gap:40px;align-items:flex-end">
+        <div>
+          <div class="ek-template-eyebrow">the experience</div>
+          <h2 class="ek-template-title">Beautifully simple, from first click to final look.</h2>
+        </div>
+        <p class="ek-template-copy" style="margin:0">The production template is organised around the customer's real journey: discover, choose, prepare, book and return.</p>
+      </div>
+      <div class="ek-template-grid four">
+        <div class="ek-template-card"><div class="ek-template-num">01</div><h3>Discover</h3><p>Explore services, real results, Ekta's approach and the studio experience.</p></div>
+        <div class="ek-template-card"><div class="ek-template-num">02</div><h3>Choose</h3><p>Compare lash styles or use the Lash Personality guide to find the right service.</p></div>
+        <div class="ek-template-card"><div class="ek-template-num">03</div><h3>Book</h3><p>Select a service, date, artist and available time without leaving the booking journey.</p></div>
+        <div class="ek-template-card"><div class="ek-template-num">04</div><h3>Return</h3><p>Access aftercare, appointment history and refill guidance after the visit.</p></div>
+      </div>
+    </section>
+
+    <!-- TEMPLATE V3: SERVICE GUIDE -->
+    <section class="ek-template-section" data-cms-key="home.serviceGuide">
+      <div>
+        <div class="ek-template-eyebrow">choose your look</div>
+        <h2 class="ek-template-title">A clearer way to choose your set.</h2>
+        <p class="ek-template-copy">This comparison area is intentionally simple. Final prices, durations and descriptions will be managed from the admin panel later.</p>
+      </div>
+      <div class="ek-template-table">
+        <div class="ek-template-row head">
+          <div class="ek-template-cell">Feature</div><div class="ek-template-cell">Classic</div><div class="ek-template-cell">Hybrid</div><div class="ek-template-cell">Volume</div><div class="ek-template-cell">Mega</div>
+        </div>
+        <div class="ek-template-row">
+          <div class="ek-template-cell feature">Finish</div><div class="ek-template-cell">Natural</div><div class="ek-template-cell">Textured</div><div class="ek-template-cell">Full</div><div class="ek-template-cell">Maximum</div>
+        </div>
+        <div class="ek-template-row">
+          <div class="ek-template-cell feature">Volume</div><div class="ek-template-cell">●</div><div class="ek-template-cell">●●</div><div class="ek-template-cell">●●●</div><div class="ek-template-cell">●●●●</div>
+        </div>
+        <div class="ek-template-row">
+          <div class="ek-template-cell feature">Best for</div><div class="ek-template-cell">Everyday</div><div class="ek-template-cell">Definition</div><div class="ek-template-cell">Glam</div><div class="ek-template-cell">Drama</div>
+        </div>
+        <div class="ek-template-row">
+          <div class="ek-template-cell feature">Booking</div>
+          <div class="ek-template-cell"><button onClick="{{ goBooking }}" style="border:0;background:transparent;color:#be11a0;font:500 9px/1 'Jost';letter-spacing:.18em;text-transform:uppercase;cursor:pointer">Book →</button></div>
+          <div class="ek-template-cell"><button onClick="{{ goBooking }}" style="border:0;background:transparent;color:#be11a0;font:500 9px/1 'Jost';letter-spacing:.18em;text-transform:uppercase;cursor:pointer">Book →</button></div>
+          <div class="ek-template-cell"><button onClick="{{ goBooking }}" style="border:0;background:transparent;color:#be11a0;font:500 9px/1 'Jost';letter-spacing:.18em;text-transform:uppercase;cursor:pointer">Book →</button></div>
+          <div class="ek-template-cell"><button onClick="{{ goBooking }}" style="border:0;background:transparent;color:#be11a0;font:500 9px/1 'Jost';letter-spacing:.18em;text-transform:uppercase;cursor:pointer">Book →</button></div>
+        </div>
+      </div>
+      <div class="ek-template-compare-cta">
+        <button onClick="{{ goBooking }}" style="padding:15px 28px;border:1px solid #e6d0e0;background:#fff;color:#be11a0;font:500 10px/1 'Jost';letter-spacing:.24em;text-transform:uppercase;cursor:pointer">Not sure? Find my lash style →</button>
+      </div>
+    </section>
+
+    <!-- TEMPLATE V3: BEFORE / AFTER -->
+    <section class="ek-template-section soft" data-cms-key="home.beforeAfter">
+      <div style="display:flex;justify-content:space-between;gap:40px;align-items:flex-end">
+        <div>
+          <div class="ek-template-eyebrow">real transformations</div>
+          <h2 class="ek-template-title">Before. After. You.</h2>
+        </div>
+        <span class="ek-template-pill">real client media will be uploaded in admin</span>
+      </div>
+      <div class="ek-beforeafter">
+        <div class="ek-ba-card"><img src="assets/lookbook-placeholder-05.svg" alt="Before result placeholder"><span class="ek-ba-label">Before</span></div>
+        <div class="ek-ba-card"><img src="assets/lookbook-placeholder-03.svg" alt="After result placeholder"><span class="ek-ba-label">After</span></div>
+      </div>
+    </section>
+
+    <!-- TEMPLATE V3: CONSULTATION -->
+    <section class="ek-template-section" data-cms-key="home.consultation">
+      <div class="ek-consult">
+        <div>
+          <div class="ek-template-eyebrow">personal consultation</div>
+          <h2 class="ek-template-title">Not every eye needs the same lash map.</h2>
+          <p class="ek-template-copy">Before the backend goes live, this section establishes the consultation experience. Later it can connect to a customer questionnaire and admin review queue.</p>
+          <button onClick="{{ goBooking }}" style="margin-top:30px;padding:16px 30px;border:0;background:#be11a0;color:#fff;font:500 10px/1 'Jost';letter-spacing:.24em;text-transform:uppercase;cursor:pointer">Start consultation →</button>
+        </div>
+        <div class="ek-consult-list">
+          <div class="ek-consult-item">Eye shape &amp; lash mapping</div>
+          <div class="ek-consult-item">Previous extensions</div>
+          <div class="ek-consult-item">Natural lash condition</div>
+          <div class="ek-consult-item">Sensitivity &amp; patch testing</div>
+          <div class="ek-consult-item">Desired finish</div>
+          <div class="ek-consult-item">Inspiration photo</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEMPLATE V3: FINAL CONVERSION -->
+    <section class="ek-final-cta" data-cms-key="home.finalCta">
+      <div class="ek-template-eyebrow" style="color:#fff">your next look</div>
+      <h2>Your next look<br>starts here.</h2>
+      <p>Choose your service, find your time and let Ekta create a look designed around you.</p>
+      <button onClick="{{ goBooking }}">Book appointment →</button>
+    </section>
+
+    <div data-reveal="1" style="padding:120px 64px;background:linear-gradient(180deg,#fbf0f6,#fdf7fb);border-top:1px solid #f2dfeb">
+      <div style="text-align:center">
+        <div style="font:500 10px/1 'Jost',sans-serif;letter-spacing:.4em;color:#be11a0;text-transform:uppercase">the lash edit</div>
+        <h2 style="margin:20px 0 0;font:400 54px/1.06 'Instrument Serif',serif">Find the look that feels <em style="font-style:italic">unmistakably you</em></h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:20px;margin-top:60px">
+        <sc-for list="{{ edit }}" as="e" hint-placeholder-count="5">
+          <div style="position:relative;overflow:hidden;background:linear-gradient(158deg,#fff,#fdf5fa);border:1px solid #f0e2ec;box-shadow:0 18px 44px rgba(26,16,22,.06),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s ease,border-color .4s ease" style-hover="transform:translateY(-8px);box-shadow:0 34px 66px rgba(190,17,160,.18);border-color:rgba(190,17,160,.4)">
+            <div style="position:relative;width:100%;height:230px;overflow:hidden;background:#f7e8f1 url({{ e.img }}) center/cover no-repeat">
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent 40%,rgba(20,8,16,.25))"></div>
+              <span style="position:absolute;left:14px;top:14px;padding:5px 10px;border-radius:40px;background:rgba(255,255,255,.86);backdrop-filter:blur(8px);font:500 8px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#be11a0">{{ e.num }}</span>
+            </div>
+            <div style="padding:24px 20px 26px;text-align:center">
+              <div style="font:400 24px/1.15 'Instrument Serif',serif">{{ e.name }}</div>
+              <div style="margin-top:10px;font:300 12px/1.6 'Jost',sans-serif;color:#8a7a83">{{ e.desc }}</div>
+              <div style="margin:18px auto 0;width:34px;height:1px;background:linear-gradient(90deg,transparent,#e0bfd6,transparent)"></div>
+              <div style="margin:16px 0 0;font:400 28px/1 'Instrument Serif',serif;color:#be11a0">{{ e.price }}</div>
+              <div style="margin-top:6px;font:400 8.5px/1 'Jost',sans-serif;letter-spacing:.24em;color:#a2909b;text-transform:uppercase">{{ e.dur }}</div>
+              <button onClick="{{ e.book }}" style="margin-top:22px;width:100%;padding:13px 0;border:1px solid #ecd9e6;border-radius:2px;background:#fff;color:#1a1016;font:500 9px/1 'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;transition:.35s ease" style-hover="background:linear-gradient(180deg,#d919b8,#a80c8c);border-color:transparent;color:#fff;box-shadow:0 12px 26px rgba(190,17,160,.32)">Book this look →</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div data-reveal="1" style="display:grid;grid-template-columns:1.05fr 1fr;background:#fff;border-top:1px solid #f2dfeb">
+      <div style="padding:120px 64px">
+        <div style="font:500 10px/1 'Jost',sans-serif;letter-spacing:.4em;color:#be11a0;text-transform:uppercase">discover you</div>
+        <h2 style="margin:20px 0 0;font:400 54px/1.06 'Instrument Serif',serif">What's your <em style="font-style:italic;color:#be11a0">lash personality?</em></h2>
+        <div style="display:flex;gap:14px;margin-top:44px">
+          <sc-for list="{{ quiz }}" as="q" hint-placeholder-count="4">
+            <button onClick="{{ q.go }}" style="{{ q.style }}">
+              <span style="{{ q.dotStyle }}"></span>
+              <span style="{{ q.nameStyle }}">{{ q.name }}</span>
+              <span style="font:300 11.5px/1.6 'Jost',sans-serif;color:#8a7a83;text-align:center">{{ q.desc }}</span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="position:relative;overflow:hidden;margin-top:34px;padding:28px 30px;background:linear-gradient(120deg,#fbf0f6,#fff);border:1px solid rgba(190,17,160,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.9)">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#e11cc0,#d9dbe4)"></div>
+          <div style="font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.3em;color:#be11a0;text-transform:uppercase">your match</div>
+          <div style="margin-top:14px;font:400 32px/1.1 'Instrument Serif',serif">{{ quizMatch }}</div>
+          <div style="margin-top:12px;font:300 13.5px/1.75 'Jost',sans-serif;color:#6a5a63;max-width:480px">{{ quizCopy }}</div>
+        </div>
+        <button onClick="{{ quizBook }}" style="margin-top:32px;padding:16px 32px;border:0;border-radius:2px;background:linear-gradient(180deg,#d919b8,#a80c8c);color:#fff;font:500 10px/1 'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;box-shadow:0 14px 32px rgba(190,17,160,.32),inset 0 1px 0 rgba(255,255,255,.4);transition:.4s ease" style-hover="transform:translateY(-2px);box-shadow:0 20px 44px rgba(190,17,160,.45),inset 0 1px 0 rgba(255,255,255,.5)">Book my match →</button>
+      </div>
+      <div style="position:relative;min-height:680px;overflow:hidden">
+        <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/8554941/pexels-photo-8554941.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1100&amp;h=1400&amp;fit=crop" alt="Lash application in studio" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:ekKen 26s ease-in-out infinite alternate">
+        <div style="position:absolute;inset:0;background:linear-gradient(200deg,rgba(255,255,255,.35),transparent 38%),linear-gradient(0deg,rgba(190,17,160,.18),transparent 40%)"></div>
+      </div>
+    </div>
+
+    <div data-reveal="1" style="padding:120px 64px;background:linear-gradient(180deg,#fdf7fb,#fbf0f6);border-top:1px solid #f2dfeb">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px">
+        <div>
+          <div style="font:500 10px/1 'Jost',sans-serif;letter-spacing:.4em;color:#be11a0;text-transform:uppercase">the transformation</div>
+          <h2 style="margin:20px 0 0;font:400 54px/1.06 'Instrument Serif',serif">Before &amp; after</h2>
+        </div>
+        <div style="font:400 9.5px/1.9 'Jost',sans-serif;letter-spacing:.24em;color:#8a7a83;text-transform:uppercase;text-align:right">drag the handle<br>hybrid set · 120 min</div>
+      </div>
+      <div style="position:relative;margin-top:44px;height:560px;overflow:hidden;background:#fff;box-shadow:0 34px 80px rgba(26,16,22,.14)">
+        <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/21412169/pexels-photo-21412169.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1800&amp;h=1120&amp;fit=crop" alt="After" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;right:26px;top:26px;padding:9px 16px;border-radius:40px;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);font:500 9px/1 'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase;color:#be11a0">after</div>
+        <div style="{{ baClipStyle }}">
+          <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/3724431/pexels-photo-3724431.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1800&amp;h=1120&amp;fit=crop" alt="Before" style="position:absolute;left:0;top:0;width:calc(100vw - 128px);min-width:1312px;height:560px;object-fit:cover;filter:saturate(.82) contrast(.98)">
+          <div style="position:absolute;left:26px;top:26px;padding:9px 16px;border-radius:40px;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);font:500 9px/1 'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase;color:#1a1016">before</div>
+        </div>
+        <div style="{{ baHandleStyle }}"><span style="font:400 12px/1 'Jost',sans-serif;letter-spacing:.1em;color:#be11a0">↔</span></div>
+        <input type="range" min="0" max="100" value="{{ baSplit }}" onInput="{{ setSplit }}" style="position:absolute;left:0;top:0;width:100%;height:100%;opacity:0;cursor:ew-resize">
+      </div>
+    </div>
+
+    <div data-reveal="1" style="padding:120px 64px;background:#fff;border-top:1px solid #f2dfeb">
+      <div style="text-align:center">
+        <div style="font:500 10px/1 'Jost',sans-serif;letter-spacing:.4em;color:#be11a0;text-transform:uppercase">memberships</div>
+        <h2 style="margin:20px 0 0;font:400 54px/1.06 'Instrument Serif',serif">Keep the look on retainer</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px">
+        <sc-for list="{{ plans }}" as="p" hint-placeholder-count="3">
+          <div style="{{ p.cardStyle }}">
+            <div style="{{ p.tagStyle }}">{{ p.tag }}</div>
+            <div style="font:400 32px/1.08 'Instrument Serif',serif">{{ p.name }}</div>
+            <div style="margin-top:16px;display:flex;align-items:baseline;gap:8px">
+              <span style="font:400 50px/1 'Instrument Serif',serif;color:#be11a0">{{ p.price }}</span>
+              <span style="font:400 9.5px/1 'Jost',sans-serif;letter-spacing:.24em;color:#a2909b;text-transform:uppercase">/ month</span>
+            </div>
+            <div style="margin:26px 0;height:1px;background:linear-gradient(90deg,#f0e0e9,#d9dbe4,transparent)"></div>
+            <sc-for list="{{ p.perks }}" as="k" hint-placeholder-count="4">
+              <div style="display:flex;gap:12px;padding:7px 0;font:300 13.5px/1.6 'Jost',sans-serif;color:#6a5a63"><span style="color:#be11a0">◆</span>{{ k }}</div>
+            </sc-for>
+            <button onClick="{{ goBooking }}" style="{{ p.btnStyle }}">Choose plan</button>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div data-reveal="1" style="padding:120px 64px;background:linear-gradient(180deg,#fbf0f6,#fdf7fb);border-top:1px solid #f2dfeb">
+      <div style="text-align:center">
+        <div style="font:500 10px/1 'Jost',sans-serif;letter-spacing:.4em;color:#be11a0;text-transform:uppercase">lookbook</div>
+        <h2 style="margin:20px 0 0;font:400 54px/1.06 'Instrument Serif',serif">Work from the chair</h2>
+      </div>
+      <div style="display:flex;justify-content:center;gap:8px;margin-top:38px">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="7">
+          <button onClick="{{ f.go }}" style="{{ f.style }}">{{ f.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-flow:dense;grid-auto-rows:210px;gap:16px;margin-top:44px">
+        <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="8">
+          <div class="ek-clickable" onClick="{{ g.open }}" role="button" tabindex="0" aria-label="View {{ g.label }} look"><span style="{{ g.wrapStyle }}"><span style="{{ g.labelStyle }}">{{ g.label }}</span></span></div>
+        </sc-for>
+      </div>
+      <div style="display:flex;justify-content:center;margin-top:44px">
+        <button onClick="{{ goLookbook }}" style="padding:16px 36px;border:1px solid #e6d0e0;border-radius:2px;background:linear-gradient(180deg,#fff,#fdf6fa);color:#1a1016;font:500 10px/1 'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 26px rgba(26,16,22,.06);transition:.4s ease" style-hover="border-color:#be11a0;color:#be11a0;transform:translateY(-2px);box-shadow:0 18px 40px rgba(190,17,160,.18)">View full lookbook →</button>
+      </div>
+    </div>
+
+    <div data-reveal="1" style="padding:120px 64px;background:#fff;border-top:1px solid #f2dfeb">
+      <div style="font:500 10px/1 'Jost',sans-serif;letter-spacing:.4em;color:#be11a0;text-transform:uppercase">the artists</div>
+      <h2 style="margin:20px 0 0;font:400 54px/1.06 'Instrument Serif',serif">Hands you can trust</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px">
+        <sc-for list="{{ team }}" as="t" hint-placeholder-count="3">
+          <div style="position:relative;overflow:hidden;border:1px solid #f0e2ec;background:linear-gradient(158deg,#fff,#fdf5fa);box-shadow:0 18px 44px rgba(26,16,22,.06);transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s ease,border-color .4s ease" style-hover="transform:translateY(-8px);box-shadow:0 34px 66px rgba(190,17,160,.16);border-color:rgba(190,17,160,.35)">
+            <div style="position:relative;width:100%;height:380px;background:#f7e8f1 url({{ t.img }}) center/cover no-repeat">
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.2),transparent 36%,rgba(20,8,16,.4))"></div>
+              <div style="position:absolute;left:24px;bottom:22px;color:#fff">
+                <div style="font:400 30px/1 'Instrument Serif',serif">{{ t.name }}</div>
+                <div style="margin-top:8px;font:500 9px/1 'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.85)">{{ t.role }}</div>
+              </div>
+            </div>
+            <div style="padding:24px">
+              <div style="font:300 13.5px/1.75 'Jost',sans-serif;color:#6a5a63">{{ t.bio }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div data-reveal="1" style="display:grid;grid-template-columns:1.2fr 1fr;background:linear-gradient(180deg,#fbf0f6,#fdf7fb);border-top:1px solid #f2dfeb">
+      <div style="padding:120px 64px">
+        <div style="font:500 10px/1 'Jost',sans-serif;letter-spacing:.4em;color:#be11a0;text-transform:uppercase">reviews</div>
+        <div style="margin-top:24px;font:400 60px/.6 'Instrument Serif',serif;color:#e6c6dc">“</div>
+        <blockquote style="margin:14px 0 0;font:400 40px/1.32 'Instrument Serif',serif;text-wrap:pretty;transition:opacity .5s ease">{{ reviewText }}</blockquote>
+        <div style="margin-top:28px;font:500 9.5px/1.8 'Jost',sans-serif;letter-spacing:.26em;color:#8a7a83;text-transform:uppercase">{{ reviewMeta }}</div>
+        <div style="display:flex;align-items:center;gap:18px;margin-top:36px">
+          <button onClick="{{ prevReview }}" style="width:46px;height:46px;border:1px solid #e6d0e0;border-radius:50%;background:linear-gradient(180deg,#fff,#fbf0f6);color:#1a1016;cursor:pointer;font:400 13px/1 'Jost',sans-serif;box-shadow:0 8px 20px rgba(26,16,22,.06);transition:.35s ease" style-hover="border-color:#be11a0;color:#be11a0;transform:translateY(-2px)">←</button>
+          <button onClick="{{ nextReview }}" style="width:46px;height:46px;border:1px solid #e6d0e0;border-radius:50%;background:linear-gradient(180deg,#fff,#fbf0f6);color:#1a1016;cursor:pointer;font:400 13px/1 'Jost',sans-serif;box-shadow:0 8px 20px rgba(26,16,22,.06);transition:.35s ease" style-hover="border-color:#be11a0;color:#be11a0;transform:translateY(-2px)">→</button>
+          <span style="font:400 9.5px/1 'Jost',sans-serif;letter-spacing:.26em;color:#a2909b">{{ reviewCount }}</span>
+          <span style="margin-left:22px;font:400 9.5px/1 'Jost',sans-serif;letter-spacing:.26em;color:#8a7a83;text-transform:uppercase">4.9 ★ google · 180+ reviews</span>
+        </div>
+      </div>
+      <div style="position:relative;min-height:560px;overflow:hidden">
+        <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/6135662/pexels-photo-6135662.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1100&amp;h=1200&amp;fit=crop" alt="Client in studio" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:ekKen 28s ease-in-out infinite alternate">
+        <div style="position:absolute;inset:0;background:linear-gradient(200deg,rgba(255,255,255,.3),transparent 40%)"></div>
+      </div>
+    </div>
+
+    <div data-reveal="1" style="padding:110px 64px;background:#fff;border-top:1px solid #f2dfeb">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between">
+        <h2 style="margin:0;font:400 40px/1.1 'Instrument Serif',serif">@lashesandbeauty.ekta</h2>
+        <button onClick="{{ openInstagram }}" style="border:0;background:transparent;padding:0;font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.26em;color:#be11a0;text-transform:uppercase;cursor:pointer">Follow the feed →</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:34px">
+        <div style="position:relative;aspect-ratio:1;overflow:hidden;background:#f7e8f1;box-shadow:0 10px 26px rgba(26,16,22,.07);transition:transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-6px)">
+          <video autoplay muted loop playsinline src="https://videos.pexels.com/video-files/7133220/7133220-hd_1080_1920_30fps.mp4" style="width:100%;height:100%;object-fit:cover"></video>
+          <span style="position:absolute;right:9px;top:9px;font:500 8px/1 'Jost',sans-serif;letter-spacing:.2em;color:#fff;text-transform:uppercase">reel</span>
+        </div>
+        <div style="position:relative;aspect-ratio:1;overflow:hidden;background:#f7e8f1;box-shadow:0 10px 26px rgba(26,16,22,.07);transition:transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-6px)">
+          <video autoplay muted loop playsinline src="https://videos.pexels.com/video-files/7424020/7424020-hd_1080_1920_30fps.mp4" style="width:100%;height:100%;object-fit:cover"></video>
+          <span style="position:absolute;right:9px;top:9px;font:500 8px/1 'Jost',sans-serif;letter-spacing:.2em;color:#fff;text-transform:uppercase">reel</span>
+        </div>
+        <sc-for list="{{ feed }}" as="i" hint-placeholder-count="4">
+          <div style="aspect-ratio:1;overflow:hidden;box-shadow:0 10px 26px rgba(26,16,22,.07);transition:transform .5s cubic-bezier(.2,.7,.2,1);background:#f7e8f1 url({{ i }}) center/cover no-repeat" style-hover="transform:translateY(-6px)"></div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div data-reveal="1" style="padding:110px 64px;background:linear-gradient(180deg,#fbf0f6,#fdf7fb);border-top:1px solid #f2dfeb">
+      <div style="font:500 10px/1 'Jost',sans-serif;letter-spacing:.4em;color:#be11a0;text-transform:uppercase">aftercare journal</div>
+      <h2 style="margin:18px 0 0;font:400 46px/1.08 'Instrument Serif',serif">How to keep them perfect</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px">
+        <sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
+          <div style="overflow:hidden;background:linear-gradient(158deg,#fff,#fdf5fa);border:1px solid #f0e2ec;box-shadow:0 18px 44px rgba(26,16,22,.06);transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s ease,border-color .4s ease" style-hover="transform:translateY(-8px);box-shadow:0 32px 62px rgba(190,17,160,.15);border-color:rgba(190,17,160,.35)">
+            <div style="width:100%;height:210px;background:#f7e8f1 url({{ p.img }}) center/cover no-repeat"></div>
+            <div style="padding:28px">
+              <div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.28em;color:#be11a0;text-transform:uppercase">{{ p.tag }}</div>
+              <div style="margin-top:16px;font:400 26px/1.22 'Instrument Serif',serif">{{ p.title }}</div>
+              <div style="margin-top:12px;font:300 13px/1.75 'Jost',sans-serif;color:#6a5a63">{{ p.excerpt }}</div>
+              <div style="margin-top:22px;font:400 9px/1 'Jost',sans-serif;letter-spacing:.26em;color:#a2909b;text-transform:uppercase">{{ p.read }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div data-reveal="1" style="display:grid;grid-template-columns:1fr 1fr;background:#fff;border-top:1px solid #f2dfeb">
+      <div style="padding:110px 64px">
+        <div style="font:500 10px/1 'Jost',sans-serif;letter-spacing:.4em;color:#be11a0;text-transform:uppercase">gift cards</div>
+        <h2 style="margin:20px 0 0;font:400 50px/1.08 'Instrument Serif',serif">Give the set,<br>not the guesswork.</h2>
+        <p style="margin:24px 0 0;max-width:400px;font:300 14.5px/1.85 'Jost',sans-serif;color:#6a5a63">Digital gift cards delivered instantly, redeemable against any service or infill.</p>
+        <div style="display:flex;gap:10px;margin-top:32px">
+          <sc-for list="{{ giftAmounts }}" as="a" hint-placeholder-count="4">
+            <div style="padding:15px 22px;border:1px solid #ecd9e6;background:linear-gradient(180deg,#fff,#fdf6fa);font:400 15px/1 'Instrument Serif',serif;color:#1a1016;cursor:pointer;transition:.35s ease" style-hover="border-color:#be11a0;color:#be11a0;transform:translateY(-2px);box-shadow:0 12px 26px rgba(190,17,160,.16)">{{ a }}</div>
+          </sc-for>
+        </div>
+        <button style="margin-top:34px;padding:16px 32px;border:0;border-radius:2px;background:linear-gradient(180deg,#d919b8,#a80c8c);color:#fff;font:500 10px/1 'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;box-shadow:0 14px 32px rgba(190,17,160,.32),inset 0 1px 0 rgba(255,255,255,.4);transition:.4s ease" style-hover="transform:translateY(-2px);box-shadow:0 20px 44px rgba(190,17,160,.45)">Buy a gift card →</button>
+      </div>
+      <div style="position:relative;min-height:460px;overflow:hidden;display:flex;align-items:center;justify-content:center">
+        <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/8558536/pexels-photo-8558536.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200&amp;h=900&amp;fit=crop" alt="Lash tools flat lay" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:relative;width:350px;padding:28px;background:linear-gradient(150deg,rgba(255,255,255,.9),rgba(255,255,255,.62));backdrop-filter:blur(18px) saturate(1.3);border:1px solid rgba(255,255,255,.7);box-shadow:0 30px 70px rgba(26,16,22,.2),inset 0 1px 0 rgba(255,255,255,.9);animation:ekFloat 6s ease-in-out infinite">
+          <img src="assets/logo-magenta.png" alt="Lashes &amp; Beauty by Ekta" style="height:28px;width:auto;display:block">
+          <div style="margin-top:34px;font:400 40px/1 'Instrument Serif',serif;color:#be11a0">{{ giftHero }}</div>
+          <div style="margin-top:30px;display:flex;justify-content:space-between;font:500 8.5px/1 'Jost',sans-serif;letter-spacing:.24em;color:#8a7a83;text-transform:uppercase"><span>gift card</span><span>no expiry</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="position:relative;height:520px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center">
+      <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/33723106/pexels-photo-33723106.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1900&amp;h=1000&amp;fit=crop" alt="Lash close-up" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:ekKen 30s ease-in-out infinite alternate">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,8,14,.3),rgba(18,8,14,.76))"></div>
+      <div style="position:relative;color:#fff">
+        <h2 style="margin:0;font:400 74px/1.02 'Instrument Serif',serif">Your next look<br><em style="font-style:italic;background:linear-gradient(96deg,#ff9ae4,#d9dbe4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">starts here.</em></h2>
+        <button onClick="{{ goBooking }}" style="position:relative;overflow:hidden;margin-top:38px;padding:19px 42px;border:0;border-radius:2px;background:linear-gradient(180deg,#e11cc0,#a80c8c);color:#fff;font:500 11px/1 'Jost',sans-serif;letter-spacing:.28em;text-transform:uppercase;cursor:pointer;box-shadow:0 22px 50px rgba(190,17,160,.5),inset 0 1px 0 rgba(255,255,255,.45)" style-after="content:'';position:absolute;top:0;left:0;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:ekSheen 5s ease-in-out infinite">Book appointment →</button>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isServices }}">
+  <div style="background:#fff">
+    <div style="position:relative;overflow:hidden;padding:96px 64px 84px;background:linear-gradient(120deg,#160b12,#4a0d3e 46%,#1d0a18)">
+      <div style="position:absolute;inset:0;background:radial-gradient(90% 120% at 88% 10%,rgba(255,133,221,.28),transparent 60%)"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(217,219,228,.6),transparent)"></div>
+      <div style="position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:60px">
+        <div>
+          <div style="font:400 11px/1 'Jost',sans-serif;letter-spacing:.44em;color:rgba(217,219,228,.85);text-transform:uppercase">Make your lashes iconic</div>
+          <h1 style="margin:26px 0 0;font:400 92px/.92 'Instrument Serif',serif;color:#fff;letter-spacing:-.02em">Lashes <em style="font-style:italic;background:linear-gradient(96deg,#ff9ae4,#d9dbe4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">and brows</em></h1>
+          <p style="margin:26px 0 0;max-width:440px;font:300 14.5px/1.85 'Jost',sans-serif;color:rgba(255,255,255,.66)">A short menu, kept deliberately short. Every set is mapped in person before a single lash is placed.</p>
+        </div>
+        <div style="display:flex;gap:12px">
+          <sc-for list="{{ svcStats }}" as="s" hint-placeholder-count="3">
+            <div style="min-width:150px;padding:22px;background:linear-gradient(150deg,rgba(255,255,255,.16),rgba(255,255,255,.05));backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)">
+              <div style="font:400 32px/1 'Instrument Serif',serif;color:#fff">{{ s.n }}</div>
+              <div style="margin-top:10px;font:400 8.5px/1.5 'Jost',sans-serif;letter-spacing:.26em;color:rgba(255,255,255,.6);text-transform:uppercase">{{ s.l }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="position:sticky;top:92px;z-index:60;display:flex;align-items:center;gap:10px;padding:16px 64px;background:rgba(255,255,255,.86);backdrop-filter:blur(24px) saturate(1.4);border-bottom:1px solid #f0e2ec">
+      <sc-for list="{{ svcTabs }}" as="t" hint-placeholder-count="3">
+        <button onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}<span style="{{ t.countStyle }}">{{ t.count }}</span></button>
+      </sc-for>
+      <div style="margin-left:auto;font:400 9.5px/1 'Jost',sans-serif;letter-spacing:.26em;color:#a2909b;text-transform:uppercase">{{ currencyNote }} · patch test 24h prior</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 320px;gap:44px;padding:70px 64px 110px">
+      <div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid #f0e2ec">
+          <h2 style="margin:0;font:400 40px/1 'Instrument Serif',serif">{{ svcGroupTitle }}</h2>
+          <span style="font:300 13px/1 'Jost',sans-serif;color:#8a7a83">{{ svcGroupNote }}</span>
+        </div>
+        <sc-for list="{{ svcRows }}" as="r" hint-placeholder-count="9">
+          <div style="{{ r.rowStyle }}">
+            <span style="font:400 11px/1 'Jost',sans-serif;letter-spacing:.2em;color:#c9b6c1;width:34px;flex:none">{{ r.num }}</span>
+            <span style="font:400 26px/1.2 'Instrument Serif',serif;flex:none">{{ r.name }}</span>
+            <span style="flex:1;height:1px;margin:0 4px;background:repeating-linear-gradient(90deg,#e8d5e2 0 2px,transparent 2px 7px)"></span>
+            <span style="font:400 8.5px/1 'Jost',sans-serif;letter-spacing:.24em;color:#a2909b;text-transform:uppercase;flex:none">{{ r.dur }}</span>
+            <span style="font:400 30px/1 'Instrument Serif',serif;color:#be11a0;min-width:110px;text-align:right;flex:none">{{ r.price }}</span>
+            <button onClick="{{ r.book }}" style="flex:none;padding:11px 18px;border:1px solid #ecd9e6;background:#fff;color:#6a5a63;font:500 8.5px/1 'Jost',sans-serif;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:.35s ease" style-hover="background:linear-gradient(180deg,#d919b8,#a80c8c);border-color:transparent;color:#fff;box-shadow:0 10px 24px rgba(190,17,160,.3)">Book</button>
+          </div>
+        </sc-for>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:60px">
+          <sc-for list="{{ serviceNotes }}" as="n" hint-placeholder-count="3">
+            <div style="padding:26px;background:linear-gradient(158deg,#fdf7fb,#fbf0f6);border:1px solid #f2dfeb;box-shadow:inset 0 1px 0 rgba(255,255,255,.9)">
+              <div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.28em;color:#be11a0;text-transform:uppercase">{{ n.tag }}</div>
+              <div style="margin-top:14px;font:300 13px/1.8 'Jost',sans-serif;color:#6a5a63">{{ n.body }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="position:sticky;top:170px;align-self:start;display:flex;flex-direction:column;gap:18px">
+        <div style="position:relative;overflow:hidden;padding:28px;background:linear-gradient(150deg,#fff,#fbf0f6);border:1px solid rgba(190,17,160,.22);box-shadow:0 22px 50px rgba(26,16,22,.08),inset 0 1px 0 rgba(255,255,255,.9)">
+          <div style="position:absolute;right:-40px;top:-40px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(190,17,160,.22),transparent 70%);animation:ekPulse 5s ease-in-out infinite"></div>
+          <div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.3em;color:#be11a0;text-transform:uppercase">not sure yet?</div>
+          <div style="margin-top:14px;font:400 28px/1.15 'Instrument Serif',serif">Take the 30-second lash quiz</div>
+          <div style="margin-top:12px;font:300 13px/1.75 'Jost',sans-serif;color:#6a5a63">Four questions on eye shape, upkeep and drama level. We map the set to the answer.</div>
+          <button onClick="{{ goHome }}" style="margin-top:22px;width:100%;padding:14px 0;border:0;background:linear-gradient(180deg,#d919b8,#a80c8c);color:#fff;font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;box-shadow:0 12px 28px rgba(190,17,160,.3),inset 0 1px 0 rgba(255,255,255,.4)">Find my match →</button>
+        </div>
+        <div style="overflow:hidden;border:1px solid #f0e2ec;box-shadow:0 18px 40px rgba(26,16,22,.07)">
+          <video autoplay muted loop playsinline src="https://videos.pexels.com/video-files/7424020/7424020-hd_1080_1920_30fps.mp4" style="display:block;width:100%;height:280px;object-fit:cover"></video>
+          <div style="padding:18px 20px;background:linear-gradient(180deg,#fff,#fdf6fa)">
+            <div style="font:500 8.5px/1 'Jost',sans-serif;letter-spacing:.28em;color:#be11a0;text-transform:uppercase">in the chair</div>
+            <div style="margin-top:10px;font:300 12.5px/1.7 'Jost',sans-serif;color:#6a5a63">Every appointment includes mapping, aftercare kit and a retention check-in.</div>
+          </div>
+        </div>
+        <div style="padding:22px;background:#160b12;color:#fff">
+          <div style="font:500 8.5px/1 'Jost',sans-serif;letter-spacing:.28em;color:rgba(217,219,228,.7);text-transform:uppercase">members save</div>
+          <div style="margin-top:12px;font:400 30px/1 'Instrument Serif',serif">up to 22%</div>
+          <div style="margin-top:12px;font:300 12.5px/1.7 'Jost',sans-serif;color:rgba(255,255,255,.6)">Monthly infill plans cover one set every two or three weeks.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isLookbook }}">
+  <div style="padding:80px 64px 110px;background:#fff">
+    <h1 style="margin:0;font:400 82px/.95 'Instrument Serif',serif;letter-spacing:-.02em">Lookbook</h1>
+    <div style="display:flex;gap:8px;margin-top:34px">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="7">
+        <button onClick="{{ f.go }}" style="{{ f.style }}">{{ f.label }}</button>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-flow:dense;grid-auto-rows:230px;gap:16px;margin-top:38px">
+      <sc-for list="{{ galleryFull }}" as="g" hint-placeholder-count="12">
+        <div class="ek-clickable" onClick="{{ g.open }}" role="button" tabindex="0" aria-label="View {{ g.label }} look"><span style="{{ g.wrapStyle }}"><span style="{{ g.labelStyle }}">{{ g.label }}</span></span></div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isBooking }}">
+  <div style="padding:74px 64px 120px;background:linear-gradient(180deg,#fdf7fb,#fbf0f6)">
+    <h1 style="margin:0;font:400 68px/1 'Instrument Serif',serif;letter-spacing:-.02em">Book your appointment</h1>
+    <div style="display:flex;margin-top:40px;background:linear-gradient(180deg,#fff,#fdf7fb);border:1px solid #f0e2ec;box-shadow:0 18px 44px rgba(26,16,22,.06)">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+        <button onClick="{{ s.go }}" style="{{ s.style }}"><span style="font:400 9px/1 'Jost',sans-serif;letter-spacing:.28em">{{ s.num }}</span><span style="font:400 20px/1 'Instrument Serif',serif">{{ s.label }}</span><span style="{{ s.barStyle }}"></span></button>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:26px;margin-top:26px;align-items:start">
+      <div style="background:linear-gradient(158deg,#fff,#fdf7fb);border:1px solid #f0e2ec;padding:40px 36px;min-height:540px;box-shadow:0 22px 50px rgba(26,16,22,.06),inset 0 1px 0 rgba(255,255,255,.9)">
+        <sc-if value="{{ step1 }}">
+        <div>
+          <div style="font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.3em;color:#be11a0;text-transform:uppercase">select a service</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px">
+            <sc-for list="{{ bookServices }}" as="b" hint-placeholder-count="9">
+              <button onClick="{{ b.go }}" style="{{ b.style }}">
+                <span style="display:flex;justify-content:space-between;align-items:baseline;gap:14px"><span style="font:400 20px/1.2 'Instrument Serif',serif">{{ b.name }}</span><span style="font:400 22px/1 'Instrument Serif',serif;color:#be11a0">{{ b.price }}</span></span>
+                <span style="font:400 8.5px/1 'Jost',sans-serif;letter-spacing:.24em;color:#a2909b;text-transform:uppercase">{{ b.dur }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+        </sc-if>
+        <sc-if value="{{ step2 }}">
+        <div>
+          <sc-if value="{{ storefrontNotReady }}">
+          <div style="font:300 14px/1.7 'Jost',sans-serif;color:#6a5a63">Loading real-time availability…</div>
+          </sc-if>
+          <sc-if value="{{ storefrontError }}">
+          <div class="ek-book-error" role="alert">{{ storefrontError }}</div>
+          </sc-if>
+          <sc-if value="{{ storefrontReady }}">
+          <div style="font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.3em;color:#be11a0;text-transform:uppercase">choose artist</div>
+          <div style="display:flex;gap:12px;margin-top:22px">
+            <sc-for list="{{ bookArtists }}" as="a" hint-placeholder-count="3">
+              <button onClick="{{ a.go }}" style="{{ a.style }}">{{ a.name }}<span style="display:block;margin-top:8px;font:400 8.5px/1 'Jost',sans-serif;letter-spacing:.24em;color:#a2909b;text-transform:uppercase">{{ a.role }}</span></button>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:36px">
+            <div style="font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.3em;color:#be11a0;text-transform:uppercase">pick a date · {{ monthLabel }}</div>
+            <div style="display:flex;gap:8px">
+              <button onClick="{{ prevMonth }}" disabled="{{ !canGoPrevMonth }}" style="padding:6px 12px;border:1px solid #ecd9e6;background:#fff;color:#6a5a63;font:400 12px/1 'Jost',sans-serif;cursor:pointer;opacity:{{ canGoPrevMonth ? 1 : 0.4 }}">←</button>
+              <button onClick="{{ nextMonth }}" style="padding:6px 12px;border:1px solid #ecd9e6;background:#fff;color:#6a5a63;font:400 12px/1 'Jost',sans-serif;cursor:pointer">→</button>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:18px">
+            <sc-for list="{{ dayNames }}" as="d" hint-placeholder-count="7">
+              <div style="text-align:center;font:400 8.5px/1 'Jost',sans-serif;letter-spacing:.2em;color:#a2909b;text-transform:uppercase;padding-bottom:6px">{{ d }}</div>
+            </sc-for>
+            <sc-for list="{{ days }}" as="d" hint-placeholder-count="30">
+              <button onClick="{{ d.go }}" style="{{ d.style }}">{{ d.n }}</button>
+            </sc-for>
+          </div>
+          <div style="margin-top:34px;font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.3em;color:#be11a0;text-transform:uppercase">available slots</div>
+          <sc-if value="{{ slotsPrompt }}">
+          <div style="margin-top:16px;font:300 13px/1.7 'Jost',sans-serif;color:#a2909b">Choose an artist and date to see real available times.</div>
+          </sc-if>
+          <sc-if value="{{ slotsLoading }}">
+          <div style="margin-top:16px;font:300 13px/1.7 'Jost',sans-serif;color:#a2909b">Loading available times…</div>
+          </sc-if>
+          <sc-if value="{{ slotsEmpty }}">
+          <div style="margin-top:16px;font:300 13px/1.7 'Jost',sans-serif;color:#a2909b">No open times for this artist on this date. Please try another date.</div>
+          </sc-if>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px">
+            <sc-for list="{{ slots }}" as="t" hint-placeholder-count="6">
+              <button onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}</button>
+            </sc-for>
+          </div>
+          </sc-if>
+        </div>
+        </sc-if>
+        <sc-if value="{{ step3 }}">
+        <div>
+          <div style="font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.3em;color:#be11a0;text-transform:uppercase">your details</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px">
+            <sc-for list="{{ fields }}" as="f" hint-placeholder-count="5">
+              <label style="{{ f.wrapStyle }}">
+                <span style="font:400 8.5px/1 'Jost',sans-serif;letter-spacing:.24em;color:#a2909b;text-transform:uppercase">{{ f.label }}</span>
+                <input data-booking-field="{{ f.key }}" autocomplete="{{ f.auto }}" aria-required="{{ f.required }}" value="{{ f.value }}" placeholder="{{ f.ph }}" onBlur="{{ f.blur }}" style="margin-top:10px;width:100%;padding:14px 0;border:0;border-bottom:1px solid #ecd9e6;background:transparent;color:#1a1016;font:300 16px/1 'Jost',sans-serif;outline:none;transition:border-color .3s ease" style-focus="border-color:#be11a0">
+              </label>
+            </sc-for>
+          </div>
+          <label style="display:flex;gap:12px;margin-top:34px;font:300 13px/1.7 'Jost',sans-serif;color:#6a5a63"><input type="checkbox" data-patch-test required onChange="{{ patchTestChange }}" style="accent-color:#be11a0;margin-top:3px">I confirm I have had a patch test at least 24 hours before my appointment, or will book one.</label>
+          <sc-if value="{{ bookingError }}"><div class="ek-book-error" role="alert">{{ bookingError }}</div></sc-if>
+        </div>
+        </sc-if>
+        <sc-if value="{{ step4 }}">
+        <div style="display:flex;flex-direction:column;align-items:flex-start">
+          <div style="position:relative;width:64px;height:64px;border-radius:50%;background:linear-gradient(180deg,#fff,#fbf0f6);border:1px solid rgba(190,17,160,.4);display:flex;align-items:center;justify-content:center;color:#be11a0;font:400 22px/1 'Jost',sans-serif;box-shadow:0 14px 34px rgba(190,17,160,.22)">✓<span style="position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(190,17,160,.2);animation:ekPulse 3s ease-in-out infinite"></span></div>
+          <div style="margin-top:28px;font:400 48px/1.05 'Instrument Serif',serif">Your booking request is in.</div>
+          <div style="margin-top:16px;font:300 14px/1.85 'Jost',sans-serif;color:#6a5a63;max-width:460px">We’ve captured your appointment request. We’ll confirm availability and send the final booking details. Your selected service, artist, date and time are shown below.</div>
+          <sc-if value="{{ confirmationId }}">
+          <div style="margin-top:14px;font:400 9.5px/1 'Jost',sans-serif;letter-spacing:.2em;color:#a2909b;text-transform:uppercase">Booking reference: {{ confirmationId }}</div>
+          </sc-if>
+          <div style="display:flex;gap:12px;margin-top:32px">
+            
+            <button onClick="{{ copyBookingDetails }}" style="padding:16px 30px;border:1px solid #e6d0e0;background:#fff;color:#1a1016;font:500 10px/1 'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase;cursor:pointer">Copy details</button>
+            <button onClick="{{ addCalendar }}" style="padding:16px 30px;border:1px solid #e6d0e0;background:#fff;color:#1a1016;font:500 10px/1 'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase;cursor:pointer">Add to calendar</button>
+          </div>
+        </div>
+        </sc-if>
+
+        <div style="display:flex;gap:12px;margin-top:44px">
+          <button onClick="{{ stepBack }}" style="padding:15px 28px;border:1px solid #e6d0e0;background:#fff;color:#6a5a63;font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;transition:.35s ease" style-hover="border-color:#be11a0;color:#be11a0">← Back</button>
+          <button onClick="{{ stepNext }}" disabled="{{ isComplete }}" style="padding:15px 32px;opacity:{{ isComplete ? 0.5 : 1 }};pointer-events:{{ isComplete ? 'none' : 'auto' }};border:0;background:linear-gradient(180deg,#d919b8,#a80c8c);color:#fff;font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;box-shadow:0 12px 28px rgba(190,17,160,.3);transition:.35s ease" style-hover="transform:translateY(-2px);box-shadow:0 18px 40px rgba(190,17,160,.42)">{{ nextLabel }} →</button>
+        </div>
+      </div>
+
+      <div style="position:sticky;top:170px;background:linear-gradient(150deg,#fff,#fbf0f6);border:1px solid rgba(190,17,160,.28);padding:30px;box-shadow:0 22px 50px rgba(26,16,22,.08),inset 0 1px 0 rgba(255,255,255,.9)">
+        <div style="font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.3em;color:#be11a0;text-transform:uppercase">your booking</div>
+        <sc-for list="{{ summary }}" as="s" hint-placeholder-count="6">
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid #f4e7ee">
+            <span style="font:400 8.5px/1.4 'Jost',sans-serif;letter-spacing:.24em;color:#a2909b;text-transform:uppercase">{{ s.k }}</span>
+            <span style="font:300 14px/1.4 'Jost',sans-serif;text-align:right">{{ s.v }}</span>
+          </div>
+        </sc-for>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:26px">
+          <span style="font:400 9.5px/1 'Jost',sans-serif;letter-spacing:.26em;color:#8a7a83;text-transform:uppercase">total</span>
+          <span style="font:400 42px/1 'Instrument Serif',serif;color:#be11a0">{{ bookingTotal }}</span>
+        </div>
+        <div style="margin-top:24px;padding:16px;background:rgba(255,255,255,.7);border:1px solid #f2dfeb;font:300 12px/1.7 'Jost',sans-serif;color:#6a5a63">{{ depositNote }}</div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isAbout }}">
+  <div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:76px;padding:96px 64px;align-items:center;background:#fff">
+      <div>
+        <div style="font:500 10px/1 'Jost',sans-serif;letter-spacing:.4em;color:#be11a0;text-transform:uppercase">about ekta</div>
+        <h1 style="margin:24px 0 0;font:400 74px/1 'Instrument Serif',serif;letter-spacing:-.02em">Twelve years,<br>one obsession:<br><em style="font-style:italic;color:#be11a0">the perfect set.</em></h1>
+        <p style="margin:30px 0 0;max-width:470px;font:300 15px/1.9 'Jost',sans-serif;color:#6a5a63;text-wrap:pretty">Ekta trained in classic extensions before moving into volume and mega volume mapping, and now teaches both. The studio runs on a simple rule: lash health first, drama second, and never a set that outlives its retention.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px">
+          <sc-for list="{{ credentials }}" as="c" hint-placeholder-count="4">
+            <div style="padding:22px;background:linear-gradient(158deg,#fdf7fb,#fbf0f6);border:1px solid #f2dfeb;box-shadow:inset 0 1px 0 rgba(255,255,255,.9)">
+              <div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.28em;color:#be11a0;text-transform:uppercase">{{ c.tag }}</div>
+              <div style="margin-top:12px;font:300 13px/1.7 'Jost',sans-serif;color:#6a5a63">{{ c.body }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="position:relative;overflow:hidden;box-shadow:0 34px 76px rgba(26,16,22,.18)">
+        <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/5128267/pexels-photo-5128267.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1100&amp;h=1400&amp;fit=crop" alt="Ekta at work" style="display:block;width:100%;height:680px;object-fit:cover;animation:ekKen 30s ease-in-out infinite alternate">
+        <div style="position:absolute;inset:0;background:linear-gradient(200deg,rgba(255,255,255,.3),transparent 40%)"></div>
+      </div>
+    </div>
+    <div data-reveal="1" style="padding:100px 64px;background:linear-gradient(180deg,#fbf0f6,#fdf7fb);border-top:1px solid #f2dfeb">
+      <h2 style="margin:0;font:400 46px/1.08 'Instrument Serif',serif">The studio timeline</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:44px">
+        <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="4">
+          <div style="padding-top:22px;border-top:1px solid #be11a0">
+            <div style="font:400 38px/1 'Instrument Serif',serif;color:#be11a0">{{ t.year }}</div>
+            <div style="margin-top:14px;font:300 13.5px/1.75 'Jost',sans-serif;color:#6a5a63">{{ t.body }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isAcademy }}">
+  <div style="background:#fff">
+    <div style="position:relative;height:400px;overflow:hidden;display:flex;align-items:center">
+      <img loading="lazy" decoding="async" src="https://images.pexels.com/photos/7755523/pexels-photo-7755523.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1900&amp;h=800&amp;fit=crop" alt="Training close-up" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:ekKen 26s ease-in-out infinite alternate">
+      <div style="position:absolute;inset:0;background:linear-gradient(96deg,rgba(18,8,14,.86),rgba(18,8,14,.2))"></div>
+      <div style="position:relative;padding:0 64px;color:#fff">
+        <div style="font:500 10px/1 'Jost',sans-serif;letter-spacing:.44em;text-transform:uppercase;color:rgba(217,219,228,.85)">lash academy</div>
+        <h1 style="margin:22px 0 0;font:400 76px/.98 'Instrument Serif',serif;letter-spacing:-.02em">Train with <em style="font-style:italic;background:linear-gradient(96deg,#ff9ae4,#d9dbe4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Ekta</em></h1>
+      </div>
+    </div>
+    <div style="padding:84px 64px 110px">
+      <p style="margin:0;max-width:560px;font:300 15px/1.9 'Jost',sans-serif;color:#6a5a63">Small-group certification courses with kit, models and 90 days of post-course mentoring.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px">
+        <sc-for list="{{ courses }}" as="c" hint-placeholder-count="3">
+          <div style="padding:34px;background:linear-gradient(158deg,#fff,#fdf5fa);border:1px solid #f0e2ec;box-shadow:0 18px 44px rgba(26,16,22,.06),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s ease,border-color .4s ease" style-hover="transform:translateY(-8px);box-shadow:0 34px 66px rgba(190,17,160,.16);border-color:rgba(190,17,160,.4)">
+            <div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.28em;color:#be11a0;text-transform:uppercase">{{ c.level }}</div>
+            <div style="margin-top:18px;font:400 34px/1.08 'Instrument Serif',serif">{{ c.name }}</div>
+            <div style="margin-top:12px;font:400 9px/1.7 'Jost',sans-serif;letter-spacing:.22em;color:#a2909b;text-transform:uppercase">{{ c.meta }}</div>
+            <div style="margin:24px 0;height:1px;background:linear-gradient(90deg,#f0e0e9,#d9dbe4,transparent)"></div>
+            <sc-for list="{{ c.modules }}" as="m" hint-placeholder-count="4">
+              <div style="display:flex;gap:12px;padding:6px 0;font:300 13px/1.6 'Jost',sans-serif;color:#6a5a63"><span style="color:#be11a0">◆</span>{{ m }}</div>
+            </sc-for>
+            <div style="margin-top:26px;font:400 40px/1 'Instrument Serif',serif;color:#be11a0">{{ c.price }}</div>
+            <button style="margin-top:24px;width:100%;padding:15px 0;border:1px solid #be11a0;background:#fff;color:#be11a0;font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;transition:.35s ease" style-hover="background:linear-gradient(180deg,#d919b8,#a80c8c);border-color:transparent;color:#fff;box-shadow:0 12px 28px rgba(190,17,160,.3)">Reserve a seat</button>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:70px;border:1px solid #f0e2ec;box-shadow:0 18px 44px rgba(26,16,22,.05)">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:20px 28px;background:linear-gradient(180deg,#fdf7fb,#fbf0f6);font:500 9px/1 'Jost',sans-serif;letter-spacing:.26em;color:#8a7a83;text-transform:uppercase">
+          <span>upcoming dates</span><span>course</span><span>seats left</span><span></span>
+        </div>
+        <sc-for list="{{ intakes }}" as="i" hint-placeholder-count="4">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;align-items:center;padding:22px 28px;border-top:1px solid #f4e7ee;transition:background .35s ease" style-hover="background:#fdf7fb">
+            <span style="font:400 19px/1 'Instrument Serif',serif">{{ i.date }}</span>
+            <span style="font:300 14px/1 'Jost',sans-serif;color:#6a5a63">{{ i.course }}</span>
+            <span style="font:400 11px/1 'Jost',sans-serif;letter-spacing:.16em;color:#be11a0">{{ i.seats }}</span>
+            <span style="text-align:right"><button style="padding:11px 20px;border:1px solid #ecd9e6;background:#fff;color:#6a5a63;font:500 8.5px/1 'Jost',sans-serif;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:.35s ease" style-hover="border-color:#be11a0;color:#be11a0">Enquire</button></span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isContact }}">
+  <div style="padding:90px 64px 110px;background:#fff">
+    <h1 style="margin:0;font:400 76px/.98 'Instrument Serif',serif;letter-spacing:-.02em">The studio</h1>
+    <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:26px;margin-top:44px;align-items:stretch">
+      <div style="position:relative;height:540px;border:1px solid #f0e2ec;overflow:hidden;box-shadow:0 22px 50px rgba(26,16,22,.07)">
+        <iframe title="Studio location" src="https://www.openstreetmap.org/export/embed.html?bbox=72.8180%2C19.0480%2C72.8560%2C19.0760&amp;layer=mapnik&amp;marker=19.0596%2C72.8295" style="width:100%;height:100%;border:0;filter:grayscale(1) contrast(1.04)"></iframe>
+        <div style="position:absolute;left:26px;bottom:26px;padding:20px 24px;background:linear-gradient(150deg,rgba(255,255,255,.94),rgba(255,255,255,.78));backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.8);box-shadow:0 18px 44px rgba(26,16,22,.16)">
+          <div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.28em;color:#be11a0;text-transform:uppercase">studio 04</div>
+          <div style="margin-top:10px;font:300 15px/1.6 'Jost',sans-serif">Linking Road, Bandra West<br>Mumbai 400050</div>
+        </div>
+      </div>
+      <div style="border:1px solid #f0e2ec;padding:34px;background:linear-gradient(158deg,#fff,#fdf7fb);box-shadow:0 22px 50px rgba(26,16,22,.06)">
+        <sc-for list="{{ studioInfo }}" as="s" hint-placeholder-count="4">
+          <div style="padding:17px 0;border-bottom:1px solid #f4e7ee">
+            <div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.28em;color:#be11a0;text-transform:uppercase">{{ s.k }}</div>
+            <div style="margin-top:10px;font:300 14.5px/1.7 'Jost',sans-serif;color:#4a3a43;white-space:pre-line">{{ s.v }}</div>
+          </div>
+        </sc-for>
+        <div style="display:flex;gap:10px;margin-top:28px">
+          <button onClick="{{ openWhatsApp }}" style="flex:1;padding:15px 0;border:0;background:linear-gradient(180deg,#d919b8,#a80c8c);color:#fff;font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;box-shadow:0 12px 28px rgba(190,17,160,.3)">WhatsApp</button>
+          <button onClick="{{ openPhone }}" style="flex:1;padding:15px 0;border:1px solid #e6d0e0;background:#fff;color:#1a1016;font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.22em;text-transform:uppercase;cursor:pointer">Call studio</button>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:70px;display:grid;grid-template-columns:1fr 1fr;gap:64px">
+      <div>
+        <h2 style="margin:0;font:400 40px/1.1 'Instrument Serif',serif">Send an enquiry</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px">
+          <sc-for list="{{ fields }}" as="f" hint-placeholder-count="5">
+            <label style="{{ f.wrapStyle }}">
+              <span style="font:400 8.5px/1 'Jost',sans-serif;letter-spacing:.24em;color:#a2909b;text-transform:uppercase">{{ f.label }}</span>
+              <input data-booking-field="{{ f.key }}" autocomplete="{{ f.auto }}" aria-required="{{ f.required }}" value="{{ f.value }}" placeholder="{{ f.ph }}" onBlur="{{ f.blur }}" style="margin-top:10px;width:100%;padding:14px 0;border:0;border-bottom:1px solid #ecd9e6;background:transparent;color:#1a1016;font:300 16px/1 'Jost',sans-serif;outline:none;transition:border-color .3s ease" style-focus="border-color:#be11a0">
+            </label>
+          </sc-for>
+        </div>
+        <button onClick="{{ sendEnquiry }}" style="margin-top:32px;padding:16px 32px;border:0;background:linear-gradient(180deg,#d919b8,#a80c8c);color:#fff;font:500 10px/1 'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;box-shadow:0 14px 32px rgba(190,17,160,.32)">Send enquiry →</button>
+        <sc-if value="{{ enquirySent }}">
+        <div style="margin-top:14px;font:300 12px/1.7 'Jost',sans-serif;color:#6a5a63">Opening your email app to send this to the studio…</div>
+        </sc-if>
+      </div>
+      <div>
+        <h2 style="margin:0;font:400 40px/1.1 'Instrument Serif',serif">FAQ</h2>
+        <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="5">
+          <div style="padding:20px 0;border-bottom:1px solid #f4e7ee;transition:padding-left .35s ease" style-hover="padding-left:8px">
+            <div style="font:400 20px/1.35 'Instrument Serif',serif">{{ q.q }}</div>
+            <div style="margin-top:8px;font:300 13px/1.75 'Jost',sans-serif;color:#8a7a83">{{ q.a }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <div style="position:relative;overflow:hidden;padding:80px 64px 36px;background:linear-gradient(160deg,#160b12,#2a0a23 55%,#160b12);color:#f6eef3">
+    <div style="position:absolute;inset:0;background:radial-gradient(70% 90% at 88% 0%,rgba(190,17,160,.28),transparent 60%)"></div>
+    <div style="position:relative;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr;gap:44px">
+      <div>
+        <img src="assets/logo-white.png" alt="Lashes &amp; Beauty by Ekta" style="height:46px;width:auto;display:block">
+        <p style="margin:24px 0 0;max-width:230px;font:300 13px/1.85 'Jost',sans-serif;color:rgba(246,238,243,.55)">Lashes, brows and beauty designed around you.</p>
+      </div>
+      <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="3">
+        <div>
+          <div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.28em;color:rgba(246,238,243,.45);text-transform:uppercase">{{ c.title }}</div>
+          <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="5">
+            <div style="margin-top:13px;font:300 13px/1.5 'Jost',sans-serif;color:rgba(246,238,243,.8);cursor:pointer;transition:color .3s ease,transform .3s ease" style-hover="color:#ff85dd;transform:translateX(3px)">{{ l }}</div>
+          </sc-for>
+        </div>
+      </sc-for>
+      <div>
+        <div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.28em;color:rgba(246,238,243,.45);text-transform:uppercase">opening hours</div>
+        <div style="margin-top:14px;font:300 13px/1.95 'Jost',sans-serif;color:rgba(246,238,243,.8);white-space:pre-line">Monday – Saturday
+10:00 AM – 7:00 PM
+Sunday closed</div>
+      </div>
+    </div>
+    <div style="position:relative;display:flex;justify-content:space-between;margin-top:54px;padding-top:22px;border-top:1px solid rgba(246,238,243,.14);font:400 8.5px/1 'Jost',sans-serif;letter-spacing:.24em;color:rgba(246,238,243,.35);text-transform:uppercase">
+      <span>© 2026 Lashes and Beauty by Ekta</span><span>Sample photography &amp; video: Pexels — free for commercial use</span>
+    </div>
+  </div>
+
+  <div style="position:fixed;right:26px;bottom:26px;z-index:85;display:flex;flex-direction:column;gap:10px">
+    <button style="width:56px;height:56px;border-radius:50%;border:0;background:linear-gradient(180deg,#3ae07a,#1eb457);color:#fff;font:500 8.5px/1 'Jost',sans-serif;letter-spacing:.1em;cursor:pointer;box-shadow:0 14px 32px rgba(30,180,87,.4),inset 0 1px 0 rgba(255,255,255,.4);animation:ekFloat 4.5s ease-in-out infinite">WA</button>
+    <button style="width:56px;height:56px;border-radius:50%;border:1px solid #e6d0e0;background:linear-gradient(180deg,#fff,#fbf0f6);color:#1a1016;font:500 8.5px/1 'Jost',sans-serif;letter-spacing:.1em;cursor:pointer;box-shadow:0 14px 30px rgba(26,16,22,.12)">Call</button>
+  </div>
+
+</div>
+</sc-if>
+
+<sc-if value="{{ isMobile }}">
+<div style="display:flex;justify-content:center;gap:44px;padding:70px 40px;background:linear-gradient(180deg,#fdf7fb,#fbf0f6)">
+  <div>
+    <div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.3em;color:#8a7a83;text-transform:uppercase;margin-bottom:16px">mobile · hero</div>
+    <div style="width:390px;height:800px;border-radius:46px;padding:5px;background:linear-gradient(160deg,#e9dbe5,#fff 40%,#d9dbe4);box-shadow:0 40px 90px rgba(26,16,22,.24)">
+      <div style="position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:#160b12">
+        <video autoplay muted loop playsinline src="https://videos.pexels.com/video-files/20042308/20042308-uhd_1440_2560_30fps.mp4" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:ekKen 22s ease-in-out infinite alternate"></video>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,8,14,.5),rgba(18,8,14,.06) 38%,rgba(18,8,14,.94))"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font:500 11px/1 'Jost',sans-serif;color:#fff"><span>9:41</span><span>▮▮▮</span></div>
+        <div style="position:absolute;top:58px;left:22px;right:22px;display:flex;align-items:center;justify-content:space-between">
+          <img src="assets/logo-white.png" alt="Lashes &amp; Beauty by Ekta" style="height:26px;width:auto;display:block">
+          <div style="display:flex;flex-direction:column;gap:5px"><span style="width:20px;height:1px;background:#fff;display:block"></span><span style="width:20px;height:1px;background:#fff;display:block"></span><span style="width:11px;height:1px;background:#ff85dd;display:block"></span></div>
+        </div>
+        <div style="position:absolute;left:22px;right:22px;bottom:108px;color:#fff">
+          <div style="font:400 9px/1 'Jost',sans-serif;letter-spacing:.34em;color:rgba(255,255,255,.75);text-transform:uppercase">lashes · brows · beauty</div>
+          <h2 style="margin:14px 0 0;font:400 52px/.94 'Instrument Serif',serif">Beauty,<br><em style="font-style:italic;background:linear-gradient(96deg,#ff9ae4,#d9dbe4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">redefined.</em></h2>
+          <div style="display:flex;gap:10px;margin-top:26px">
+            <button style="flex:1;padding:16px 0;border:0;background:linear-gradient(180deg,#e11cc0,#a80c8c);color:#fff;font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;box-shadow:0 14px 30px rgba(190,17,160,.45)">Book now</button>
+            <button style="flex:1;padding:16px 0;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.14);backdrop-filter:blur(10px);color:#fff;font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase">Services</button>
+          </div>
+          <div style="display:flex;gap:14px;margin-top:24px;font:400 9px/1 'Jost',sans-serif;letter-spacing:.18em;color:rgba(255,255,255,.6)"><span style="color:#ff85dd;border-bottom:1px solid #ff85dd;padding-bottom:5px">01</span><span>02</span><span>03</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.3em;color:#8a7a83;text-transform:uppercase;margin-bottom:16px">mobile · service menu</div>
+    <div style="width:390px;height:800px;border-radius:46px;padding:5px;background:linear-gradient(160deg,#e9dbe5,#fff 40%,#d9dbe4);box-shadow:0 40px 90px rgba(26,16,22,.24)">
+      <div style="position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:#fff">
+        <div style="position:absolute;top:0;left:0;right:0;height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font:500 11px/1 'Jost',sans-serif;color:#1a1016;z-index:2"><span>9:41</span><span>▮▮▮</span></div>
+        <div style="position:absolute;inset:0;padding:64px 22px 22px;overflow:hidden">
+          <img src="assets/logo-magenta.png" alt="Lashes &amp; Beauty by Ekta" style="height:24px;width:auto;display:block">
+          <div style="margin-top:24px;font:500 9px/1 'Jost',sans-serif;letter-spacing:.32em;color:#be11a0;text-transform:uppercase">the lash edit</div>
+          <h2 style="margin:12px 0 0;font:400 36px/1.04 'Instrument Serif',serif">Choose your set</h2>
+          <sc-for list="{{ mobileServices }}" as="m" hint-placeholder-count="6">
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid #f4e7ee">
+              <div style="width:54px;height:54px;flex:none;background:#f7e8f1 url({{ m.img }}) center/cover no-repeat"></div>
+              <div style="flex:1">
+                <div style="font:400 19px/1.15 'Instrument Serif',serif">{{ m.name }}</div>
+                <div style="margin-top:5px;font:400 8px/1 'Jost',sans-serif;letter-spacing:.22em;color:#a2909b;text-transform:uppercase">{{ m.dur }}</div>
+              </div>
+              <div style="font:400 22px/1 'Instrument Serif',serif;color:#be11a0">{{ m.price }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.3em;color:#8a7a83;text-transform:uppercase;margin-bottom:16px">mobile · booking</div>
+    <div style="width:390px;height:800px;border-radius:46px;padding:5px;background:linear-gradient(160deg,#e9dbe5,#fff 40%,#d9dbe4);box-shadow:0 40px 90px rgba(26,16,22,.24)">
+      <div style="position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:#fff">
+        <div style="position:absolute;top:0;left:0;right:0;height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font:500 11px/1 'Jost',sans-serif;color:#1a1016;z-index:2"><span>9:41</span><span>▮▮▮</span></div>
+        <div style="position:absolute;inset:0;padding:64px 22px 22px">
+          <div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.32em;color:#be11a0;text-transform:uppercase">step 02 / 04</div>
+          <h2 style="margin:12px 0 0;font:400 36px/1.04 'Instrument Serif',serif">Pick a slot</h2>
+          <div style="display:flex;gap:8px;margin-top:24px;overflow:hidden">
+            <sc-for list="{{ mobileDays }}" as="d" hint-placeholder-count="5">
+              <div style="{{ d.style }}"><span style="font:400 8px/1 'Jost',sans-serif;letter-spacing:.18em;text-transform:uppercase">{{ d.dow }}</span><span style="margin-top:8px;font:400 22px/1 'Instrument Serif',serif">{{ d.n }}</span></div>
+            </sc-for>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px">
+            <sc-for list="{{ slots }}" as="t" hint-placeholder-count="6">
+              <div style="{{ t.mStyle }}">{{ t.label }}</div>
+            </sc-for>
+          </div>
+          <div style="position:absolute;left:22px;right:22px;bottom:26px;padding:20px;background:linear-gradient(150deg,#fff,#fbf0f6);border:1px solid rgba(190,17,160,.3);box-shadow:0 20px 44px rgba(26,16,22,.14),inset 0 1px 0 rgba(255,255,255,.9)">
+            <div style="display:flex;justify-content:space-between;font:500 8.5px/1 'Jost',sans-serif;letter-spacing:.24em;color:#8a7a83;text-transform:uppercase"><span>hybrid set</span><span>120 min</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:12px"><span style="font:300 13px/1 'Jost',sans-serif">Sat 12 · 13:00</span><span style="font:400 32px/1 'Instrument Serif',serif;color:#be11a0">{{ mobileTotal }}</span></div>
+            <button style="margin-top:16px;width:100%;padding:16px 0;border:0;background:linear-gradient(180deg,#d919b8,#a80c8c);color:#fff;font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.22em;text-transform:uppercase;box-shadow:0 12px 28px rgba(190,17,160,.35)">Continue →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+</div>
+
+<sc-if value="{{ showStickyBook }}">
+<div class="ek-sticky-book"><button onClick="{{ goBooking }}" style="width:100%;padding:17px 20px;border:0;border-radius:2px;background:linear-gradient(180deg,#d919b8,#a80c8c);color:#fff;font:500 10px/1 'Jost',sans-serif;letter-spacing:.28em;text-transform:uppercase;box-shadow:0 14px 34px rgba(190,17,160,.35)">Book appointment →</button></div>
+</sc-if>
+
+<sc-if value="{{ galleryOpen }}">
+<div class="ek-gallery-modal" role="dialog" aria-modal="true" aria-label="Lookbook image">
+  <div class="ek-gallery-panel">
+    <button onClick="{{ closeGallery }}" aria-label="Close image" style="position:absolute;right:14px;top:14px;z-index:2;width:42px;height:42px;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:#1a1016;font:400 18px/1 'Jost',sans-serif;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.16)">×</button>
+    <img class="ek-gallery-image" src="{{ galleryImage }}" alt="{{ galleryAlt }}">
+    <div style="padding:26px 28px 30px">
+      <div style="font:500 9px/1 'Jost',sans-serif;letter-spacing:.3em;color:#be11a0;text-transform:uppercase">{{ galleryCategory }}</div>
+      <div style="margin-top:10px;font:400 32px/1.1 'Instrument Serif',serif">{{ galleryTitle }}</div>
+      <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap">
+        <button onClick="{{ bookGallery }}" style="padding:14px 24px;border:0;background:linear-gradient(180deg,#d919b8,#a80c8c);color:#fff;font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase;cursor:pointer">Book this look →</button>
+        <button onClick="{{ closeGallery }}" style="padding:14px 24px;border:1px solid #e6d0e0;background:#fff;color:#1a1016;font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase;cursor:pointer">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;heroAutoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;scrollReveal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;defaultCurrency&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;INR&quot;,&quot;USD&quot;,&quot;AED&quot;,&quot;GBP&quot;],&quot;default&quot;:&quot;INR&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Pricing&quot;}}">
+class Component extends DCLogic {
+  // Real GessFlow backend this studio's booking wizard now talks to (Tier 3 direct API
+  // integration). Update GESSFLOW_API_BASE to the real deployed API origin before this site
+  // goes live -- localhost is only for local development/testing.
+  GESSFLOW_API_BASE = 'http://localhost:5000';
+  BOOKING_SLUG = 'lashes-beauty-by-ekta';
+  STUDIO_PHONE = '+919003105104';
+  STUDIO_WHATSAPP = '919003105104';
+  STUDIO_EMAIL = 'hello@lashesandbeautybyekta.com';
+
+  state = {
+    screen: 'home', hero: 0, playing: true, cur: 'INR', quiz: 0, ba: 50, filter: 'All', review: 0,
+    step: 1, svc: 'Hybrid', artist: '', day: '', slot: '', svcTab: 'Lashes',
+    calendarMonth: (() => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), 1); })(),
+    storefront: null, storefrontError: '', availabilitySlots: [], availabilityLoading: false, submitting: false, confirmation: null,
+    bookingError: '', mobileMenu: false, galleryOpen: false, gallerySelected: 0, bookingForm: { firstName: '', lastName: '', mobile: '', email: '', notes: '', patchTest: false },
+    enquirySent: false
+  };
+  vids = [];
+
+  componentDidMount() {
+    this.track('page_view', { screen: this.state.screen });
+    if (this.props.defaultCurrency) this.setState({ cur: this.props.defaultCurrency });
+    if (this.props.heroAutoplay !== false) this.timer = setInterval(() => {
+      if (this.state.playing) this.setState(s => ({ hero: (s.hero + 1) % 3 }));
+    }, 6500);
+    requestAnimationFrame(() => this.syncHeroVideos());
+    this.io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          en.target.style.opacity = '1';
+          en.target.style.transform = 'none';
+          this.io.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    this.scan();
+    this.loadStorefront();
+  }
+  componentDidUpdate(prev, prevState) {
+    if (prevState && prevState.screen !== this.state.screen) requestAnimationFrame(() => this.scan());
+    if (!prevState || prevState.hero !== this.state.hero || prevState.playing !== this.state.playing) {
+      requestAnimationFrame(() => this.syncHeroVideos());
+    }
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    if (this.io) this.io.disconnect();
+  }
+
+  syncHeroVideos() {
+    const videos = this.rootEl ? Array.from(this.rootEl.querySelectorAll('video[data-ek-video]')) : [];
+    this.vids = videos;
+    videos.forEach((v, i) => {
+      v.muted = true;
+      v.playsInline = true;
+      if (i === this.state.hero && this.state.playing) {
+        const p = v.play();
+        if (p && p.catch) p.catch(() => {});
+      } else {
+        v.pause();
+      }
+    });
+  }
+
+  track(name, data = {}) {
+    try {
+      const payload = { event: name, ...data, ts: new Date().toISOString() };
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(payload);
+      const key = 'ekta_analytics';
+      const events = JSON.parse(localStorage.getItem(key) || '[]');
+      events.push(payload);
+      localStorage.setItem(key, JSON.stringify(events.slice(-100)));
+    } catch (e) {}
+  }
+
+  openGallery(index) {
+    this.track('lookbook_open', { index });
+    this.setState({ gallerySelected: index, galleryOpen: true });
+  }
+  closeGallery() { this.setState({ galleryOpen: false }); }
+  bookGallery() {
+    const g = this.GALLERY[this.state.gallerySelected] || this.GALLERY[0];
+    const svcMap = { classic: 'Classic/Natural', hybrid: 'Hybrid', volume: 'Volume', 'mega volume': 'Mega Volume', 'lift & tint': 'Lash Lifting', brows: 'Brow Lamination' };
+    const svc = svcMap[g[1]] || 'Hybrid';
+    this.track('lookbook_book_click', { service: svc });
+    this.setState({ svc, screen: 'booking', step: 1, artist: '', day: '', slot: '', availabilitySlots: [], galleryOpen: false, bookingError: '', mobileMenu: false });
+  }
+
+  copyBookingDetails() {
+    const s = this.state;
+    const svc = this.currentService();
+    const date = s.day ? new Date(s.day + 'T00:00:00').toLocaleDateString('en-US', { weekday:'long', day:'numeric', month:'long', year:'numeric' }) : '';
+    const time = s.slot ? this.formatSlotTime(s.slot, s.storefront?.locations?.[0]?.timeZone) : '';
+    const total = svc ? svc.price : 0;
+    const text = 'Lashes & Beauty by Ekta\nService: ' + s.svc + '\nArtist: ' + this.currentEmployeeName() + '\nDate: ' + date + '\nTime: ' + time + '\nTotal: ' + this.fmt(total) + (s.confirmation ? '\nReference: ' + s.confirmation.appointmentId : '');
+    if (navigator.clipboard?.writeText) navigator.clipboard.writeText(text).then(() => this.setState({ bookingError: 'Appointment details copied.' })).catch(() => {});
+    this.track('booking_copy_details', { service: s.svc });
+  }
+
+  openInstagram() {
+    this.track('instagram_click');
+    window.open('https://www.instagram.com/lashesandbeauty.ekta/', '_blank', 'noopener,noreferrer');
+  }
+
+  openPhone() {
+    this.track('phone_click');
+    window.location.href = 'tel:' + this.STUDIO_PHONE;
+  }
+
+  openWhatsApp() {
+    this.track('whatsapp_click');
+    const number = this.STUDIO_WHATSAPP;
+    if (number.length < 10 || /^0+$/.test(number.slice(-10))) { this.setState({ bookingError: 'Add the studio WhatsApp number before publishing this button.' }); return; }
+    window.open('https://wa.me/' + number, '_blank', 'noopener,noreferrer');
+  }
+
+  toggleMobileMenu() {
+    this.setState(s => ({ mobileMenu: !s.mobileMenu }));
+  }
+
+  pad2(n) { return String(n).padStart(2, '0'); }
+  dateToIso(d) { return d.getFullYear() + '-' + this.pad2(d.getMonth() + 1) + '-' + this.pad2(d.getDate()); }
+  todayDateString() { return this.dateToIso(new Date()); }
+
+  async loadStorefront() {
+    try {
+      const res = await fetch(this.GESSFLOW_API_BASE + '/api/public/bookings/' + this.BOOKING_SLUG);
+      if (!res.ok) throw new Error('storefront_failed');
+      const data = await res.json();
+      this.setState({ storefront: data, storefrontError: '' });
+    } catch (e) {
+      this.setState({ storefrontError: 'Live availability is temporarily unavailable. Please call or WhatsApp the studio to book.' });
+    }
+  }
+
+  currentService() {
+    const st = this.state;
+    return (st.storefront?.services || []).find(s => s.name === st.svc) || null;
+  }
+  currentEmployeeName() {
+    const st = this.state;
+    const e = (st.storefront?.employees || []).find(x => x.id === st.artist);
+    return e ? e.name : '';
+  }
+
+  async loadAvailabilityIfReady() {
+    const st = this.state;
+    const svc = this.currentService();
+    const loc = st.storefront?.locations?.[0];
+    if (!svc || !loc || !st.artist || !st.day) return;
+    this.setState({ availabilityLoading: true, availabilitySlots: [] });
+    try {
+      const url = this.GESSFLOW_API_BASE + '/api/public/bookings/' + this.BOOKING_SLUG + '/availability?locationId=' + loc.id + '&serviceId=' + svc.id + '&date=' + st.day + '&employeeId=' + st.artist;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('availability_failed');
+      const slots = await res.json();
+      this.setState({ availabilitySlots: slots, availabilityLoading: false });
+    } catch (e) {
+      this.setState({ availabilityLoading: false, bookingError: 'Could not load available times. Please try again.' });
+    }
+  }
+
+  gotoMonth(delta) {
+    this.setState(s => {
+      const next = new Date(s.calendarMonth.getFullYear(), s.calendarMonth.getMonth() + delta, 1);
+      const real = new Date();
+      const realFirst = new Date(real.getFullYear(), real.getMonth(), 1);
+      if (next < realFirst) return null;
+      return { calendarMonth: next, day: '', slot: '', availabilitySlots: [], bookingError: '' };
+    });
+  }
+
+  formatSlotTime(iso, tz) {
+    try {
+      return new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: tz || 'Asia/Kolkata' }).format(new Date(iso));
+    } catch (e) {
+      return new Date(iso).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    }
+  }
+
+  async submitBooking() {
+    const st = this.state;
+    const svc = this.currentService();
+    const loc = st.storefront?.locations?.[0];
+    if (!svc || !loc || !st.artist || !st.day || !st.slot) {
+      this.setState({ bookingError: 'Something is missing from your booking. Please review your selections.' });
+      return;
+    }
+    const form = st.bookingForm;
+    this.setState({ submitting: true, bookingError: '' });
+    try {
+      const res = await fetch(this.GESSFLOW_API_BASE + '/api/public/bookings/' + this.BOOKING_SLUG + '/appointments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: form.firstName, lastName: form.lastName,
+          email: form.email || null, phone: form.mobile || null,
+          locationId: loc.id, serviceId: svc.id, employeeId: st.artist,
+          startAtUtc: st.slot, notes: form.notes || null
+        })
+      });
+      if (!res.ok) {
+        const raw = await res.text().catch(() => '');
+        let message = raw;
+        try { const parsed = JSON.parse(raw); message = typeof parsed === 'string' ? parsed : (parsed?.message || raw); } catch (e) {}
+        this.setState({ submitting: false, bookingError: message || 'That time is no longer available. Please choose another slot.' });
+        if (res.status === 409) { this.setState({ slot: '' }); this.loadAvailabilityIfReady(); }
+        return;
+      }
+      const confirmation = await res.json();
+      this.setState({ submitting: false, confirmation, step: 4, bookingError: '' });
+    } catch (e) {
+      this.setState({ submitting: false, bookingError: 'We could not reach the booking service. Please check your connection and try again.' });
+    }
+  }
+
+  sendEnquiry() {
+    const form = this.getBookingForm();
+    if (!form.firstName || (!form.email && !form.mobile)) {
+      this.setState({ bookingError: 'Please add your name and an email or mobile number so we can reply.' });
+      return;
+    }
+    const subject = 'Enquiry from ' + form.firstName + (form.lastName ? ' ' + form.lastName : '');
+    const bodyLines = [
+      'Name: ' + form.firstName + ' ' + form.lastName,
+      'Mobile: ' + (form.mobile || '-'),
+      'Email: ' + (form.email || '-'),
+      '', form.notes || ''
+    ];
+    const mailto = 'mailto:' + this.STUDIO_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyLines.join('\n'));
+    this.track('enquiry_send', { hasEmail: !!form.email, hasMobile: !!form.mobile });
+    window.location.href = mailto;
+    this.setState({ enquirySent: true });
+  }
+
+  getBookingForm() {
+    const q = key => this.rootEl ? this.rootEl.querySelector('[data-booking-field="' + key + '"]') : null;
+    return {
+      firstName: q('firstName')?.value.trim() || '',
+      lastName: q('lastName')?.value.trim() || '',
+      mobile: q('mobile')?.value.trim() || '',
+      email: q('email')?.value.trim() || '',
+      notes: q('notes')?.value.trim() || '',
+      patchTest: !!this.rootEl?.querySelector('[data-patch-test]')?.checked
+    };
+  }
+
+  validateBookingStep(step) {
+    if (step === 1 && !this.state.svc) return 'Please select a service before continuing.';
+    if (step === 2) {
+      if (!this.state.artist || !this.state.day || !this.state.slot) return 'Please select an artist, date and available time.';
+    }
+    if (step === 3) {
+      const form = this.getBookingForm();
+      this.setState({ bookingForm: form });
+      if (!form.firstName || !form.lastName) return 'Please enter your first and last name.';
+      if (!/^[+\d][\d\s().-]{7,}$/.test(form.mobile)) return 'Please enter a valid mobile number.';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) return 'Please enter a valid email address.';
+      if (!form.patchTest) return 'Please confirm your patch-test status before requesting an appointment.';
+    }
+    return '';
+  }
+
+  gotoStep(n) {
+    if (n <= this.state.step) {
+      this.setState({ step: n, bookingError: '' });
+      return;
+    }
+    for (let current = this.state.step; current < n; current++) {
+      const error = this.validateBookingStep(current);
+      if (error) {
+        this.setState({ bookingError: error });
+        return;
+      }
+    }
+    this.setState({ step: n, bookingError: '' });
+  }
+
+  async stepNextAction() {
+    if (this.state.step >= 4 || this.state.submitting) return;
+    const error = this.validateBookingStep(this.state.step);
+    if (error) {
+      this.setState({ bookingError: error });
+      return;
+    }
+    if (this.state.step === 3) {
+      this.track('booking_request', { service: this.state.svc, artist: this.state.artist, day: this.state.day, slot: this.state.slot });
+      await this.submitBooking();
+      return;
+    }
+    this.setState(s => ({ step: Math.min(4, s.step + 1), bookingError: '' }));
+  }
+
+  stepBackAction() {
+    this.setState(s => ({ step: Math.max(1, s.step - 1), bookingError: '' }));
+  }
+
+  addCalendar() {
+    const s = this.state;
+    if (!s.confirmation) return;
+    const start = new Date(s.confirmation.startAtUtc);
+    const end = new Date(s.confirmation.endAtUtc);
+    const stampUtc = d => d.getUTCFullYear() + this.pad2(d.getUTCMonth() + 1) + this.pad2(d.getUTCDate()) + 'T' + this.pad2(d.getUTCHours()) + this.pad2(d.getUTCMinutes()) + this.pad2(d.getUTCSeconds()) + 'Z';
+    const ics = [
+      'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Lashes & Beauty by Ekta//EN','BEGIN:VEVENT',
+      'UID:' + s.confirmation.appointmentId + '@lashes-beauty','DTSTART:' + stampUtc(start),'DTEND:' + stampUtc(end),
+      'SUMMARY:Lashes & Beauty by Ekta - ' + s.svc,
+      'DESCRIPTION:Appointment with ' + this.currentEmployeeName() + '.',
+      'END:VEVENT','END:VCALENDAR'
+    ].join('\r\n');
+    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'ekta-appointment.ics'; a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  scan() {
+    if (this.props.scrollReveal === false || !this.rootEl || !this.io) return;
+    const vh = window.innerHeight || 900;
+    this.rootEl.querySelectorAll('[data-reveal]').forEach(el => {
+      if (el.dataset.revealDone) return;
+      el.dataset.revealDone = '1';
+      if (el.getBoundingClientRect().top > vh * 0.86) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(28px)';
+        el.style.transition = 'opacity .9s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)';
+        this.io.observe(el);
+      }
+    });
+  }
+
+  img(id, w, h) {
+    if (typeof id === 'string') return id;
+    return 'https://images.pexels.com/photos/' + id + '/pexels-photo-' + id + '.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=' + w + '&h=' + h;
+  }
+  rates = { INR: [1, '₹'], USD: [0.0115, '$'], AED: [0.042, 'AED '], GBP: [0.009, '£'] };
+  fmt(inr) {
+    const [r, sym] = this.rates[this.state.cur] || this.rates.INR;
+    const v = inr * r;
+    const n = this.state.cur === 'INR' ? Math.round(v).toLocaleString('en-IN') : (v < 100 ? v.toFixed(0) : Math.round(v).toLocaleString('en-US'));
+    return sym + n;
+  }
+
+  SERVICES = [
+    ['Classic/Natural', 3800, '120 min', 36930354, 'Lashes'], ['Hybrid', 4900, '120 min', 33723106, 'Lashes'],
+    ['Volume', 6000, '150 min', 21412169, 'Lashes'], ['Mega Volume', 7100, '165 min', 38194468, 'Lashes'],
+    ['Eyelash Extension Removal', 1500, '30 min', 5128234, 'Lashes'], ['Lash Lifting', 2800, '60 min', 5128220, 'Lashes'],
+    ['Eyelash Tint', 1500, '30 min', 35013077, 'Lashes'], ['Brow Tint', 1500, '30 min', 3724431, 'Brows & beauty'],
+    ['Brow Lamination', 2200, '60 min', 8554941, 'Brows & beauty']
+  ];
+  INFILL = [
+    ['Classic - 2weeks', 1200, '60 min'], ['Volume - 2weeks', 1900, '75 min'], ['Classic - 3weeks', 1800, '75 min'],
+    ['Volume - 3weeks', 2800, '90 min'], ['Hybrid - 2weeks', 1500, '60 min'], ['Mega Volume - 2weeks', 2300, '90 min'],
+    ['Hybrid - 3weeks', 2200, '90 min'], ['Mega Volume - 3weeks', 3400, '120 min']
+  ];
+  HEROES = [
+    { k: 'lashes · brows · beauty', a: 'Beauty,', b: 'redefined.', body: 'Precision lash artistry in a studio built around one client at a time.', tag: 'the studio' },
+    { k: 'volume & mega volume', a: 'Built lash', b: 'by lash.', body: 'Hand-fanned volume mapped to your natural lash line and growth cycle.', tag: 'volume work' },
+    { k: 'brows & beauty', a: 'Frame the', b: 'whole face.', body: 'Lamination, tint and shaping that holds its line for six weeks.', tag: 'brow studio' }
+  ];
+  QUIZ = [
+    { n: 'The Natural', d: 'Soft. Effortless. Elegant.', c: 'Classic/Natural — one extension per lash, weightless, reads as your own lashes on a very good day.' },
+    { n: 'The Signature', d: 'Defined. Sophisticated. Balanced.', c: 'Hybrid — classic and volume mixed for texture without heaviness. The studio favourite.' },
+    { n: 'The Bold', d: 'Full. Dramatic. Confident.', c: 'Volume — hand-made fans for a dense, dark lash line that still moves naturally.' },
+    { n: 'The Icon', d: 'Maximum volume. Maximum impact.', c: 'Mega Volume — the fullest set we offer, mapped carefully so retention holds.' }
+  ];
+  REVIEWS = [
+    ['Every detail felt personal. The result was exactly what I wanted — and it held for five weeks.', 'Ananya R. · Hybrid lashes'],
+    ['My lashes have never looked this natural and perfect. She actually says no when a set would be too heavy.', 'Nisha K. · Classic lashes'],
+    ["Ekta's work is pure artistry. Absolutely love my look.", 'Priya S. · Volume lashes']
+  ];
+  FILTERS = ['All', 'Classic', 'Hybrid', 'Volume', 'Mega Volume', 'Brows', 'Lift & Tint'];
+  GALLERY = [
+    ['assets/lookbook-placeholder-01.svg', 'classic'],
+    ['assets/lookbook-placeholder-02.svg', 'hybrid'],
+    ['assets/lookbook-placeholder-03.svg', 'volume'],
+    ['assets/lookbook-placeholder-04.svg', 'mega volume'],
+    ['assets/lookbook-placeholder-05.svg', 'brows'],
+    ['assets/lookbook-placeholder-06.svg', 'lift & tint'],
+    ['assets/lookbook-placeholder-07.svg', 'hybrid'],
+    ['assets/lookbook-placeholder-08.svg', 'classic'],
+    ['assets/lookbook-placeholder-01.svg', 'volume'],
+    ['assets/lookbook-placeholder-02.svg', 'brows'],
+    ['assets/lookbook-placeholder-03.svg', 'mega volume'],
+    ['assets/lookbook-placeholder-04.svg', 'lift & tint'],
+    ['assets/lookbook-placeholder-05.svg', 'classic'],
+    ['assets/lookbook-placeholder-06.svg', 'hybrid'],
+    ['assets/lookbook-placeholder-07.svg', 'volume'],
+    ['assets/lookbook-placeholder-08.svg', 'brows']
+  ];
+
+  chip(active) {
+    return 'padding:11px 18px;border:1px solid ' + (active ? 'transparent' : '#ecd9e6') +
+      ';border-radius:40px;background:' + (active ? 'linear-gradient(180deg,#d919b8,#a80c8c)' : 'linear-gradient(180deg,#fff,#fdf6fa)') +
+      ';color:' + (active ? '#fff' : '#6a5a63') +
+      ";font:500 9px/1 'Jost',sans-serif;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:.35s ease;box-shadow:" +
+      (active ? '0 12px 28px rgba(190,17,160,.3),inset 0 1px 0 rgba(255,255,255,.4)' : '0 6px 16px rgba(26,16,22,.05)');
+  }
+  galleryItems(n) {
+    const f = this.state.filter.toLowerCase();
+    const pool = f === 'all' ? this.GALLERY : this.GALLERY.filter(g => g[1] === f);
+    const list = pool.length ? pool : this.GALLERY;
+    const patterns = {
+      8: ['t', '', 'w', '', '', '', 'w', 'w'],
+      12: ['t', '', 'w', '', '', '', 't', 'w', '', '', '', '']
+    };
+    const pat = patterns[n] || [];
+    return Array.from({ length: n }, (_, i) => {
+      const g = list[i % list.length];
+      const sourceIndex = this.GALLERY.indexOf(g);
+      const kind = pat[i] || '';
+      const tall = kind === 't', wide = kind === 'w';
+      const span = tall ? ';grid-row:span 2' : wide ? ';grid-column:span 2' : '';
+      return {
+        label: g[1], open: () => this.openGallery(sourceIndex),
+        wrapStyle: 'position:relative;overflow:hidden;box-shadow:0 14px 34px rgba(26,16,22,.08);transition:transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .6s ease;background:#f7e8f1 url(' +
+          this.img(g[0], wide ? 1300 : 760, tall ? 1300 : 640) + ') center/cover no-repeat' + span,
+        labelStyle: "position:absolute;left:14px;bottom:14px;padding:6px 12px;border-radius:40px;background:rgba(255,255,255,.82);backdrop-filter:blur(8px);font:500 8px/1 'Jost',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#1a1016"
+      };
+    });
+  }
+
+  renderVals() {
+    const st = this.state, S = st.screen;
+    const selectedGallery = this.GALLERY[st.gallerySelected] || this.GALLERY[0];
+    const go = v => () => { this.track('navigation', { to: v }); this.setState({ screen: v, mobileMenu: false }); };
+    const hero = this.HEROES[st.hero];
+    const q = this.QUIZ[st.quiz];
+    const rev = this.REVIEWS[st.review];
+    const svcRow = this.SERVICES.find(s => s[0] === st.svc) || this.SERVICES[1];
+    const liveService = this.currentService();
+    const total = liveService ? liveService.price : svcRow[1];
+    const durationLabel = liveService ? (liveService.durationMinutes + ' min') : svcRow[2];
+    const bookingDateLabel = st.day ? new Date(st.day + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }) : 'Not selected';
+    const bookingTimeLabel = st.slot ? this.formatSlotTime(st.slot, st.storefront?.locations?.[0]?.timeZone) : 'Not selected';
+    const policy = st.storefront?.policy || null;
+    const setVid = i => el => { this.vids[i] = el; };
+
+    const tabCounts = {
+      'Lashes': this.SERVICES.filter(s => s[4] === 'Lashes').length,
+      'Brows & beauty': this.SERVICES.filter(s => s[4] === 'Brows & beauty').length,
+      'Infill': this.INFILL.length
+    };
+    const svcRows = (st.svcTab === 'Infill'
+      ? this.INFILL.map(s => ({ name: s[0], price: this.fmt(s[1]), dur: s[2] }))
+      : this.SERVICES.filter(s => s[4] === st.svcTab).map(s => ({ name: s[0], price: this.fmt(s[1]), dur: s[2] }))
+    ).map((r, i) => ({
+      name: r.name, price: r.price, dur: r.dur, num: (i + 1 < 10 ? '0' : '') + (i + 1),
+      rowStyle: 'display:flex;align-items:baseline;gap:20px;padding:26px 16px 26px 4px;border-bottom:1px solid #f4e7ee;transition:background .4s ease,padding-left .4s ease,border-color .4s ease',
+      rowStyleHover: '', book: () => { const match = this.SERVICES.find(s => s[0] === r.name); this.track('service_book_click', { service: r.name }); this.setState({ svc: match ? match[0] : r.name, screen: 'booking', step: 1, artist: '', day: '', slot: '', availabilitySlots: [], bookingError: '', mobileMenu: false }); }
+    }));
+
+    return {
+      rootStyle: 'width:100%;min-width:0;background:#ffffff;color:#1a1016;font-family:\'Jost\',system-ui,sans-serif;-webkit-font-smoothing:antialiased;animation:ekPageIn .55s ease both',
+      galleryOpen: st.galleryOpen,
+      galleryImage: selectedGallery ? this.img(selectedGallery[0], 1800, 1400) : '',
+      galleryAlt: selectedGallery ? selectedGallery[1] + ' lash look' : 'Lash look',
+      galleryCategory: selectedGallery ? selectedGallery[1] : '',
+      galleryTitle: selectedGallery ? selectedGallery[1].replace(/(^|\s)\S/g, m => m.toUpperCase()) + ' look' : 'Lash look',
+      closeGallery: () => this.closeGallery(),
+      root: el => { this.rootEl = el; },
+      screens: [['home', 'Home'], ['services', 'Services'], ['lookbook', 'Lookbook'], ['booking', 'Booking'], ['about', 'About'], ['academy', 'Academy'], ['contact', 'Studio'], ['mobile', 'Mobile']].map(([k, l]) => ({
+        label: l, go: go(k),
+        style: 'padding:7px 13px;border:1px solid ' + (S === k ? 'transparent' : '#ecd9e6') + ';background:' + (S === k ? 'linear-gradient(180deg,#d919b8,#a80c8c)' : '#fff') + ';color:' + (S === k ? '#fff' : '#6a5a63') + ";font:500 9px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;border-radius:40px"
+      })),
+      currencies: Object.keys(this.rates).map(c => ({
+        code: c, go: () => this.setState({ cur: c }),
+        style: 'padding:6px 10px;border:1px solid ' + (st.cur === c ? '#be11a0' : '#ecd9e6') + ';background:#fff;color:' + (st.cur === c ? '#be11a0' : '#a2909b') + ";font:500 9px/1 'Jost',sans-serif;letter-spacing:.14em;cursor:pointer;border-radius:40px"
+      })),
+      nav: [['home', 'Home'], ['services', 'Services'], ['lookbook', 'Lookbook'], ['about', 'About Ekta'], ['contact', 'Studio'], ['academy', 'Academy']].map(([k, l]) => ({
+        label: l, go: e => { e.preventDefault(); this.setState({ screen: k, mobileMenu: false }); },
+        style: "position:relative;padding-bottom:5px;font:400 10.5px/1 'Jost',sans-serif;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;color:" + (S === k ? '#be11a0' : '#1a1016'),
+        barStyle: 'position:absolute;left:0;bottom:0;height:1px;width:' + (S === k ? '100%' : '0') + ';background:linear-gradient(90deg,#be11a0,#d9dbe4);transition:width .45s cubic-bezier(.2,.7,.2,1)'
+      })),
+      isSite: S !== 'mobile', isMobile: S === 'mobile', isHome: S === 'home', isServices: S === 'services',
+      isLookbook: S === 'lookbook', isBooking: S === 'booking', isAbout: S === 'about', isAcademy: S === 'academy', isContact: S === 'contact', showStickyBook: S !== 'booking',
+      goBooking: e => { if (e && e.preventDefault) e.preventDefault(); this.track('booking_cta'); this.setState({ screen: 'booking', step: 1, bookingError: '', mobileMenu: false }); }, goServices: go('services'), goAbout: go('about'), goLookbook: go('lookbook'), goHome: go('home'),
+      mobileMenu: st.mobileMenu,
+      toggleMobileMenu: () => this.toggleMobileMenu(),
+      addCalendar: () => { this.track('add_to_calendar', { service: st.svc }); this.addCalendar(); },
+      openWhatsApp: () => this.openWhatsApp(),
+      openPhone: () => this.openPhone(),
+      openInstagram: () => this.openInstagram(),
+
+      heroKicker: hero.k, heroLine1: hero.a, heroLine2: hero.b, heroBody: hero.body,
+      v0: setVid(0), v1: setVid(1), v2: setVid(2),
+      o0: st.hero === 0 ? 1 : 0, o1: st.hero === 1 ? 1 : 0, o2: st.hero === 2 ? 1 : 0,
+      heroTabs: this.HEROES.map((h, i) => {
+        const on = st.hero === i;
+        return {
+          num: '0' + (i + 1), tag: h.tag, go: () => { this.track('hero_slide', { slide: i + 1 }); this.setState({ hero: i }); },
+          style: 'padding:0;border:0;background:transparent;cursor:pointer;color:' + (on ? '#fff' : 'rgba(255,255,255,.55)') + ";font:400 13px/1 'Jost',sans-serif;letter-spacing:.22em;transition:color .4s ease",
+          trackStyle: 'display:block;margin-top:11px;width:' + (on ? '110px' : '46px') + ';height:1px;background:rgba(255,255,255,.28);transition:width .5s cubic-bezier(.2,.7,.2,1)',
+          fillStyle: on
+            ? 'display:block;height:1px;background:linear-gradient(90deg,#ff85dd,#d9dbe4);animation:ekProgress 6.5s linear infinite'
+            : 'display:block;height:1px;width:0;background:transparent'
+        };
+      }),
+      playIcon: st.playing ? '❙❙' : '▶',
+      playLabel: st.playing ? 'playing' : 'paused',
+      togglePlay: () => {
+        const next = !this.state.playing;
+        this.setState({ playing: next });
+      },
+
+      trust: [
+        { n: '12 yrs', l: 'lash practice' }, { n: '4.9 ★', l: 'google rating' },
+        { n: '2,400+', l: 'sets completed' }, { n: '3 artists', l: 'bandra west studio' }
+      ],
+      edit: [
+        ['Classic/Natural', 'Natural, effortless definition', 3800, '120 min', 36930354],
+        ['Hybrid', 'Texture and dimension', 4900, '120 min', 33723106],
+        ['Volume', 'Fuller, bolder lash line', 6000, '150 min', 21412169],
+        ['Mega Volume', 'Maximum impact', 7100, '165 min', 38194468],
+        ['Removal', 'Safe, gentle reset', 1500, '30 min', 5128234]
+      ].map((e, i) => ({ name: e[0], desc: e[1], price: this.fmt(e[2]), dur: e[3], img: this.img(e[4], 700, 720), num: '0' + (i + 1), book: () => this.setState({ svc: e[0], screen: 'booking', step: 1, bookingError: '', mobileMenu: false }) })),
+
+      quiz: this.QUIZ.map((x, i) => ({
+        name: x.n, desc: x.d, go: () => { this.track('quiz_select', { result: x.n }); this.setState({ quiz: i }); },
+        style: 'flex:1;display:flex;flex-direction:column;align-items:center;gap:14px;padding:26px 16px;border:1px solid ' + (st.quiz === i ? 'rgba(190,17,160,.45)' : '#f0e2ec') + ';background:' + (st.quiz === i ? 'linear-gradient(158deg,#fff,#fbf0f6)' : 'linear-gradient(158deg,#fff,#fdf7fb)') + ';cursor:pointer;box-shadow:' + (st.quiz === i ? '0 22px 46px rgba(190,17,160,.16)' : '0 10px 26px rgba(26,16,22,.05)') + ';transform:' + (st.quiz === i ? 'translateY(-4px)' : 'none') + ';transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease,border-color .4s ease',
+        dotStyle: 'width:46px;height:46px;border-radius:50%;border:1px solid ' + (st.quiz === i ? 'transparent' : '#e8d5e2') + ';background:' + (st.quiz === i ? 'linear-gradient(180deg,#e11cc0,#a80c8c)' : 'linear-gradient(180deg,#fff,#f7ecf3)') + ';box-shadow:' + (st.quiz === i ? '0 12px 26px rgba(190,17,160,.35),inset 0 1px 0 rgba(255,255,255,.5)' : 'inset 0 1px 0 rgba(255,255,255,.9)'),
+        nameStyle: "font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:" + (st.quiz === i ? '#be11a0' : '#1a1016')
+      })),
+      quizMatch: q.n, quizCopy: q.c,
+      quizBook: () => { const map = ['Classic/Natural','Hybrid','Volume','Mega Volume']; const svc = map[st.quiz] || 'Hybrid'; this.track('quiz_book_click', { service: svc }); this.setState({ svc, screen:'booking', step:1, mobileMenu:false, bookingError:'' }); },
+
+      baSplit: st.ba,
+      setSplit: e => this.setState({ ba: +e.target.value }),
+      baClipStyle: 'position:absolute;left:0;top:0;bottom:0;width:' + st.ba + '%;overflow:hidden;border-right:1px solid rgba(255,255,255,.9);box-shadow:6px 0 24px rgba(190,17,160,.25)',
+      baHandleStyle: 'position:absolute;top:50%;left:' + st.ba + '%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;background:linear-gradient(180deg,#fff,#f7ecf3);border:1px solid rgba(190,17,160,.5);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px rgba(26,16,22,.3),inset 0 1px 0 #fff;pointer-events:none',
+
+      plans: [
+        { name: 'Infill Classic', tag: 'entry', price: 2400, perks: ['One 3-week Classic infill monthly', 'Priority weekday slots', '10% off tint & lift', 'Aftercare kit refill'] },
+        { name: 'Infill Signature', tag: 'most chosen', price: 3600, perks: ['One 2-week Hybrid infill monthly', 'Priority weekend slots', '15% off all add-ons', 'Free removal once a year', 'Complimentary brow tint'] },
+        { name: 'Studio Unlimited', tag: 'vip', price: 6900, perks: ['Unlimited infills, any set', 'Same-week booking guarantee', '20% off academy courses', 'Two guest gift cards a year'] }
+      ].map((p, i) => ({
+        name: p.name, tag: p.tag, price: this.fmt(p.price), perks: p.perks,
+        cardStyle: 'position:relative;padding:38px 34px;border:1px solid ' + (i === 1 ? 'rgba(190,17,160,.4)' : '#f0e2ec') + ';background:' + (i === 1 ? 'linear-gradient(158deg,#fff,#fbf0f6)' : 'linear-gradient(158deg,#fff,#fdf7fb)') + ';box-shadow:' + (i === 1 ? '0 30px 66px rgba(190,17,160,.18)' : '0 18px 44px rgba(26,16,22,.06)') + ',inset 0 1px 0 rgba(255,255,255,.9);transform:' + (i === 1 ? 'translateY(-10px)' : 'none') + ';transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s ease',
+        tagStyle: "margin-bottom:20px;font:500 9px/1 'Jost',sans-serif;letter-spacing:.3em;text-transform:uppercase;color:" + (i === 1 ? '#be11a0' : '#a2909b'),
+        btnStyle: 'margin-top:30px;width:100%;padding:15px 0;border:' + (i === 1 ? '0' : '1px solid #be11a0') + ';background:' + (i === 1 ? 'linear-gradient(180deg,#d919b8,#a80c8c)' : '#fff') + ';color:' + (i === 1 ? '#fff' : '#be11a0') + ";font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;box-shadow:" + (i === 1 ? '0 14px 32px rgba(190,17,160,.32),inset 0 1px 0 rgba(255,255,255,.4)' : 'none')
+      })),
+
+      filters: this.FILTERS.map(f => ({ label: f, go: () => this.setState({ filter: f }), style: this.chip(st.filter === f) })),
+      gallery: this.galleryItems(8),
+      galleryFull: this.galleryItems(12),
+
+      team: [
+        { name: 'Ekta', role: 'founder · master artist', bio: 'Volume and mega volume specialist, lash academy lead trainer.', img: this.img(5128267, 800, 900) },
+        { name: 'Riya', role: 'senior lash artist', bio: 'Classic and hybrid sets, brow lamination and tint.', img: this.img(5128222, 800, 900) },
+        { name: 'Meher', role: 'lash artist · brows', bio: 'Lash lifting, tinting and infills. Certified 2025 intake.', img: this.img(7755531, 800, 900) }
+      ],
+      reviewText: rev[0], reviewMeta: rev[1],
+      reviewCount: '0' + (st.review + 1) + ' / 0' + this.REVIEWS.length,
+      prevReview: () => { this.track('review_previous'); this.setState(s => ({ review: (s.review + this.REVIEWS.length - 1) % this.REVIEWS.length })); },
+      nextReview: () => { this.track('review_next'); this.setState(s => ({ review: (s.review + 1) % this.REVIEWS.length })); },
+      feed: [8558536, 8558524, 8558545, 8558546].map(id => this.img(id, 560, 560)),
+      posts: [
+        { tag: 'aftercare', title: 'The first 24 hours after your set', excerpt: 'No steam, no oil cleanser, no sleeping face-down. What actually damages retention.', read: '4 min read', img: this.img(8558539, 800, 460) },
+        { tag: 'retention', title: 'Why lashes shed faster in monsoon', excerpt: 'Humidity changes cure time and shedding cycles. How to adjust your infill schedule.', read: '5 min read', img: this.img(8558524, 800, 460) },
+        { tag: 'choosing', title: 'Classic vs hybrid vs volume', excerpt: 'A plain comparison of weight, look and upkeep, so you book the right set once.', read: '6 min read', img: this.img(8558546, 800, 460) }
+      ],
+      giftAmounts: [2000, 3800, 5000, 7100].map(a => this.fmt(a)),
+      giftHero: this.fmt(5000),
+
+      footerCols: [
+        { title: 'explore', links: ['Home', 'Lashes', 'Brows & Beauty', 'Lookbook', 'Academy', 'About Ekta'] },
+        { title: 'help', links: ['FAQ', 'Lash care', 'Contact', 'Appointment', 'Beauty consultation'] },
+        { title: 'info', links: ['Gift cards', 'Memberships', 'Privacy policy', 'Terms & conditions'] }
+      ],
+
+      currencyNote: 'prices in ' + st.cur,
+      svcStats: [
+        { n: '9', l: 'core services' }, { n: '2–3 wks', l: 'infill window' }, { n: '30 min', l: 'consultation, free' }
+      ],
+      svcTabs: ['Lashes', 'Brows & beauty', 'Infill'].map(t => ({
+        label: t, count: tabCounts[t], go: () => this.setState({ svcTab: t }),
+        style: 'display:flex;align-items:center;gap:10px;padding:12px 20px;border:1px solid ' + (st.svcTab === t ? 'transparent' : '#ecd9e6') + ';border-radius:40px;background:' + (st.svcTab === t ? 'linear-gradient(180deg,#d919b8,#a80c8c)' : 'linear-gradient(180deg,#fff,#fdf6fa)') + ';color:' + (st.svcTab === t ? '#fff' : '#6a5a63') + ";font:500 9.5px/1 'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;transition:.35s ease;box-shadow:" + (st.svcTab === t ? '0 12px 28px rgba(190,17,160,.3)' : '0 6px 16px rgba(26,16,22,.05)'),
+        countStyle: "font:400 8.5px/1 'Jost',sans-serif;letter-spacing:.1em;opacity:.7"
+      })),
+      svcGroupTitle: st.svcTab === 'Infill' ? 'Infill' : st.svcTab,
+      svcGroupNote: st.svcTab === 'Infill' ? 'Priced by the gap since your last set' : st.svcTab === 'Lashes' ? 'Mapped in person, patch test first' : 'Shaping, tint and lamination',
+      svcRows: svcRows,
+      serviceNotes: [
+        { tag: 'patch test', body: 'A patch test is required 24 hours before a first set. It takes five minutes and is free.' },
+        { tag: 'infill window', body: 'Infills are priced by the gap since your last set. Past three weeks, a full set is usually better value.' },
+        { tag: 'add-ons', body: 'Eyelash tint, brow tint and lash lifting can be added to any appointment, subject to time.' }
+      ],
+
+      steps: [['Service', 1], ['Date & artist', 2], ['Details', 3], ['Confirm', 4]].map(([l, n]) => ({
+        label: l, num: '0' + n, go: () => this.gotoStep(n),
+        style: 'position:relative;flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:24px 28px;border:0;border-right:1px solid #f0e2ec;background:' + (st.step === n ? 'linear-gradient(180deg,#fff,#fbf0f6)' : 'transparent') + ';color:' + (st.step === n ? '#be11a0' : '#a2909b') + ';cursor:pointer;text-align:left;transition:.4s ease',
+        barStyle: 'position:absolute;left:0;bottom:0;height:2px;width:' + (st.step === n ? '100%' : '0') + ';background:linear-gradient(90deg,#be11a0,#d9dbe4);transition:width .5s cubic-bezier(.2,.7,.2,1)'
+      })),
+      step1: st.step === 1, step2: st.step === 2, step3: st.step === 3, step4: st.step === 4, isComplete: st.step === 4 || st.submitting,
+      stepBack: () => this.stepBackAction(),
+      stepNext: () => this.stepNextAction(),
+      nextLabel: st.submitting ? 'Confirming…' : st.step === 3 ? 'Confirm booking' : st.step === 4 ? 'Done' : 'Continue',
+      storefrontReady: !!st.storefront,
+      storefrontNotReady: !st.storefront && !st.storefrontError,
+      storefrontError: st.storefrontError,
+      bookServices: (st.storefront?.services?.length ? st.storefront.services : this.SERVICES.map(s => ({ id: null, name: s[0], price: s[1], durationMinutes: parseInt(s[2], 10) }))).map(s => ({
+        name: s.name, price: this.fmt(s.price), dur: s.durationMinutes + ' min',
+        go: () => this.setState({ svc: s.name, artist: '', day: '', slot: '', availabilitySlots: [], bookingError: '' }),
+        style: 'display:flex;flex-direction:column;gap:10px;padding:20px;border:1px solid ' + (st.svc === s.name ? 'rgba(190,17,160,.45)' : '#f0e2ec') + ';background:' + (st.svc === s.name ? 'linear-gradient(158deg,#fff,#fbf0f6)' : '#fff') + ';color:#1a1016;cursor:pointer;text-align:left;box-shadow:' + (st.svc === s.name ? '0 16px 36px rgba(190,17,160,.14)' : 'none') + ';transition:.4s ease'
+      })),
+      bookArtists: (st.storefront?.employees || []).filter(e => liveService && e.serviceIds?.includes(liveService.id)).map(e => ({
+        name: e.name, role: e.designation || '', go: () => { this.setState({ artist: e.id, day: '', slot: '', availabilitySlots: [], bookingError: '' }); this.loadAvailabilityIfReady(); },
+        style: 'padding:18px 26px;border:1px solid ' + (st.artist === e.id ? 'rgba(190,17,160,.45)' : '#f0e2ec') + ';background:' + (st.artist === e.id ? 'linear-gradient(158deg,#fff,#fbf0f6)' : '#fff') + ';color:' + (st.artist === e.id ? '#be11a0' : '#1a1016') + ";font:400 22px/1 'Instrument Serif',serif;cursor:pointer;text-align:left;transition:.4s ease"
+      })),
+      monthLabel: st.calendarMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+      canGoPrevMonth: (() => { const real = new Date(); const realFirst = new Date(real.getFullYear(), real.getMonth(), 1); return st.calendarMonth > realFirst; })(),
+      prevMonth: () => this.gotoMonth(-1),
+      nextMonth: () => this.gotoMonth(1),
+      dayNames: ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'],
+      days: (() => {
+        const out = [];
+        const year = st.calendarMonth.getFullYear(), mo = st.calendarMonth.getMonth();
+        const daysInMonth = new Date(year, mo + 1, 0).getDate();
+        const first = new Date(year, mo, 1).getDay();
+        const mondayOffset = (first + 6) % 7;
+        const todayStr = this.todayDateString();
+        for (let i = 0; i < mondayOffset; i++) out.push({
+          n: '', go: () => {},
+          style: 'aspect-ratio:1;border:0;background:transparent;color:transparent;cursor:default'
+        });
+        for (let n = 1; n <= daysInMonth; n++) {
+          const date = new Date(year, mo, n);
+          const iso = this.dateToIso(date);
+          const closed = date.getDay() === 0 || iso < todayStr, sel = st.day === iso;
+          out.push({
+            n: n, go: closed ? () => {} : () => { this.setState({ day: iso, slot: '', availabilitySlots: [], bookingError: '' }); this.loadAvailabilityIfReady(); },
+            style: 'aspect-ratio:1;border:1px solid ' + (sel ? 'transparent' : '#f0e2ec') + ';background:' + (sel ? 'linear-gradient(180deg,#d919b8,#a80c8c)' : '#fff') + ';color:' + (closed ? '#dccbd5' : sel ? '#fff' : '#4a3a43') + ";font:400 13px/1 'Jost',sans-serif;cursor:" + (closed ? 'not-allowed' : 'pointer') + ';box-shadow:' + (sel ? '0 10px 24px rgba(190,17,160,.3)' : 'none') + ';transition:.3s ease'
+          });
+        }
+        return out;
+      })(),
+      slotsPrompt: !st.artist || !st.day,
+      slotsLoading: st.availabilityLoading,
+      slotsEmpty: !st.availabilityLoading && !!st.artist && !!st.day && st.availabilitySlots.length === 0,
+      slots: st.availabilitySlots.map(sl => ({
+        label: this.formatSlotTime(sl.startAtUtc, st.storefront?.locations?.[0]?.timeZone),
+        go: () => this.setState({ slot: sl.startAtUtc, bookingError: '' }),
+        style: 'padding:15px 22px;border:1px solid ' + (st.slot === sl.startAtUtc ? 'transparent' : '#ecd9e6') + ';background:' + (st.slot === sl.startAtUtc ? 'linear-gradient(180deg,#d919b8,#a80c8c)' : '#fff') + ';color:' + (st.slot === sl.startAtUtc ? '#fff' : '#1a1016') + ";font:400 14px/1 'Jost',sans-serif;letter-spacing:.06em;cursor:pointer;text-align:center;box-shadow:" + (st.slot === sl.startAtUtc ? '0 12px 26px rgba(190,17,160,.28)' : 'none') + ';transition:.3s ease',
+        mStyle: "padding:14px 0;text-align:center;border:1px solid #ecd9e6;background:#fff;color:#1a1016;font:400 14px/1 'Jost',sans-serif"
+      })),
+      fields: [
+        { key: 'firstName', label: 'First name', ph: 'Ananya', auto: 'given-name', required: true },
+        { key: 'lastName', label: 'Last name', ph: 'Rao', auto: 'family-name', required: true },
+        { key: 'mobile', label: 'Mobile', ph: '+91 00000 00000', auto: 'tel', required: true },
+        { key: 'email', label: 'Email', ph: 'you@email.com', auto: 'email', required: true },
+        { key: 'notes', label: 'Anything we should know', ph: 'Sensitive eyes, event date, previous set…', auto: 'off', required: false, wide: true }
+      ].map(f => ({
+        key: f.key, label: f.label, ph: f.ph, auto: f.auto, required: f.required, value: st.bookingForm[f.key] || '',
+        wrapStyle: 'display:block' + (f.wide ? ';grid-column:span 2' : ''),
+        blur: () => this.setState({ bookingForm: this.getBookingForm(), bookingError: '' })
+      })),
+      patchTestChange: () => this.setState({ bookingForm: this.getBookingForm(), bookingError: '' }),
+      summary: [
+        { k: 'service', v: st.svc }, { k: 'artist', v: this.currentEmployeeName() || 'Not selected' },
+        { k: 'date', v: bookingDateLabel }, { k: 'time', v: bookingTimeLabel },
+        { k: 'duration', v: durationLabel }, { k: 'studio', v: 'Bandra West' }
+      ],
+      bookingTotal: this.fmt(total),
+      depositLabel: policy?.depositRequired ? this.fmt(Math.round(total * (policy.depositPercent / 100))) : this.fmt(Math.round(total * 0.2)),
+      depositNote: policy?.depositRequired
+        ? 'A ' + policy.depositPercent + '% deposit (' + this.fmt(Math.round(total * (policy.depositPercent / 100))) + ') is required to confirm. Cancellations within ' + policy.cancellationWindowHours + ' hours forfeit the deposit.'
+        : 'Cancellations within 24 hours forfeit the deposit.',
+      confirmationId: st.confirmation ? st.confirmation.appointmentId.slice(0, 8).toUpperCase() : '',
+      enquirySent: st.enquirySent,
+      sendEnquiry: () => this.sendEnquiry(),
+
+      credentials: [
+        { tag: 'certified', body: 'Classic, volume and mega volume certifications, plus brow lamination.' },
+        { tag: 'trainer', body: 'Lead trainer for the studio academy since 2023.' },
+        { tag: 'hygiene', body: 'Single-use tools, medical-grade sterilisation, patch test policy.' },
+        { tag: 'products', body: 'Premium adhesives selected for sensitive eyes and humid climates.' }
+      ],
+      timeline: [
+        { year: '2014', body: 'First trained in classic extensions and began taking clients at home.' },
+        { year: '2018', body: 'Moved into volume mapping; studio opened with two beds.' },
+        { year: '2023', body: 'Academy launched — first certification intake of six students.' },
+        { year: '2026', body: 'Three artists, brow and beauty menu, membership programme.' }
+      ],
+      courses: [
+        { level: 'beginner', name: 'Classic Certification', meta: '3 days · kit included · 2 models', price: this.fmt(45000), modules: ['Lash anatomy & safety', 'Isolation and placement', 'Mapping for eye shapes', 'Retention & aftercare', 'Pricing your work'] },
+        { level: 'intermediate', name: 'Volume & Hybrid', meta: '4 days · kit included · 3 models', price: this.fmt(65000), modules: ['Hand-made fans 2D–6D', 'Weight and diameter theory', 'Hybrid blending', 'Speed drills', 'Portfolio shoot'] },
+        { level: 'advanced', name: 'Mega Volume Masterclass', meta: '2 days · advanced only', price: this.fmt(38000), modules: ['Wide fan technique', 'Mega mapping', 'Problem-solving retention', 'Studio workflow'] }
+      ],
+      intakes: [
+        { date: '14–16 Sep 2026', course: 'Classic Certification', seats: '2 of 6' },
+        { date: '28 Sep – 1 Oct 2026', course: 'Volume & Hybrid', seats: '4 of 6' },
+        { date: '19–20 Oct 2026', course: 'Mega Volume Masterclass', seats: '1 of 4' },
+        { date: '9–11 Nov 2026', course: 'Classic Certification', seats: '6 of 6' }
+      ],
+      studioInfo: [
+        { k: 'address', v: 'Studio 04, Linking Road\nBandra West, Mumbai 400050' },
+        { k: 'hours', v: 'Monday – Saturday, 10:00 AM – 7:00 PM\nSunday closed' },
+        { k: 'contact', v: this.STUDIO_PHONE + '\n' + this.STUDIO_EMAIL },
+        { k: 'getting here', v: 'Two minutes from Bandra station; paid parking on site.' }
+      ],
+      faqs: [
+        { q: 'Do I need a patch test?', a: 'Yes, 24 hours before a first appointment. It is free and takes five minutes.' },
+        { q: 'How long does a set last?', a: 'Two to three weeks before an infill, depending on your natural cycle and aftercare.' },
+        { q: 'Can I wear mascara?', a: 'Not on extensions. Water-based only on the lower lash if needed.' },
+        { q: 'What if I need to cancel?', a: 'Free up to 24 hours before. After that the deposit is forfeited.' },
+        { q: 'Do you offer removal only?', a: 'Yes — Eyelash Extension Removal, ' + this.fmt(1500) + ', 30 minutes.' }
+      ],
+
+      mobileServices: this.SERVICES.slice(0, 6).map(s => ({ name: s[0], price: this.fmt(s[1]), dur: s[2], img: this.img(s[3], 220, 220) })),
+      mobileDays: [['fri', 11], ['sat', 12], ['sun', 13], ['mon', 14], ['tue', 15]].map(([d, n]) => ({
+        dow: d, n: n,
+        style: 'flex:1;display:flex;flex-direction:column;align-items:center;padding:13px 0;border:1px solid ' + (n === 12 ? 'transparent' : '#f0e2ec') + ';background:' + (n === 12 ? 'linear-gradient(158deg,#fff,#fbf0f6)' : '#fff') + ';color:' + (n === 13 ? '#dccbd5' : n === 12 ? '#be11a0' : '#4a3a43') + ';box-shadow:' + (n === 12 ? '0 12px 26px rgba(190,17,160,.16)' : 'none')
+      })),
+      mobileTotal: this.fmt(4900)
+    };
+  }
+}
+</script>
+</body>
+</html>

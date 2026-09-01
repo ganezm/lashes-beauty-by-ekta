@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100">
+  <rect width="900" height="1100" fill="#ffffff"/>
+  <rect x="34" y="34" width="832" height="1032" fill="none" stroke="#BE11A0" stroke-width="2"/>
+  <circle cx="450" cy="450" r="190" fill="#BE11A0" opacity=".08"/>
+  <path d="M260 500 C330 380 570 380 640 500 C570 455 330 455 260 500Z" fill="none" stroke="#BE11A0" stroke-width="4"/>
+  <path d="M300 555 C350 610 550 610 600 555" fill="none" stroke="#BE11A0" stroke-width="4"/>
+  <text x="450" y="760" text-anchor="middle" fill="#BE11A0" font-family="Arial, sans-serif" font-size="22" letter-spacing="6">HYBRID</text>
+  <text x="450" y="810" text-anchor="middle" fill="#1a1016" font-family="Georgia, serif" font-size="48">TEXTURE</text>
+  <text x="450" y="875" text-anchor="middle" fill="#6a5a63" font-family="Arial, sans-serif" font-size="16" letter-spacing="3">REAL CLIENT IMAGE</text>
+  <text x="450" y="905" text-anchor="middle" fill="#6a5a63" font-family="Arial, sans-serif" font-size="13" letter-spacing="2">UPLOAD VIA ADMIN PANEL</text>
+  <text x="450" y="1015" text-anchor="middle" fill="#BE11A0" font-family="Arial, sans-serif" font-size="12" letter-spacing="4">TEMPLATE PLACEHOLDER 07</text>
+</svg>
