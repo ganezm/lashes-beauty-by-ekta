@@ -1,0 +1,60 @@
+@model LashesWebsite.Models.PublicWebsiteContent
+@{
+    var apiBase = ViewData["GessFlowApiBase"] as string ?? "";
+    var slug = ViewData["GessFlowSlug"] as string ?? "";
+}
+<section class="section tight" data-reveal>
+    <div class="container" style="max-width:600px">
+        <div id="gcStatusChecking">
+            <div class="confirm-check">&#8635;</div>
+            <h1 style="margin:24px 0 0;font:400 34px/1.15 'Instrument Serif',serif">Confirming your payment&hellip;</h1>
+            <p style="margin-top:14px;font:300 14px/1.8 'Jost',sans-serif;color:var(--body-text)">
+                This only takes a moment.
+            </p>
+        </div>
+
+        <div id="gcStatusPaid" style="display:none">
+            <div class="confirm-check">&#10003;</div>
+            <h1 style="margin:24px 0 0;font:400 34px/1.15 'Instrument Serif',serif">Your gift card is on its way.</h1>
+            <p style="margin-top:14px;max-width:460px;font:300 14px/1.8 'Jost',sans-serif;color:var(--body-text)" data-gc-delivery></p>
+            <div class="giftcard-visual" style="margin-top:24px;max-width:360px">
+                <div class="brand">
+                    @if (!string.IsNullOrWhiteSpace(Model.LogoUrl))
+                    {
+                        <img src="@Model.LogoUrl" alt="" />
+                    }
+                    @Model.BusinessName
+                </div>
+                <div class="amt" data-gc-amount>&#8377;0</div>
+                <div class="footer-row"><span>Gift card</span><span>No expiry</span></div>
+            </div>
+            <a href="/" class="btn btn-secondary" style="margin-top:28px">Back to home &rarr;</a>
+        </div>
+
+        <div id="gcStatusPending" style="display:none">
+            <div class="confirm-check">&#8635;</div>
+            <h1 style="margin:24px 0 0;font:400 34px/1.15 'Instrument Serif',serif">Still confirming with Razorpay&hellip;</h1>
+            <p style="margin-top:14px;max-width:460px;font:300 14px/1.8 'Jost',sans-serif;color:var(--body-text)">
+                Your payment is being processed. This page will update automatically &mdash; you can also
+                close it and check your email or SMS shortly.
+            </p>
+        </div>
+
+        <div id="gcStatusError" style="display:none">
+            <div class="confirm-check">!</div>
+            <h1 style="margin:24px 0 0;font:400 34px/1.15 'Instrument Serif',serif">We couldn&rsquo;t find that order.</h1>
+            <p style="margin-top:14px;max-width:460px;font:300 14px/1.8 'Jost',sans-serif;color:var(--body-text)">
+                If you completed a payment, please check your email/SMS, or get in touch and we&rsquo;ll sort it out.
+            </p>
+            <a href="/contact" class="btn btn-secondary" style="margin-top:28px">Contact us &rarr;</a>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        window.GESSFLOW_API_BASE = @Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(apiBase));
+        window.BOOKING_SLUG = @Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(slug));
+    </script>
+    <script src="~/js/giftcards.js" asp-append-version="true"></script>
+}

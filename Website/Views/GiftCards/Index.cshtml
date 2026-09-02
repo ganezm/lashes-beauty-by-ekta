@@ -1,0 +1,91 @@
+@model LashesWebsite.Models.PublicWebsiteContent
+@{
+    var apiBase = ViewData["GessFlowApiBase"] as string ?? "";
+    var slug = ViewData["GessFlowSlug"] as string ?? "";
+}
+<section class="section tight" data-reveal>
+    <div class="container">
+        <div class="eyebrow">gift cards</div>
+        <h1 class="section-title" style="font-size:42px">Give the set, not the guesswork.</h1>
+        <p class="section-copy" style="max-width:560px">
+            A digital gift card for @Model.BusinessName, delivered by email or SMS as soon as payment
+            completes &mdash; redeemable against any service.
+        </p>
+
+        <div class="booking-shell" style="margin-top:36px">
+            <div class="booking-panel">
+                <form id="giftCardForm">
+                    <div class="eyebrow">amount</div>
+                    <div class="giftcard-denoms" data-amount-chips>
+                        <button type="button" class="giftcard-denom" data-amount="2000">&#8377;2,000</button>
+                        <button type="button" class="giftcard-denom" data-amount="3800">&#8377;3,800</button>
+                        <button type="button" class="giftcard-denom active" data-amount="5000">&#8377;5,000</button>
+                        <button type="button" class="giftcard-denom" data-amount="7100">&#8377;7,100</button>
+                    </div>
+                    <div class="book-field" style="max-width:240px">
+                        <label>Or enter a custom amount</label>
+                        <input type="number" id="gcAmount" min="500" max="50000" step="100" value="5000" data-field="amount" />
+                    </div>
+
+                    <div class="eyebrow" style="margin-top:32px">recipient</div>
+                    <div class="grid grid-2" style="margin-top:10px">
+                        <div class="book-field"><label>Their name *</label><input data-field="recipientName" required /></div>
+                        <div class="book-field"><label>Their email</label><input data-field="recipientEmail" type="email" /></div>
+                        <div class="book-field"><label>Their mobile</label><input data-field="recipientPhone" /></div>
+                    </div>
+                    <p class="pageSub" style="font-size:12px;margin-top:6px">Provide at least one of email or mobile so we can deliver the card.</p>
+
+                    <div class="eyebrow" style="margin-top:32px">from you</div>
+                    <div class="grid grid-2" style="margin-top:10px">
+                        <div class="book-field"><label>Your name *</label><input data-field="purchaserName" required /></div>
+                        <div class="book-field"><label>Your email</label><input data-field="purchaserEmail" type="email" /></div>
+                        <div class="book-field"><label>Your mobile</label><input data-field="purchaserPhone" /></div>
+                    </div>
+                    <p class="pageSub" style="font-size:12px;margin-top:6px">Provide at least one of email or mobile so we can send your receipt.</p>
+
+                    <div class="book-field" style="margin-top:22px">
+                        <label>A personal message (optional)</label>
+                        <textarea data-field="message" rows="3" maxlength="280" placeholder="Happy birthday! Treat yourself..."></textarea>
+                    </div>
+
+                    <div id="giftCardError" class="booking-error" style="display:none"></div>
+
+                    <button type="submit" class="btn btn-primary" style="margin-top:28px" id="gcSubmit">
+                        Continue to payment &rarr;
+                    </button>
+                    <p class="pageSub" style="font-size:11.5px;margin-top:12px">
+                        You&rsquo;ll be redirected to a secure Razorpay payment page. The gift card is delivered
+                        automatically once payment is confirmed.
+                    </p>
+                </form>
+            </div>
+
+            <div class="booking-summary">
+                <div class="eyebrow">gift card</div>
+                <div class="giftcard-visual" style="margin-top:16px">
+                    <div class="brand">
+                        @if (!string.IsNullOrWhiteSpace(Model.LogoUrl))
+                        {
+                            <img src="@Model.LogoUrl" alt="" />
+                        }
+                        @Model.BusinessName
+                    </div>
+                    <div class="amt" data-preview-amount>&#8377;5,000</div>
+                    <div class="footer-row"><span>Gift card</span><span>No expiry</span></div>
+                </div>
+                <p class="pageSub" style="margin-top:16px">
+                    Redeemable in-studio against any service. Delivered straight to the recipient&rsquo;s
+                    inbox or phone &mdash; nothing to print.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        window.GESSFLOW_API_BASE = @Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(apiBase));
+        window.BOOKING_SLUG = @Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(slug));
+    </script>
+    <script src="~/js/giftcards.js" asp-append-version="true"></script>
+}
