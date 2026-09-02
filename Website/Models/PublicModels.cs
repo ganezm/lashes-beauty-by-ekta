@@ -37,8 +37,13 @@ public sealed class PublicWebsiteContent
     public string? CtaHeadline { get; set; }
     public string? CtaBody { get; set; }
     public string? CtaButtonLabel { get; set; }
-    public string? PhilosophyHeadline { get; set; }
+    public string? PhilosophyHeadlineLine1 { get; set; }
+    public string? PhilosophyHeadlineEmphasis { get; set; }
     public string? PhilosophyBody { get; set; }
+    public string? PhilosophyImageUrl { get; set; }
+    public string? QuizImageUrl { get; set; }
+    public string? GiftCardImageUrl { get; set; }
+    public string? FinalCtaImageUrl { get; set; }
     public List<PublicHeroSlide> HeroSlides { get; set; } = new();
     public List<PublicTrustStat> TrustStats { get; set; } = new();
     public List<PublicTestimonial> Testimonials { get; set; } = new();

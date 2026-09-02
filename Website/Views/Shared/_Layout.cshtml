@@ -45,12 +45,14 @@
         {
             <img src="@content.LogoUrl" alt="@content.BusinessName" />
         }
-        @(content?.BusinessName ?? "Studio")
+        else
+        {
+            @(content?.BusinessName ?? "Studio")
+        }
     </a>
     <nav class="nav-links">
         <a href="/" class="@(IsActive("/") ? "active" : "")">Home</a>
-        <a href="/services?category=lashes" class="@(IsActive("/services") ? "active" : "")">Lashes</a>
-        <a href="/services?category=brows">Brows &amp; Beauty</a>
+        <a href="/services" class="@(IsActive("/services") ? "active" : "")">Services</a>
         <a href="/lookbook" class="@(IsActive("/lookbook") ? "active" : "")">Lookbook</a>
         <a href="/academy" class="@(IsActive("/academy") ? "active" : "")">Academy</a>
         <a href="/about" class="@(IsActive("/about") ? "active" : "")">About Ekta</a>
@@ -65,8 +67,7 @@
 <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-menu-btn" id="mobileMenuClose" aria-label="Close menu" style="align-self:flex-end;display:block;font-size:26px">&times;</button>
     <a href="/">Home</a>
-    <a href="/services?category=lashes">Lashes</a>
-    <a href="/services?category=brows">Brows &amp; Beauty</a>
+    <a href="/services">Services</a>
     <a href="/lookbook">Lookbook</a>
     <a href="/academy">Academy</a>
     <a href="/about">About Ekta</a>
@@ -81,7 +82,16 @@
 <footer class="site-footer">
     <div class="container footer-grid">
         <div>
-            <div class="nav-brand" style="color:#fff">@(content?.BusinessName ?? "Studio")</div>
+            <div class="nav-brand" style="color:#fff">
+                @if (!string.IsNullOrWhiteSpace(content?.LogoUrl))
+                {
+                    <img src="@content.LogoUrl" alt="@content.BusinessName" style="filter:brightness(0) invert(1)" />
+                }
+                else
+                {
+                    @(content?.BusinessName ?? "Studio")
+                }
+            </div>
             <p class="footer-tagline">@(content?.FooterTagline ?? "Beauty, designed around you.")</p>
         </div>
         @if (content is not null)
@@ -111,12 +121,16 @@
 @{
     var location = (ViewData["Storefront"] as PublicBookingStorefront)?.Locations.FirstOrDefault();
 }
-@if (!string.IsNullOrWhiteSpace(location?.WhatsAppNumber))
-{
-    <a class="fab-whatsapp" href="https://wa.me/@location.WhatsAppNumber" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-        &#128172;
-    </a>
-}
+<div class="fab-stack">
+    @if (!string.IsNullOrWhiteSpace(location?.WhatsAppNumber))
+    {
+        <a class="fab fab-whatsapp" href="https://wa.me/@location.WhatsAppNumber" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WA</a>
+    }
+    @if (!string.IsNullOrWhiteSpace(location?.Phone))
+    {
+        <a class="fab fab-call" href="tel:@location.Phone" aria-label="Call the studio">Call</a>
+    }
+</div>
 
 <script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)

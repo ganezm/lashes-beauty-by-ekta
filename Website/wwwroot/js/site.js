@@ -50,7 +50,18 @@
         }
       });
       tabs.forEach(function (el) {
-        el.classList.toggle("active", Number(el.getAttribute("data-hero-tab")) === index);
+        var isActive = Number(el.getAttribute("data-hero-tab")) === index;
+        el.classList.toggle("active", isActive);
+        var fill = el.querySelector(".hero-tab-fill");
+        if (fill) {
+          fill.style.transition = "none";
+          fill.style.width = "0";
+          if (isActive) {
+            void fill.offsetWidth; // force reflow so the width:0 reset commits before animating
+            fill.style.transition = "";
+            fill.style.width = "100%";
+          }
+        }
       });
     }
 
@@ -63,8 +74,23 @@
 
     function restartTimer() {
       if (timer) clearInterval(timer);
-      if (media.length <= 1) return;
+      if (media.length <= 1 || paused) return;
       timer = setInterval(function () { show((current + 1) % media.length); }, 6500);
+    }
+
+    var paused = false;
+    var playControl = document.querySelector("[data-hero-play]");
+    if (playControl) {
+      var label = playControl.querySelector("[data-hero-play-label]");
+      var btn = playControl.querySelector("button");
+      btn.addEventListener("click", function () {
+        paused = !paused;
+        if (label) label.textContent = paused ? "Paused" : "Playing";
+        btn.innerHTML = paused ? "&#9654;" : "&#10074;&#10074;";
+        var active = media[current];
+        if (active && active.tagName === "VIDEO") { paused ? active.pause() : active.play().catch(function () {}); }
+        if (paused) { if (timer) clearInterval(timer); } else { restartTimer(); }
+      });
     }
 
     show(0);
