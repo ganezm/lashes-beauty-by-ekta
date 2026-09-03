@@ -10,3 +10,7 @@ obj/
 # OS
 .DS_Store
 Thumbs.db
+
+# Local deployment staging/output -- never committed, rebuilt fresh each deploy
+Website/publish-lashes/
+Website/publish-lashes.zip
