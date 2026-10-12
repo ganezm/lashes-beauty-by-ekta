@@ -13,6 +13,7 @@ namespace LashesWebsite.Controllers;
 /// the original static prototype's hardcoded-array fallback, that isn't appropriate for a real site.
 public abstract class SiteControllerBase(IGessFlowApiClient api) : Controller
 {
+    protected IGessFlowApiClient Api => api;
     protected PublicWebsiteContent? SiteContent { get; private set; }
     protected PublicBookingStorefront? Storefront { get; private set; }
     protected bool Unavailable { get; private set; }

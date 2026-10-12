@@ -1,32 +1,38 @@
 @model LashesWebsite.Models.PublicBookingStorefront
+@using LashesWebsite.Services
 @{
+    var L = Context.Lang();
     var apiBase = ViewData["GessFlowApiBase"] as string ?? "";
     var slug = ViewData["GessFlowSlug"] as string ?? "";
     var preselected = ViewData["PreselectedServiceId"] as Guid?;
 }
 <section class="section tight" data-reveal>
     <div class="container">
-        <div class="eyebrow">book your visit</div>
-        <h1 class="section-title" style="font-size:42px">@(Model.Headline ?? "Book an appointment")</h1>
+        <div class="eyebrow">@L.T("bk.eyebrow")</div>
+        <h1 class="section-title" style="font-size:42px">@(string.IsNullOrWhiteSpace(L.Pick(Model.Headline, Model.HeadlineHi)) ? L.T("bk.title") : L.Pick(Model.Headline, Model.HeadlineHi))</h1>
 
         <div class="booking-steps" data-book-steps>
-            <div class="booking-step active" data-step-indicator="1"><span class="n">1</span> Service</div>
-            <div class="booking-step" data-step-indicator="2"><span class="n">2</span> Date &amp; artist</div>
-            <div class="booking-step" data-step-indicator="3"><span class="n">3</span> Details</div>
-            <div class="booking-step" data-step-indicator="4"><span class="n">4</span> Confirm</div>
+            <div class="booking-step active" data-step-indicator="1"><span class="n">1</span> @L.T("bk.step1")</div>
+            <div class="booking-step" data-step-indicator="2"><span class="n">2</span> @L.T("bk.step2")</div>
+            <div class="booking-step" data-step-indicator="3"><span class="n">3</span> @L.T("bk.step3")</div>
+            <div class="booking-step" data-step-indicator="4"><span class="n">4</span> @L.T("bk.step4")</div>
         </div>
 
         <div class="booking-shell">
             <div class="booking-panel">
                 <!-- Step 1: service -->
                 <div data-book-panel="1">
-                    <div class="eyebrow">select a service</div>
+                    <div class="eyebrow">@L.T("bk.selectService")</div>
                     <div class="grid grid-2" style="margin-top:20px" data-service-list>
                         @foreach (var svc in Model.Services.OrderBy(s => s.Name))
                         {
-                            <button type="button" class="service-card" data-svc-id="@svc.Id" data-svc-name="@svc.Name" data-svc-price="@svc.Price" data-svc-duration="@svc.DurationMinutes">
-                                <div class="row"><span class="name">@svc.Name</span><span class="price">&#8377;@svc.Price.ToString("N0")</span></div>
-                                <div class="meta">@svc.DurationMinutes min</div>
+                            <button type="button" class="service-card" data-svc-id="@svc.Id" data-svc-name="@L.Pick(svc.Name, svc.NameHi)" data-svc-price="@svc.Price" data-svc-duration="@svc.DurationMinutes">
+                                <div class="row"><span class="name">@L.Pick(svc.Name, svc.NameHi)</span><span class="price">&#8377;@svc.Price.ToString("N0")</span></div>
+                                <div class="meta">@svc.DurationMinutes @L.T("bk.min")</div>
+                                @if (svc.PatchTestRequired)
+                                {
+                                    <div class="svc-patch">@L.T("bk.patch")</div>
+                                }
                             </button>
                         }
                     </div>
@@ -34,70 +40,79 @@
 
                 <!-- Step 2: artist + date + slot -->
                 <div data-book-panel="2" style="display:none">
-                    <div id="storefrontNotReady" class="pageSub" style="display:none">Loading real-time availability&hellip;</div>
+                    <div id="storefrontNotReady" class="pageSub" style="display:none">@L.T("bk.loadingAvail")</div>
                     <div id="step2Body">
-                        <div class="eyebrow">choose artist</div>
+                        <div class="eyebrow">@L.T("bk.chooseArtist")</div>
                         <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap" data-artist-list></div>
 
                         <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:32px">
-                            <div class="eyebrow" data-month-label>Pick a date</div>
+                            <div class="eyebrow" data-month-label>@L.T("bk.pickDateShort")</div>
                             <div style="display:flex;gap:8px">
                                 <button type="button" class="btn btn-secondary" style="padding:8px 14px" data-prev-month>&larr;</button>
                                 <button type="button" class="btn btn-secondary" style="padding:8px 14px" data-next-month>&rarr;</button>
                             </div>
                         </div>
                         <div class="calendar-grid" data-calendar-days-header>
-                            <div class="calendar-day-label">Mon</div><div class="calendar-day-label">Tue</div><div class="calendar-day-label">Wed</div>
-                            <div class="calendar-day-label">Thu</div><div class="calendar-day-label">Fri</div><div class="calendar-day-label">Sat</div><div class="calendar-day-label">Sun</div>
+                            <div class="calendar-day-label">@L.T("bk.mon")</div><div class="calendar-day-label">@L.T("bk.tue")</div><div class="calendar-day-label">@L.T("bk.wed")</div>
+                            <div class="calendar-day-label">@L.T("bk.thu")</div><div class="calendar-day-label">@L.T("bk.fri")</div><div class="calendar-day-label">@L.T("bk.sat")</div><div class="calendar-day-label">@L.T("bk.sun")</div>
                         </div>
                         <div class="calendar-grid" data-calendar-grid></div>
 
-                        <div class="eyebrow" style="margin-top:28px">available slots</div>
-                        <div id="slotsPrompt" class="pageSub" style="margin-top:12px">Choose an artist and date to see real available times.</div>
-                        <div id="slotsLoading" class="pageSub" style="margin-top:12px;display:none">Loading available times&hellip;</div>
-                        <div id="slotsEmpty" class="pageSub" style="margin-top:12px;display:none">No open times for this artist on this date. Please try another date.</div>
+                        <div class="eyebrow" style="margin-top:28px">@L.T("bk.slots")</div>
+                        <div id="slotsPrompt" class="pageSub" style="margin-top:12px">@L.T("bk.slotsPrompt")</div>
+                        <div id="slotsLoading" class="pageSub" style="margin-top:12px;display:none">@L.T("bk.slotsLoading")</div>
+                        <div id="slotsEmpty" class="pageSub" style="margin-top:12px;display:none">@L.T("bk.slotsEmpty")</div>
                         <div class="slot-row" data-slot-list></div>
                     </div>
                 </div>
 
                 <!-- Step 3: details -->
                 <div data-book-panel="3" style="display:none">
-                    <div class="eyebrow">your details</div>
+                    <div class="eyebrow">@L.T("bk.details")</div>
                     <div class="grid grid-2" style="margin-top:10px">
-                        <div class="book-field"><label>First name *</label><input data-field="firstName" /></div>
-                        <div class="book-field"><label>Last name</label><input data-field="lastName" /></div>
-                        <div class="book-field"><label>Mobile</label><input data-field="mobile" /></div>
-                        <div class="book-field"><label>Email</label><input data-field="email" type="email" /></div>
+                        <div class="book-field"><label>@L.T("bk.firstName")</label><input data-field="firstName" /></div>
+                        <div class="book-field"><label>@L.T("bk.lastName")</label><input data-field="lastName" /></div>
+                        <div class="book-field"><label>@L.T("bk.mobile")</label><input data-field="mobile" /></div>
+                        <div class="book-field"><label>@L.T("bk.email")</label><input data-field="email" type="email" /></div>
                     </div>
-                    <div class="book-field" style="grid-column:span 2"><label>Anything we should know</label><textarea data-field="notes" rows="3"></textarea></div>
+                    <div class="book-field" style="grid-column:span 2"><label>@L.T("bk.notes")</label><textarea data-field="notes" rows="3"></textarea></div>
+                    <fieldset class="booking-consent">
+                        <legend>@L.T("bk.consentLegend")</legend>
+                        <label><input type="checkbox" data-field="consentWhatsApp" /> @L.T("bk.consentWhatsApp")</label>
+                        <label><input type="checkbox" data-field="consentEmailSms" /> @L.T("bk.consentEmailSms")</label>
+                        <small>@L.T("bk.consentNote")</small>
+                    </fieldset>
+                    <div class="booking-note booking-policy" data-policy-block></div>
                 </div>
 
                 <!-- Step 4: confirmation -->
                 <div data-book-panel="4" style="display:none">
                     <div class="confirm-check">&#10003;</div>
-                    <h2 style="margin:24px 0 0;font:400 40px/1.05 'Instrument Serif',serif">Your booking request is in.</h2>
+                    <h2 style="margin:24px 0 0;font:400 40px/1.05 'Instrument Serif',serif">@L.T("bk.confirmedTitle")</h2>
                     <p style="margin-top:14px;max-width:460px;font:300 14px/1.8 'Jost',sans-serif;color:var(--body-text)">
-                        We&rsquo;ve captured your appointment request and will confirm shortly.
+                        @L.T("bk.confirmedBody")
                     </p>
-                    <div class="label-sm" style="margin-top:12px" data-confirmation-id></div>
+                    <div class="deposit-box" data-deposit-box style="display:none"></div>
+                    <div class="label-sm" style="margin-top:20px" data-confirmation-id></div>
+                    <p style="margin-top:14px;max-width:460px;font:300 13px/1.7 'Jost',sans-serif;color:var(--body-text)">@L.T("bk.consultNote")</p>
                 </div>
 
                 <div id="bookingError" class="booking-error" style="display:none"></div>
 
                 <div style="display:flex;gap:12px;margin-top:36px">
-                    <button type="button" class="btn btn-secondary" data-book-back>&larr; Back</button>
-                    <button type="button" class="btn btn-primary" data-book-next>Continue &rarr;</button>
+                    <button type="button" class="btn btn-secondary" data-book-back>@L.T("bk.back")</button>
+                    <button type="button" class="btn btn-primary" data-book-next>@L.T("bk.continue")</button>
                 </div>
             </div>
 
             <div class="booking-summary">
-                <div class="eyebrow">your booking</div>
-                <div class="booking-summary-row"><span class="k">Service</span><span class="v" data-summary-service>Not selected</span></div>
-                <div class="booking-summary-row"><span class="k">Artist</span><span class="v" data-summary-artist>Not selected</span></div>
-                <div class="booking-summary-row"><span class="k">Date</span><span class="v" data-summary-date>Not selected</span></div>
-                <div class="booking-summary-row"><span class="k">Time</span><span class="v" data-summary-time>Not selected</span></div>
-                <div class="booking-summary-row"><span class="k">Duration</span><span class="v" data-summary-duration>&mdash;</span></div>
-                <div class="booking-total"><span class="k" style="text-transform:uppercase">Total</span><span class="amt" data-summary-total>&#8377;0</span></div>
+                <div class="eyebrow">@L.T("bk.yourBooking")</div>
+                <div class="booking-summary-row"><span class="k">@L.T("bk.sService")</span><span class="v" data-summary-service>@L.T("bk.notSelected")</span></div>
+                <div class="booking-summary-row"><span class="k">@L.T("bk.sArtist")</span><span class="v" data-summary-artist>@L.T("bk.notSelected")</span></div>
+                <div class="booking-summary-row"><span class="k">@L.T("bk.sDate")</span><span class="v" data-summary-date>@L.T("bk.notSelected")</span></div>
+                <div class="booking-summary-row"><span class="k">@L.T("bk.sTime")</span><span class="v" data-summary-time>@L.T("bk.notSelected")</span></div>
+                <div class="booking-summary-row"><span class="k">@L.T("bk.sDuration")</span><span class="v" data-summary-duration>&mdash;</span></div>
+                <div class="booking-total"><span class="k" style="text-transform:uppercase">@L.T("bk.sTotal")</span><span class="amt" data-summary-total>&#8377;0</span></div>
                 <div class="booking-note" data-summary-policy></div>
             </div>
         </div>
@@ -108,6 +123,8 @@
     window.GESSFLOW_API_BASE = @Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(apiBase));
     window.BOOKING_SLUG = @Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(slug));
     window.STOREFRONT = @Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(Model));
+    window.BOOK_LANG = @Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(L.Code));
+    window.BOOK_I18N = @Html.Raw(L.BookingJson());
     window.PRESELECTED_SERVICE_ID = @Html.Raw(preselected.HasValue ? LashesWebsite.Services.JsonHelper.ToCamelJson(preselected.Value.ToString()) : "null");
 </script>
 

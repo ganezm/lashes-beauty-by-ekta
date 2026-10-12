@@ -63,7 +63,7 @@ public sealed class PublicWebsiteContent
 }
 
 public sealed class PublicBookingLocation { public Guid Id { get; set; } public string Name { get; set; } = ""; public string? Address { get; set; } public string? TimeZone { get; set; } public string? Phone { get; set; } public string? WhatsAppNumber { get; set; } public string? Email { get; set; } public string? MapEmbedUrl { get; set; } public string? OpeningHoursText { get; set; } }
-public sealed class PublicBookingService { public Guid Id { get; set; } public string Name { get; set; } = ""; public decimal Price { get; set; } public int DurationMinutes { get; set; } public string? Description { get; set; } public string? ImageUrl { get; set; } public bool Featured { get; set; } public string? CategoryName { get; set; } }
+public sealed class PublicBookingService { public Guid Id { get; set; } public string Name { get; set; } = ""; public decimal Price { get; set; } public int DurationMinutes { get; set; } public string? Description { get; set; } public string? ImageUrl { get; set; } public bool Featured { get; set; } public string? CategoryName { get; set; } public bool PatchTestRequired { get; set; } public string? NameHi { get; set; } public string? DescriptionHi { get; set; } }
 public sealed class PublicBookingEmployee { public Guid Id { get; set; } public string Name { get; set; } = ""; public string? Designation { get; set; } public List<Guid> ServiceIds { get; set; } = new(); }
 public sealed class BookingPolicySummary { public bool DepositRequired { get; set; } public decimal DepositPercent { get; set; } public decimal DepositMinimumAmount { get; set; } public int CancellationWindowHours { get; set; } public decimal LateCancellationFeeAmount { get; set; } public string? WaiverText { get; set; } }
 public sealed class PublicBookingStorefront
@@ -73,6 +73,8 @@ public sealed class PublicBookingStorefront
     public string? PrimaryColor { get; set; }
     public string? Headline { get; set; }
     public string? Description { get; set; }
+    public string? HeadlineHi { get; set; }
+    public string? DescriptionHi { get; set; }
     public List<PublicBookingLocation> Locations { get; set; } = new();
     public List<PublicBookingService> Services { get; set; } = new();
     public List<PublicBookingEmployee> Employees { get; set; } = new();
@@ -92,6 +94,11 @@ public sealed class CreatePublicBookingRequest
     public string? Email { get; set; }
     public string? Phone { get; set; }
     public string? Notes { get; set; }
+    public List<string>? ConsentPurposes { get; set; }
+    public string? Language { get; set; }
 }
 
-public sealed class PublicBookingConfirmation { public Guid AppointmentId { get; set; } public string Status { get; set; } = ""; public DateTime StartAtUtc { get; set; } public DateTime EndAtUtc { get; set; } }
+public sealed class PublicBookingConfirmation { public Guid AppointmentId { get; set; } public string Status { get; set; } = ""; public DateTime StartAtUtc { get; set; } public DateTime EndAtUtc { get; set; } public decimal DepositAmount { get; set; } public string? DepositPaymentLinkUrl { get; set; } }
+
+/// Body of POST api/public/bookings/{slug}/enquiry. Website is the honeypot a real person never fills.
+public sealed class PublicEnquiryRequest { public string Name { get; set; } = ""; public string? Phone { get; set; } public string? Email { get; set; } public string? Interest { get; set; } public DateOnly? EventDate { get; set; } public int? PartySize { get; set; } public string? Source { get; set; } public string? Website { get; set; } }

@@ -16,6 +16,7 @@ public interface IGessFlowApiClient
     Task<PublicBookingStorefront?> GetStorefrontAsync(CancellationToken ct);
     Task<List<PublicBookingSlot>> GetAvailabilityAsync(Guid locationId, Guid serviceId, DateOnly date, Guid? employeeId, CancellationToken ct);
     Task<(bool Ok, PublicBookingConfirmation? Confirmation, string? Error)> CreateBookingAsync(CreatePublicBookingRequest request, CancellationToken ct);
+    Task<(bool Ok, bool Rejected)> SendEnquiryAsync(PublicEnquiryRequest request, CancellationToken ct);
 }
 
 /// Thin HTTP wrapper over GessFlow's two anonymous public endpoints (booking storefront/availability/
@@ -92,6 +93,24 @@ public sealed class GessFlowApiClient(HttpClient http, IOptions<GessFlowApiOptio
         {
             logger.LogWarning(ex, "CreateBooking errored");
             return (false, null, "We could not reach the booking service. Please check your connection and try again.");
+        }
+    }
+
+    /// Posts the Contact page enquiry so it lands in the salon's Leads. Rejected is true when the API
+    /// refused the content itself (400); any other failure is a plain not-ok so the page can ask to retry.
+    public async Task<(bool Ok, bool Rejected)> SendEnquiryAsync(PublicEnquiryRequest request, CancellationToken ct)
+    {
+        try
+        {
+            var res = await http.PostAsJsonAsync($"{_options.BaseUrl}/api/public/bookings/{_options.Slug}/enquiry", request, ct);
+            if (res.IsSuccessStatusCode) return (true, false);
+            logger.LogWarning("SendEnquiry failed: {Status}", res.StatusCode);
+            return (false, res.StatusCode == System.Net.HttpStatusCode.BadRequest);
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "SendEnquiry errored");
+            return (false, false);
         }
     }
 }

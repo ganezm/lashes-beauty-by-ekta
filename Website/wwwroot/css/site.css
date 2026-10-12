@@ -347,3 +347,32 @@ button, input, select, textarea { font-family: inherit; }
 .book-field input:focus, .book-field textarea:focus { border-color: var(--magenta); }
 .booking-error { margin-top: 16px; padding: 12px 14px; border-left: 2px solid var(--magenta); background: #fff3fb; color: var(--body-text); font: 400 12px/1.6 var(--font-sans); }
 .confirm-check { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(180deg, #fff, var(--blush-1)); border: 1px solid rgba(190,17,160,.4); display: flex; align-items: center; justify-content: center; color: var(--magenta); font-size: 24px; }
+
+/* ---- Language switch and Hindi ---- */
+.lang-switch { display: inline-flex; align-items: center; gap: 4px; }
+.lang-switch a { padding: 6px 9px; border: 1px solid var(--border-hairline-2); font: 500 9.5px/1 var(--font-sans); letter-spacing: .08em; color: var(--ink-2); }
+.lang-switch a.active { background: var(--magenta); border-color: var(--magenta); color: #fff; }
+.lang-switch a:not(.active):hover { border-color: var(--magenta); color: var(--magenta); }
+.lang-switch-footer a { border-color: rgba(255,255,255,.25); color: rgba(246,238,243,.7); }
+.lang-switch-footer a.active { color: #fff; }
+.lang-switch-menu { margin-top: 18px; }
+@media (max-width: 900px) { .nav-bar .lang-switch { display: none; } }
+html[lang="hi"] { --font-serif: 'Instrument Serif', 'Noto Serif Devanagari', Georgia, serif; --font-sans: 'Jost', 'Noto Sans Devanagari', system-ui, sans-serif; }
+html[lang="hi"] body * { letter-spacing: normal !important; text-transform: none !important; }
+.field-error { margin-top: 6px; font: 400 12px/1.4 var(--font-sans); color: #b91c1c; }
+.hp-field { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.book-field .check-row { display: flex; align-items: center; gap: 10px; font: 300 13px/1.4 var(--font-sans); color: var(--body-text); letter-spacing: normal; text-transform: none; cursor: pointer; margin: 0; }
+.book-field .check-row input { width: auto; padding: 0; }
+.booking-consent { margin-top: 22px; padding: 14px; border: 1px solid var(--border-hairline-3); background: rgba(255,255,255,.6); }
+.booking-consent legend { padding: 0 6px; font: 500 9px/1 var(--font-sans); letter-spacing: .2em; text-transform: uppercase; color: var(--label-grey-2); }
+.booking-consent label { display: flex; align-items: center; gap: 10px; margin-top: 10px; font: 300 13px/1.4 var(--font-sans); color: var(--body-text); cursor: pointer; }
+.booking-consent input { width: auto; padding: 0; }
+.booking-consent small { display: block; margin-top: 12px; font: 300 11.5px/1.6 var(--font-sans); color: var(--label-grey-2); }
+.svc-patch { font: 400 11.5px/1.4 var(--font-sans); color: var(--magenta); }
+.deposit-box { margin-top: 22px; padding: 18px; border: 1px solid var(--magenta); background: #fff; max-width: 480px; }
+.deposit-box p { margin: 0 0 10px; font: 300 13.5px/1.7 var(--font-sans); color: var(--body-text); }
+.deposit-box .deposit-amt { font: 400 26px/1.2 var(--font-serif); color: var(--magenta); }
+.deposit-box .btn { margin-top: 6px; text-decoration: none; }
+.booking-policy { margin-top: 24px; }
+.booking-policy .label-sm { display: block; margin-bottom: 10px; }
+.book-field .field-error { text-transform: none; letter-spacing: normal; }

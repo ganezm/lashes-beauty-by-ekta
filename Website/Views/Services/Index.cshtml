@@ -1,5 +1,7 @@
 @model LashesWebsite.Models.PublicBookingStorefront
+@using LashesWebsite.Services
 @{
+    var L = Context.Lang();
     string GroupSlug(string name) => name.Equals("Infill", StringComparison.OrdinalIgnoreCase) ? "infill"
         : name.Contains("brow", StringComparison.OrdinalIgnoreCase) ? "brows" : "lashes";
 
@@ -13,7 +15,7 @@
     <div class="container">
         <div class="eyebrow">the menu</div>
         <h1 class="section-title">Lashes and brows</h1>
-        <p class="section-copy">@(string.IsNullOrWhiteSpace(Model.Description) ? "A short menu, kept deliberately short. Every set is mapped in person before a single lash is placed." : Model.Description)</p>
+        <p class="section-copy">@(string.IsNullOrWhiteSpace(L.Pick(Model.Description, Model.DescriptionHi)) ? "A short menu, kept deliberately short. Every set is mapped in person before a single lash is placed." : L.Pick(Model.Description, Model.DescriptionHi))</p>
 
         @if (groups.Count == 0)
         {
@@ -45,13 +47,17 @@
                         {
                             i++;
                             <a class="service-card" href="/book?service=@svc.Id">
-                                <div class="row"><span class="idx">@(i.ToString("00"))</span><span class="meta">@svc.DurationMinutes min</span></div>
-                                <div class="row"><span class="name">@svc.Name</span><span class="price">&#8377;@svc.Price.ToString("N0")</span></div>
-                                @if (!string.IsNullOrWhiteSpace(svc.Description))
+                                <div class="row"><span class="idx">@(i.ToString("00"))</span><span class="meta">@svc.DurationMinutes @L.T("svc.min")</span></div>
+                                <div class="row"><span class="name">@L.Pick(svc.Name, svc.NameHi)</span><span class="price">&#8377;@svc.Price.ToString("N0")</span></div>
+                                @if (!string.IsNullOrWhiteSpace(L.Pick(svc.Description, svc.DescriptionHi)))
                                 {
-                                    <div class="desc">@svc.Description</div>
+                                    <div class="desc">@L.Pick(svc.Description, svc.DescriptionHi)</div>
                                 }
-                                <div class="book-look-cta">Book &rarr;</div>
+                                @if (svc.PatchTestRequired)
+                                {
+                                    <div class="svc-patch">@L.T("svc.patch")</div>
+                                }
+                                <div class="book-look-cta">@L.T("svc.book") &rarr;</div>
                             </a>
                         }
                     </div>

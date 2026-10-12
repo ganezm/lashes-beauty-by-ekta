@@ -1,12 +1,14 @@
 @using LashesWebsite.Models
+@using LashesWebsite.Services
 @{
+    var L = Context.Lang();
     var content = ViewData["Content"] as PublicWebsiteContent;
     var path = Context.Request.Path.Value ?? "/";
     bool IsActive(string href) => href == "/" ? path == "/" : path.StartsWith(href, StringComparison.OrdinalIgnoreCase);
     var brandColor = content?.PrimaryColor ?? "#be11a0";
 }
 <!DOCTYPE html>
-<html lang="en">
+<html lang="@L.Code">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -18,7 +20,7 @@
     }
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Jost:wght@200;300;400;500;600&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Jost:wght@200;300;400;500;600&amp;family=Noto+Sans+Devanagari:wght@300;400;500;600&amp;family=Noto+Serif+Devanagari:wght@400;500&amp;display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <style>:root{--magenta:@brandColor;}</style>
 </head>
@@ -51,28 +53,36 @@
         }
     </a>
     <nav class="nav-links">
-        <a href="/" class="@(IsActive("/") ? "active" : "")">Home</a>
-        <a href="/services" class="@(IsActive("/services") ? "active" : "")">Services</a>
-        <a href="/lookbook" class="@(IsActive("/lookbook") ? "active" : "")">Lookbook</a>
-        <a href="/academy" class="@(IsActive("/academy") ? "active" : "")">Academy</a>
-        <a href="/about" class="@(IsActive("/about") ? "active" : "")">About Ekta</a>
-        <a href="/contact" class="@(IsActive("/contact") ? "active" : "")">Studio</a>
+        <a href="/" class="@(IsActive("/") ? "active" : "")">@L.T("nav.home")</a>
+        <a href="/services" class="@(IsActive("/services") ? "active" : "")">@L.T("nav.services")</a>
+        <a href="/lookbook" class="@(IsActive("/lookbook") ? "active" : "")">@L.T("nav.lookbook")</a>
+        <a href="/academy" class="@(IsActive("/academy") ? "active" : "")">@L.T("nav.academy")</a>
+        <a href="/about" class="@(IsActive("/about") ? "active" : "")">@L.T("nav.about")</a>
+        <a href="/contact" class="@(IsActive("/contact") ? "active" : "")">@L.T("nav.studio")</a>
     </nav>
     <div style="display:flex;align-items:center;gap:14px">
-        <a href="/book" class="btn btn-primary nav-cta">Book appointment</a>
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">&#9776;</button>
+        <div class="lang-switch" role="group" aria-label="@L.T("nav.language")">
+            <a href="@SiteLang.SwitchUrl(Context.Request, "en")" class="@(L.IsHi ? "" : "active")" hreflang="en" lang="en">English</a>
+            <a href="@SiteLang.SwitchUrl(Context.Request, "hi")" class="@(L.IsHi ? "active" : "")" hreflang="hi" lang="hi">हिन्दी</a>
+        </div>
+        <a href="/book" class="btn btn-primary nav-cta">@L.T("nav.book")</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="@L.T("nav.menu")">&#9776;</button>
     </div>
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-btn" id="mobileMenuClose" aria-label="Close menu" style="align-self:flex-end;display:block;font-size:26px">&times;</button>
-    <a href="/">Home</a>
-    <a href="/services">Services</a>
-    <a href="/lookbook">Lookbook</a>
-    <a href="/academy">Academy</a>
-    <a href="/about">About Ekta</a>
-    <a href="/contact">Studio</a>
-    <a href="/book">Book appointment</a>
+    <button class="mobile-menu-btn" id="mobileMenuClose" aria-label="@L.T("nav.close")" style="align-self:flex-end;display:block;font-size:26px">&times;</button>
+    <a href="/">@L.T("nav.home")</a>
+    <a href="/services">@L.T("nav.services")</a>
+    <a href="/lookbook">@L.T("nav.lookbook")</a>
+    <a href="/academy">@L.T("nav.academy")</a>
+    <a href="/about">@L.T("nav.about")</a>
+    <a href="/contact">@L.T("nav.studio")</a>
+    <a href="/book">@L.T("nav.book")</a>
+    <div class="lang-switch lang-switch-menu">
+        <a href="@SiteLang.SwitchUrl(Context.Request, "en")" class="@(L.IsHi ? "" : "active")" hreflang="en" lang="en">English</a>
+        <a href="@SiteLang.SwitchUrl(Context.Request, "hi")" class="@(L.IsHi ? "active" : "")" hreflang="hi" lang="hi">हिन्दी</a>
+    </div>
 </div>
 
 <main>
@@ -92,7 +102,7 @@
                     @(content?.BusinessName ?? "Studio")
                 }
             </div>
-            <p class="footer-tagline">@(content?.FooterTagline ?? "Beauty, designed around you.")</p>
+            <p class="footer-tagline">@(content?.FooterTagline ?? L.T("footer.tagline"))</p>
         </div>
         @if (content is not null)
         {
@@ -112,8 +122,12 @@
     <div class="container footer-bottom">
         <span>@(content?.CopyrightText ?? $"© {DateTime.UtcNow.Year} {content?.BusinessName}")</span>
         <span>
-            @if (!string.IsNullOrWhiteSpace(content?.SocialInstagramUrl)) { <a href="@content.SocialInstagramUrl" style="margin-right:16px">Instagram</a> }
-            @if (!string.IsNullOrWhiteSpace(content?.SocialFacebookUrl)) { <a href="@content.SocialFacebookUrl">Facebook</a> }
+            <span class="lang-switch lang-switch-footer" style="margin-right:16px">
+                <a href="@SiteLang.SwitchUrl(Context.Request, "en")" class="@(L.IsHi ? "" : "active")" hreflang="en" lang="en">English</a>
+                <a href="@SiteLang.SwitchUrl(Context.Request, "hi")" class="@(L.IsHi ? "active" : "")" hreflang="hi" lang="hi">हिन्दी</a>
+            </span>
+            @if (!string.IsNullOrWhiteSpace(content?.SocialInstagramUrl)) { <a href="@content.SocialInstagramUrl" style="margin-right:16px">@L.T("footer.instagram")</a> }
+            @if (!string.IsNullOrWhiteSpace(content?.SocialFacebookUrl)) { <a href="@content.SocialFacebookUrl">@L.T("footer.facebook")</a> }
         </span>
     </div>
 </footer>
@@ -128,7 +142,7 @@
     }
     @if (!string.IsNullOrWhiteSpace(location?.Phone))
     {
-        <a class="fab fab-call" href="tel:@location.Phone" aria-label="Call the studio">Call</a>
+        <a class="fab fab-call" href="tel:@location.Phone" aria-label="@L.T("common.callStudio")">@L.T("common.call")</a>
     }
 </div>
 

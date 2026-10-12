@@ -1,44 +1,47 @@
 @model LashesWebsite.Controllers.ContactViewModel
+@using LashesWebsite.Services
 @{
+    var L = Context.Lang();
+    var form = Model.Form;
     var loc = Model.Storefront.Locations.FirstOrDefault();
 }
 <section class="section" data-reveal>
     <div class="container">
-        <div class="eyebrow">get in touch</div>
-        <h1 class="section-title">The studio</h1>
+        <div class="eyebrow">@L.T("ct.eyebrow")</div>
+        <h1 class="section-title">@L.T("ct.title")</h1>
 
         <div class="contact-grid" style="margin-top:40px">
             <div class="contact-map">
                 @if (!string.IsNullOrWhiteSpace(loc?.MapEmbedUrl))
                 {
-                    <iframe title="Studio location" src="@loc.MapEmbedUrl"></iframe>
+                    <iframe title="@L.T("ct.mapTitle")" src="@loc.MapEmbedUrl"></iframe>
                 }
                 else
                 {
-                    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--blush-1);color:var(--body-text);font:300 13px/1.6 'Jost',sans-serif">Map coming soon</div>
+                    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--blush-1);color:var(--body-text);font:300 13px/1.6 'Jost',sans-serif">@L.T("ct.mapSoon")</div>
                 }
             </div>
             <div class="contact-info-card">
                 @if (!string.IsNullOrWhiteSpace(loc?.Address))
                 {
-                    <div class="contact-info-row"><div class="k">Address</div><div class="v">@loc.Address</div></div>
+                    <div class="contact-info-row"><div class="k">@L.T("ct.address")</div><div class="v">@loc.Address</div></div>
                 }
                 @if (!string.IsNullOrWhiteSpace(loc?.OpeningHoursText))
                 {
-                    <div class="contact-info-row"><div class="k">Hours</div><div class="v">@loc.OpeningHoursText</div></div>
+                    <div class="contact-info-row"><div class="k">@L.T("ct.hours")</div><div class="v">@loc.OpeningHoursText</div></div>
                 }
                 @if (!string.IsNullOrWhiteSpace(loc?.Phone) || !string.IsNullOrWhiteSpace(loc?.Email))
                 {
-                    <div class="contact-info-row"><div class="k">Contact</div><div class="v">@loc?.Phone@(loc?.Phone is not null && loc?.Email is not null ? "\n" : "")@loc?.Email</div></div>
+                    <div class="contact-info-row"><div class="k">@L.T("ct.contact")</div><div class="v">@loc?.Phone@(loc?.Phone is not null && loc?.Email is not null ? "\n" : "")@loc?.Email</div></div>
                 }
                 <div style="display:flex;gap:10px;margin-top:24px">
                     @if (!string.IsNullOrWhiteSpace(loc?.WhatsAppNumber))
                     {
-                        <a href="https://wa.me/@loc.WhatsAppNumber" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex:1">WhatsApp</a>
+                        <a href="https://wa.me/@loc.WhatsAppNumber" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex:1">@L.T("common.whatsapp")</a>
                     }
                     @if (!string.IsNullOrWhiteSpace(loc?.Phone))
                     {
-                        <a href="tel:@loc.Phone" class="btn btn-secondary" style="flex:1">Call studio</a>
+                        <a href="tel:@loc.Phone" class="btn btn-secondary" style="flex:1">@L.T("common.callStudio")</a>
                     }
                 </div>
             </div>
@@ -49,22 +52,41 @@
 <section class="section soft" data-reveal>
     <div class="container grid grid-2">
         <div>
-            <h2 class="section-title" style="font-size:36px">Send an enquiry</h2>
-            <form id="enquiryForm" style="margin-top:26px">
-                <div class="book-field"><label>First name</label><input id="enqFirstName" required /></div>
-                <div class="book-field"><label>Last name</label><input id="enqLastName" /></div>
-                <div class="book-field"><label>Mobile</label><input id="enqMobile" /></div>
-                <div class="book-field"><label>Email</label><input id="enqEmail" type="email" /></div>
-                <div class="book-field"><label>Message</label><textarea id="enqMessage" rows="3"></textarea></div>
-                <button type="submit" class="btn btn-primary" style="margin-top:20px">Send enquiry &rarr;</button>
-                <div id="enquirySent" class="booking-note" style="display:none">Opening your email app to send this to the studio&hellip;</div>
-            </form>
+            <h2 class="section-title" style="font-size:36px" id="enquiry">@L.T("ct.send")</h2>
+            @if (Model.Sent)
+            {
+                <div class="booking-note" role="status">@L.T("ct.sent")</div>
+            }
+            else
+            {
+                <form id="enquiryForm" method="post" action="/contact#enquiry" style="margin-top:26px" novalidate>
+                    @Html.AntiForgeryToken()
+                    @if (!string.IsNullOrEmpty(Model.Error))
+                    {
+                        <div class="booking-error" role="alert">@Model.Error</div>
+                    }
+                    <div class="hp-field" aria-hidden="true"><label>Website <input name="Website" tabindex="-1" autocomplete="off" /></label></div>
+                    <div class="book-field"><label for="enqName">@L.T("ct.name") *</label><input id="enqName" name="Name" value="@form.Name" maxlength="120" required />@Err("Name")</div>
+                    <div class="book-field"><label for="enqPhone">@L.T("ct.phone")</label><input id="enqPhone" name="Phone" value="@form.Phone" type="tel" maxlength="40" />@Err("Phone")</div>
+                    <div class="book-field"><label for="enqEmail">@L.T("ct.email")</label><input id="enqEmail" name="Email" value="@form.Email" type="email" maxlength="200" />@Err("Email")</div>
+                    <div class="book-field"><label for="enqMessage">@L.T("ct.message")</label><textarea id="enqMessage" name="Message" rows="3" maxlength="900">@form.Message</textarea>@Err("Message")</div>
+                    <div class="book-field">
+                        <label class="check-row"><input type="checkbox" id="enqIsEvent" name="IsEvent" value="true" @(form.IsEvent ? "checked" : "") /> @L.T("ct.bridal")</label>
+                        <input type="hidden" name="IsEvent" value="false" />
+                    </div>
+                    <div id="enqEventFields" style="@(form.IsEvent ? "" : "display:none")">
+                        <div class="book-field"><label for="enqEventDate">@L.T("ct.eventDate")</label><input id="enqEventDate" name="EventDate" value="@form.EventDate" type="date" />@Err("EventDate")</div>
+                        <div class="book-field"><label for="enqPartySize">@L.T("ct.partySize")</label><input id="enqPartySize" name="PartySize" value="@form.PartySize" type="number" min="1" max="999" inputmode="numeric" />@Err("PartySize")</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-top:20px">@L.T("ct.submit") &rarr;</button>
+                </form>
+            }
         </div>
         <div>
-            <h2 class="section-title" style="font-size:36px">FAQ</h2>
+            <h2 class="section-title" style="font-size:36px">@L.T("ct.faq")</h2>
             @if (Model.Content.Faqs.Count == 0)
             {
-                <p class="section-copy">No FAQs published yet.</p>
+                <p class="section-copy">@L.T("ct.noFaq")</p>
             }
             else
             {
@@ -77,25 +99,20 @@
     </div>
 </section>
 
+@functions {
+    private Microsoft.AspNetCore.Html.IHtmlContent Err(string key) =>
+        Model.Errors.TryGetValue(key, out var msg)
+            ? new Microsoft.AspNetCore.Html.HtmlString("<div class=\"field-error\">" + System.Net.WebUtility.HtmlEncode(msg) + "</div>")
+            : Microsoft.AspNetCore.Html.HtmlString.Empty;
+}
+
 @section Scripts {
     <script>
         (function () {
-            var form = document.getElementById('enquiryForm');
-            if (!form) return;
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                var first = document.getElementById('enqFirstName').value.trim();
-                var last = document.getElementById('enqLastName').value.trim();
-                var mobile = document.getElementById('enqMobile').value.trim();
-                var email = document.getElementById('enqEmail').value.trim();
-                var message = document.getElementById('enqMessage').value.trim();
-                var studioEmail = @Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(loc?.Email ?? ""));
-                if (!studioEmail) { return; }
-                var subject = 'Enquiry from ' + first + (last ? ' ' + last : '');
-                var body = 'Name: ' + first + ' ' + last + '\nMobile: ' + (mobile || '-') + '\nEmail: ' + (email || '-') + '\n\n' + message;
-                window.location.href = 'mailto:' + studioEmail + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-                document.getElementById('enquirySent').style.display = 'block';
-            });
+            var toggle = document.getElementById('enqIsEvent');
+            var fields = document.getElementById('enqEventFields');
+            if (!toggle || !fields) return;
+            toggle.addEventListener('change', function () { fields.style.display = toggle.checked ? '' : 'none'; });
         })();
     </script>
 }

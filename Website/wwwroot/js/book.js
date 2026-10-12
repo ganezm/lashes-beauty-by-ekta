@@ -7,6 +7,16 @@
   var apiBase = window.GESSFLOW_API_BASE || "";
   var slug = window.BOOKING_SLUG || "";
   var storefront = window.STOREFRONT || { services: [], employees: [], locations: [], policy: null };
+  var I18N = window.BOOK_I18N || {};
+  var LANG = window.BOOK_LANG === "hi" ? "hi" : "en";
+  var LOCALE = LANG === "hi" ? "hi-IN" : "en-US";
+
+  // Looks up a string for the current language and fills {name} style placeholders.
+  function t(key, vars) {
+    var text = I18N[key] != null ? I18N[key] : key;
+    if (vars) Object.keys(vars).forEach(function (k) { text = text.split("{" + k + "}").join(String(vars[k])); });
+    return text;
+  }
 
   var state = {
     step: 1,
@@ -19,7 +29,7 @@
     availabilityLoading: false,
     submitting: false,
     confirmation: null,
-    form: { firstName: "", lastName: "", mobile: "", email: "", notes: "" }
+    form: { firstName: "", lastName: "", mobile: "", email: "", notes: "", consentWhatsApp: false, consentEmailSms: false }
   };
 
   function pad2(n) { return String(n).padStart(2, "0"); }
@@ -29,8 +39,8 @@
   function locationId() { var loc = storefront.locations && storefront.locations[0]; return loc ? loc.id : null; }
 
   function formatSlotTime(iso, tz) {
-    try { return new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit", hour12: true, timeZone: tz || "UTC" }).format(new Date(iso)); }
-    catch (e) { return new Date(iso).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }); }
+    try { return new Intl.DateTimeFormat(LOCALE, { hour: "numeric", minute: "2-digit", hour12: true, timeZone: tz || "UTC" }).format(new Date(iso)); }
+    catch (e) { return new Date(iso).toLocaleTimeString(LOCALE, { hour: "numeric", minute: "2-digit" }); }
   }
   function fmtInr(n) { return "₹" + Math.round(n).toLocaleString("en-IN"); }
 
@@ -49,7 +59,8 @@
 
   function getForm() {
     function val(key) { var el = document.querySelector('[data-field="' + key + '"]'); return el ? el.value.trim() : ""; }
-    return { firstName: val("firstName"), lastName: val("lastName"), mobile: val("mobile"), email: val("email"), notes: val("notes") };
+    function checked(key) { var el = document.querySelector('[data-field="' + key + '"]'); return !!(el && el.checked); }
+    return { firstName: val("firstName"), lastName: val("lastName"), mobile: val("mobile"), email: val("email"), notes: val("notes"), consentWhatsApp: checked("consentWhatsApp"), consentEmailSms: checked("consentEmailSms") };
   }
 
   // ---- Rendering ----
@@ -60,6 +71,7 @@
     renderCalendar();
     renderSlots();
     renderSummary();
+    renderPolicy();
     renderConfirmation();
   }
 
@@ -79,7 +91,7 @@
       else {
         nextBtn.style.display = "";
         nextBtn.disabled = state.submitting;
-        nextBtn.textContent = state.submitting ? "Confirming…" : (state.step === 3 ? "Confirm booking" : "Continue →");
+        nextBtn.textContent = state.submitting ? t("bk.confirming") : (state.step === 3 ? t("bk.confirm") : t("bk.continue"));
       }
     }
   }
@@ -122,7 +134,7 @@
 
   function renderCalendar() {
     var label = document.querySelector("[data-month-label]");
-    if (label) label.textContent = "pick a date · " + state.calendarMonth.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+    if (label) label.textContent = t("bk.pickDate") + " · " + state.calendarMonth.toLocaleDateString(LOCALE, { month: "long", year: "numeric" });
 
     var prevBtn = document.querySelector("[data-prev-month]");
     if (prevBtn) {
@@ -191,30 +203,87 @@
     });
   }
 
+  function depositFor(total) {
+    var policy = storefront.policy;
+    if (!policy || !policy.depositRequired) return 0;
+    return Math.round(Math.max(total * (policy.depositPercent / 100), policy.depositMinimumAmount || 0));
+  }
+
   function renderSummary() {
     var total = state.svc ? state.svc.price : 0;
-    setText("[data-summary-service]", state.svc ? state.svc.name : "Not selected");
-    setText("[data-summary-artist]", currentEmployeeName() || "Not selected");
-    setText("[data-summary-date]", state.day ? new Date(state.day + "T00:00:00").toLocaleDateString("en-US", { weekday: "short", day: "numeric", month: "short", year: "numeric" }) : "Not selected");
-    setText("[data-summary-time]", state.slot ? formatSlotTime(state.slot, locationTz()) : "Not selected");
-    setText("[data-summary-duration]", state.svc ? (state.svc.durationMinutes + " min") : "—");
+    setText("[data-summary-service]", state.svc ? state.svc.name : t("bk.notSelected"));
+    setText("[data-summary-artist]", currentEmployeeName() || t("bk.notSelected"));
+    setText("[data-summary-date]", state.day ? new Date(state.day + "T00:00:00").toLocaleDateString(LOCALE, { weekday: "short", day: "numeric", month: "short", year: "numeric" }) : t("bk.notSelected"));
+    setText("[data-summary-time]", state.slot ? formatSlotTime(state.slot, locationTz()) : t("bk.notSelected"));
+    setText("[data-summary-duration]", state.svc ? (state.svc.durationMinutes + " " + t("bk.min")) : "-");
     setText("[data-summary-total]", fmtInr(total));
 
     var policy = storefront.policy;
     var note = "";
     if (policy && policy.depositRequired) {
-      var dep = Math.round(total * (policy.depositPercent / 100));
-      note = "A " + policy.depositPercent + "% deposit (" + fmtInr(dep) + ") is required to confirm. Cancellations within " + policy.cancellationWindowHours + " hours forfeit the deposit.";
+      note = t("bk.sumDeposit", { percent: policy.depositPercent, amount: fmtInr(depositFor(total)) }) + " " + t("bk.sumCancel", { hours: policy.cancellationWindowHours });
     } else if (policy) {
-      note = "Cancellations within " + policy.cancellationWindowHours + " hours may incur a fee.";
+      note = t("bk.sumCancel", { hours: policy.cancellationWindowHours });
     }
     setText("[data-summary-policy]", note);
+  }
+
+  // The salon's own deposit and cancellation terms, shown on the details step next to Confirm.
+  function renderPolicy() {
+    var box = document.querySelector("[data-policy-block]");
+    if (!box) return;
+    var policy = storefront.policy;
+    box.innerHTML = "";
+    if (!policy) return;
+    var lines = [];
+    if (policy.depositRequired) lines.push(t("bk.depositMay", { amount: fmtInr(depositFor(state.svc ? state.svc.price : 0)), percent: policy.depositPercent }));
+    if (policy.cancellationWindowHours > 0) {
+      lines.push(t("bk.cancelWindow", { hours: policy.cancellationWindowHours }));
+      if (policy.lateCancellationFeeAmount > 0) lines.push(t("bk.lateFee", { fee: fmtInr(policy.lateCancellationFeeAmount) }));
+      else if (policy.depositRequired) lines.push(t("bk.lateForfeit"));
+    }
+    if (policy.waiverText) lines.push(policy.waiverText);
+    if (!lines.length) return;
+    var title = document.createElement("div");
+    title.className = "label-sm";
+    title.textContent = t("bk.policyTitle");
+    box.appendChild(title);
+    lines.forEach(function (line) {
+      var p = document.createElement("div");
+      p.textContent = line;
+      box.appendChild(p);
+    });
   }
 
   function renderConfirmation() {
     var el = document.querySelector("[data-confirmation-id]");
     if (!el) return;
-    el.textContent = state.confirmation ? ("Booking reference: " + state.confirmation.appointmentId.slice(0, 8).toUpperCase()) : "";
+    el.textContent = state.confirmation ? t("bk.reference", { ref: state.confirmation.appointmentId.slice(0, 8).toUpperCase() }) : "";
+    renderDeposit();
+  }
+
+  // Deposit due after booking: the amount, a Pay deposit button when the platform gave a payment link,
+  // and a note that the slot is only held for a limited time while the deposit is unpaid.
+  function renderDeposit() {
+    var box = document.querySelector("[data-deposit-box]");
+    if (!box) return;
+    box.innerHTML = "";
+    var c = state.confirmation;
+    if (!c || !(c.depositAmount > 0)) { box.style.display = "none"; return; }
+    box.style.display = "";
+    function add(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = text; box.appendChild(e); return e; }
+    add("p", "deposit-amt", fmtInr(c.depositAmount));
+    add("p", "", t("bk.depositDue", { amount: fmtInr(c.depositAmount) }));
+    add("p", "", t("bk.depositHold"));
+    if (c.depositPaymentLinkUrl && /^https?:\/\//i.test(c.depositPaymentLinkUrl)) {
+      var a = add("a", "btn btn-primary", t("bk.payDeposit"));
+      a.href = c.depositPaymentLinkUrl;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      add("p", "", t("bk.depositSent")).style.marginTop = "12px";
+    } else {
+      add("p", "", t("bk.depositNoLink"));
+    }
   }
 
   function setText(selector, text) {
@@ -234,7 +303,7 @@
       if (!res.ok) throw new Error("availability_failed");
       state.availabilitySlots = await res.json();
     } catch (e) {
-      showError("Could not load available times. Please try again.");
+      showError(t("bk.eAvail"));
     } finally {
       state.availabilityLoading = false;
       renderSlots();
@@ -251,13 +320,13 @@
 
   // ---- Validation / navigation ----
   function validateStep(step) {
-    if (step === 1 && !state.svc) return "Please select a service before continuing.";
-    if (step === 2 && (!state.artistId || !state.day || !state.slot)) return "Please select an artist, date and available time.";
+    if (step === 1 && !state.svc) return t("bk.eSelectService");
+    if (step === 2 && (!state.artistId || !state.day || !state.slot)) return t("bk.eSelectSlot");
     if (step === 3) {
       state.form = getForm();
-      if (!state.form.firstName) return "Please enter your first name.";
-      if (!state.form.mobile && !state.form.email) return "Please provide a mobile number or email so we can reach you.";
-      if (state.form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.form.email)) return "Please enter a valid email address.";
+      if (!state.form.firstName) return t("bk.eFirstName");
+      if (!state.form.mobile && !state.form.email) return t("bk.eContact");
+      if (state.form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.form.email)) return t("bk.eEmail");
     }
     return "";
   }
@@ -278,9 +347,17 @@
     renderAll();
   }
 
+  // Only boxes the guest ticked themselves are sent; nothing is ticked for them.
+  function consentPurposes(form) {
+    var list = [];
+    if (form.consentWhatsApp) list.push("MarketingWhatsApp");
+    if (form.consentEmailSms) { list.push("MarketingEmail"); list.push("MarketingSms"); }
+    return list.length ? list : null;
+  }
+
   async function submitBooking() {
     if (!state.svc || !locationId() || !state.artistId || !state.day || !state.slot) {
-      showError("Something is missing from your booking. Please review your selections.");
+      showError(t("bk.eMissing"));
       return;
     }
     var form = state.form;
@@ -293,7 +370,9 @@
           firstName: form.firstName, lastName: form.lastName || null,
           email: form.email || null, phone: form.mobile || null,
           locationId: locationId(), serviceId: state.svc.id, employeeId: state.artistId,
-          startAtUtc: state.slot, notes: form.notes || null
+          startAtUtc: state.slot, notes: form.notes || null,
+          language: LANG,
+          consentPurposes: consentPurposes(form)
         })
       });
       if (!res.ok) {
@@ -301,7 +380,7 @@
         var message = raw;
         try { var parsed = JSON.parse(raw); message = typeof parsed === "string" ? parsed : (parsed && parsed.message) || raw; } catch (e) { /* plain text */ }
         state.submitting = false;
-        showError(message || "That time is no longer available. Please choose another slot.");
+        showError(message || t("bk.errorFallback"));
         if (res.status === 409) { state.slot = ""; renderAll(); loadAvailabilityIfReady(); } else { renderStepIndicators(); }
         return;
       }
@@ -312,7 +391,7 @@
       renderAll();
     } catch (e) {
       state.submitting = false;
-      showError("We could not reach the booking service. Please check your connection and try again.");
+      showError(t("bk.eNetwork"));
       renderStepIndicators();
     }
   }

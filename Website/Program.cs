@@ -25,6 +25,31 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseRouting();
 
+// Language: ?lang=hi|en wins and is remembered in a cookie; otherwise the cookie; otherwise English.
+app.Use(async (context, next) =>
+{
+    var requested = context.Request.Query["lang"].ToString().ToLowerInvariant();
+    string code;
+    if (requested is "hi" or "en")
+    {
+        code = requested;
+        context.Response.Cookies.Append(SiteLang.CookieName, code, new CookieOptions
+        {
+            Expires = DateTimeOffset.UtcNow.AddYears(1),
+            HttpOnly = true,
+            SameSite = SameSiteMode.Lax,
+            IsEssential = true,
+            Secure = context.Request.IsHttps
+        });
+    }
+    else
+    {
+        code = context.Request.Cookies[SiteLang.CookieName] == "hi" ? "hi" : "en";
+    }
+    context.Items[SiteLang.ItemKey] = new SiteLang(code);
+    await next();
+});
+
 app.UseAuthorization();
 
 app.MapStaticAssets();
