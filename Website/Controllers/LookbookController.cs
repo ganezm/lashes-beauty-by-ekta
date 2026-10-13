@@ -9,7 +9,7 @@ public sealed class LookbookController(IGessFlowApiClient api) : SiteControllerB
     [HttpGet("")]
     public IActionResult Index()
     {
-        ViewData["Title"] = $"Lookbook — {SiteContent!.BusinessName}";
+        ViewData["Title"] = PageTitle("title.lookbook", $"Lookbook — {SiteContent!.BusinessName}");
         return View(SiteContent);
     }
 }

@@ -13,20 +13,20 @@
 }
 <section class="section" data-reveal>
     <div class="container">
-        <div class="eyebrow">the menu</div>
-        <h1 class="section-title">Lashes and brows</h1>
-        <p class="section-copy">@(string.IsNullOrWhiteSpace(L.Pick(Model.Description, Model.DescriptionHi)) ? "A short menu, kept deliberately short. Every set is mapped in person before a single lash is placed." : L.Pick(Model.Description, Model.DescriptionHi))</p>
+        <div class="eyebrow">@L.T("sv.eyebrow")</div>
+        <h1 class="section-title">@L.T("sv.title")</h1>
+        <p class="section-copy">@(string.IsNullOrWhiteSpace(L.Pick(Model.Description, Model.DescriptionHi)) ? L.T("sv.lead") : L.Pick(Model.Description, Model.DescriptionHi))</p>
 
         @if (groups.Count == 0)
         {
-            <p class="section-copy">Services are being updated — check back shortly, or get in touch directly.</p>
+            <p class="section-copy">@(L.IsHi ? L.T("sv.updating") : "Services are being updated — check back shortly, or get in touch directly.")</p>
         }
         else
         {
             <div class="trust-bar" style="justify-content:flex-start;border-bottom:0;padding:32px 0 0">
-                <div class="trust-stat"><div class="num">@coreCount</div><div class="lbl">core services</div></div>
-                <div class="trust-stat"><div class="num">2&ndash;3 wks</div><div class="lbl">infill window</div></div>
-                <div class="trust-stat"><div class="num">30 min</div><div class="lbl">consultation, free</div></div>
+                <div class="trust-stat"><div class="num">@coreCount</div><div class="lbl">@L.T("sv.core")</div></div>
+                <div class="trust-stat"><div class="num">@L.H("sv.window")</div><div class="lbl">@L.T("sv.windowLbl")</div></div>
+                <div class="trust-stat"><div class="num">@L.T("sv.consult")</div><div class="lbl">@L.T("sv.consultLbl")</div></div>
             </div>
 
             <div class="pill-row" data-service-filters>
@@ -35,7 +35,7 @@
                     <button class="category-pill" data-filter="@GroupSlug(group.Key)">@group.Key <span class="pill-count">@group.Count()</span></button>
                 }
             </div>
-            <p class="label-sm" style="margin-top:14px">Prices in INR &middot; patch test 24h prior</p>
+            <p class="label-sm" style="margin-top:14px">@L.H("sv.prices")</p>
 
             @foreach (var group in groups)
             {
@@ -65,17 +65,16 @@
             }
 
             <div class="grid grid-3" style="margin-top:56px">
-                <div class="card"><div class="tag">Patch test</div><p>A patch test is required 24 hours before a first set. It takes five minutes and is free.</p></div>
-                <div class="card"><div class="tag">Infill window</div><p>Infills are priced by the gap since your last set. Past three weeks, a full set is usually better value.</p></div>
-                <div class="card"><div class="tag">Add-ons</div><p>Eyelash tint, brow tint and lash lifting can be added to any appointment, subject to time.</p></div>
+                <div class="card"><div class="tag">@L.T("sv.patchTag")</div><p>@L.T("sv.patchBody")</p></div>
+                <div class="card"><div class="tag">@L.T("sv.infillTag")</div><p>@L.T("sv.infillBody")</p></div>
+                <div class="card"><div class="tag">@L.T("sv.addonsTag")</div><p>@L.T("sv.addonsBody")</p></div>
             </div>
         }
 
         @if (Model.Policy is not null && Model.Policy.DepositRequired)
         {
             <div class="booking-note" style="margin-top:40px;max-width:520px">
-                A @Model.Policy.DepositPercent% deposit is required to confirm your appointment.
-                Cancellations within @Model.Policy.CancellationWindowHours hours forfeit the deposit.
+                @L.H("sv.policy", ("percent", Model.Policy.DepositPercent), ("hours", Model.Policy.CancellationWindowHours))
             </div>
         }
     </div>

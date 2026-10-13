@@ -18,6 +18,10 @@ public abstract class SiteControllerBase(IGessFlowApiClient api) : Controller
     protected PublicBookingStorefront? Storefront { get; private set; }
     protected bool Unavailable { get; private set; }
 
+    /// Page title: the existing English wording as is, or the Hindi page name followed by the business name.
+    protected string PageTitle(string key, string english) =>
+        HttpContext.Lang().IsHi ? $"{HttpContext.Lang().T(key)} | {SiteContent!.BusinessName}" : english;
+
     public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
         var ct = HttpContext.RequestAborted;

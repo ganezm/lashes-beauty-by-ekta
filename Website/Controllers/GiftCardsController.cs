@@ -13,7 +13,7 @@ public sealed class GiftCardsController(IGessFlowApiClient api, IOptions<GessFlo
     [HttpGet("")]
     public IActionResult Index()
     {
-        ViewData["Title"] = $"Gift Cards — {SiteContent!.BusinessName}";
+        ViewData["Title"] = PageTitle("title.gift", $"Gift Cards — {SiteContent!.BusinessName}");
         ViewData["GessFlowApiBase"] = options.Value.BaseUrl;
         ViewData["GessFlowSlug"] = options.Value.Slug;
         return View(SiteContent);
@@ -22,7 +22,7 @@ public sealed class GiftCardsController(IGessFlowApiClient api, IOptions<GessFlo
     [HttpGet("thank-you")]
     public IActionResult ThankYou()
     {
-        ViewData["Title"] = $"Thank you — {SiteContent!.BusinessName}";
+        ViewData["Title"] = PageTitle("title.thanks", $"Thank you — {SiteContent!.BusinessName}");
         ViewData["GessFlowApiBase"] = options.Value.BaseUrl;
         ViewData["GessFlowSlug"] = options.Value.Slug;
         return View(SiteContent);

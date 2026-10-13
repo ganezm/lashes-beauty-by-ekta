@@ -1,16 +1,18 @@
 @model LashesWebsite.Models.PublicWebsiteContent
+@using LashesWebsite.Services
 @{
+    var L = Context.Lang();
     var categories = Model.GalleryItems.Select(g => g.Category).Distinct().OrderBy(x => x).ToList();
 }
 <section class="section" data-reveal>
     <div class="container">
-        <div class="eyebrow">the work</div>
-        <h1 class="section-title">Lookbook</h1>
+        <div class="eyebrow">@L.T("lb.eyebrow")</div>
+        <h1 class="section-title">@L.T("nav.lookbook")</h1>
 
         @if (categories.Count > 0)
         {
             <div class="pill-row" data-lookbook-filters>
-                <button class="category-pill active" data-filter="All">All</button>
+                <button class="category-pill active" data-filter="All">@L.T("lb.all")</button>
                 @foreach (var cat in categories)
                 {
                     <button class="category-pill" data-filter="@cat">@cat</button>
@@ -20,7 +22,7 @@
 
         @if (Model.GalleryItems.Count == 0)
         {
-            <p class="section-copy">New work is on the way — check back soon.</p>
+            <p class="section-copy">@(L.IsHi ? L.T("lb.soon") : "New work is on the way — check back soon.")</p>
         }
         else
         {
@@ -43,7 +45,7 @@
         <img id="galleryModalImage" src="" alt="" />
         <div style="padding:20px 24px">
             <div class="eyebrow" id="galleryModalCategory"></div>
-            <div style="margin-top:16px"><a href="/book" class="btn btn-primary">Book this look &rarr;</a></div>
+            <div style="margin-top:16px"><a href="/book" class="btn btn-primary">@L.H("hm.bookLook")</a></div>
         </div>
     </div>
 </div>

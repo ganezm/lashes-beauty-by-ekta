@@ -1,15 +1,17 @@
 ﻿@model ErrorViewModel
+@using LashesWebsite.Services
 @{
-    ViewData["Title"] = "Error";
+    var L = Context.Lang();
+    ViewData["Title"] = L.T("er.title");
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<h1 class="text-danger">@L.T("er.head")</h1>
+<h2 class="text-danger">@L.T("er.body")</h2>
 
 @if (Model.ShowRequestId)
 {
     <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+        <strong>@L.T("er.requestId")</strong> <code>@Model.RequestId</code>
     </p>
 }
 

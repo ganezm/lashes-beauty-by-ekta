@@ -1,15 +1,19 @@
 @model LashesWebsite.Models.PublicWebsiteContent
+@using LashesWebsite.Services
+@{
+    var L = Context.Lang();
+}
 <section class="section dark" data-reveal>
     <div class="container">
-        <div class="eyebrow" style="color:var(--accent-pink-2)">lash academy</div>
-        <h1 class="section-title" style="color:#fff">Train with @Model.BusinessName</h1>
-        <p class="section-copy" style="color:rgba(255,255,255,.8)">Small-group certification courses with kit, models and post-course mentoring.</p>
+        <div class="eyebrow" style="color:var(--accent-pink-2)">@L.T("ac.eyebrow")</div>
+        <h1 class="section-title" style="color:#fff">@L.H("ac.title", ("name", Model.BusinessName))</h1>
+        <p class="section-copy" style="color:rgba(255,255,255,.8)">@L.T("ac.lead")</p>
     </div>
 </section>
 
 @if (Model.AcademyCourses.Count == 0)
 {
-    <section class="section"><div class="container"><p class="section-copy">Course dates are being finalized — check back soon.</p></div></section>
+    <section class="section"><div class="container"><p class="section-copy">@(L.IsHi ? L.T("ac.soon") : "Course dates are being finalized — check back soon.")</p></div></section>
 }
 else
 {
@@ -33,7 +37,7 @@ else
                             </div>
                         }
                         <div style="margin-top:20px;font:400 32px/1 'Instrument Serif',serif;color:var(--magenta)">&#8377;@course.Price.ToString("N0")</div>
-                        <a href="/contact" class="btn btn-secondary btn-block" style="margin-top:16px">Reserve a seat</a>
+                        <a href="/contact" class="btn btn-secondary btn-block" style="margin-top:16px">@L.T("ac.reserve")</a>
                     </div>
                 }
             </div>
@@ -45,15 +49,15 @@ else
             {
                 <div class="intake-table">
                     <div class="intake-row head">
-                        <span>Upcoming dates</span><span>Course</span><span>Seats left</span><span></span>
+                        <span>@L.T("ac.upcoming")</span><span>@L.T("ac.course")</span><span>@L.T("ac.seatsLeft")</span><span></span>
                     </div>
                     @foreach (var row in allIntakes)
                     {
                         <div class="intake-row">
-                            <span style="font:400 18px/1 'Instrument Serif',serif;color:var(--ink-2)">@row.Intake.StartDate.ToString("d MMM") &ndash; @row.Intake.EndDate.ToString("d MMM yyyy")</span>
+                            <span style="font:400 18px/1 'Instrument Serif',serif;color:var(--ink-2)">@L.Date(row.Intake.StartDate, false) &ndash; @L.Date(row.Intake.EndDate, true)</span>
                             <span>@row.Course</span>
-                            <span style="color:var(--magenta)">@(row.Intake.SeatsTotal - row.Intake.SeatsBooked) of @row.Intake.SeatsTotal</span>
-                            <span><a href="/contact" class="btn btn-secondary" style="padding:10px 16px">Enquire</a></span>
+                            <span style="color:var(--magenta)">@L.T("ac.seatsOf").Replace("{left}", (row.Intake.SeatsTotal - row.Intake.SeatsBooked).ToString()).Replace("{total}", row.Intake.SeatsTotal.ToString())</span>
+                            <span><a href="/contact" class="btn btn-secondary" style="padding:10px 16px">@L.T("ac.enquire")</a></span>
                         </div>
                     }
                 </div>

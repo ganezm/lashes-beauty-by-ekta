@@ -5,6 +5,9 @@
 
   var apiBase = window.GESSFLOW_API_BASE || "";
   var slug = window.BOOKING_SLUG || "";
+  // Hindi strings are injected by the page as window.GC_I18N; the English text below is the default.
+  var i18n = window.GC_I18N || {};
+  function tr(key, english) { return i18n["gcjs." + key] || english; }
 
   function parseErrorBody(raw) {
     try {
@@ -74,14 +77,14 @@
       var purchaserPhone = field("purchaserPhone");
       var message = field("message");
 
-      if (!amount || amount < 500 || amount > 50000) { showError("Please enter an amount between ₹500 and ₹50,000."); return; }
-      if (!recipientName) { showError("Please enter the recipient's name."); return; }
-      if (!recipientEmail && !recipientPhone) { showError("Please provide the recipient's email or mobile number."); return; }
-      if (!purchaserName) { showError("Please enter your name."); return; }
-      if (!purchaserEmail && !purchaserPhone) { showError("Please provide your own email or mobile number."); return; }
+      if (!amount || amount < 500 || amount > 50000) { showError(tr("errAmount", "Please enter an amount between ₹500 and ₹50,000.")); return; }
+      if (!recipientName) { showError(tr("errRecipientName", "Please enter the recipient's name.")); return; }
+      if (!recipientEmail && !recipientPhone) { showError(tr("errRecipientContact", "Please provide the recipient's email or mobile number.")); return; }
+      if (!purchaserName) { showError(tr("errPurchaserName", "Please enter your name.")); return; }
+      if (!purchaserEmail && !purchaserPhone) { showError(tr("errPurchaserContact", "Please provide your own email or mobile number.")); return; }
 
       submitBtn.disabled = true;
-      submitBtn.textContent = "Please wait…";
+      submitBtn.textContent = tr("wait", "Please wait…");
 
       try {
         var returnUrl = window.location.origin + "/gift-cards/thank-you";
@@ -103,18 +106,18 @@
 
         if (!res.ok) {
           var raw = await res.text().catch(function () { return ""; });
-          showError(parseErrorBody(raw) || "We couldn't process that. Please check your details and try again.");
+          showError(parseErrorBody(raw) || tr("fallback", "We couldn't process that. Please check your details and try again."));
           submitBtn.disabled = false;
-          submitBtn.textContent = "Continue to payment →";
+          submitBtn.textContent = tr("continue", "Continue to payment →");
           return;
         }
 
         var data = await res.json();
         window.location.href = data.paymentLinkUrl;
       } catch (err) {
-        showError("We couldn't reach the payment service. Please check your connection and try again.");
+        showError(tr("network", "We couldn't reach the payment service. Please check your connection and try again."));
         submitBtn.disabled = false;
-        submitBtn.textContent = "Continue to payment →";
+        submitBtn.textContent = tr("continue", "Continue to payment →");
       }
     });
   })();
@@ -151,7 +154,7 @@
           var amountEl = document.querySelector("[data-gc-amount]");
           var deliveryEl = document.querySelector("[data-gc-delivery]");
           if (amountEl) amountEl.textContent = "₹" + Number(data.amount).toLocaleString("en-IN");
-          if (deliveryEl) deliveryEl.textContent = "Code " + (data.code || "") + " has been sent to the recipient.";
+          if (deliveryEl) deliveryEl.textContent = tr("codeSent", "Code {code} has been sent to the recipient.").replace("{code}", data.code || "");
           show(paidEl);
           return;
         }

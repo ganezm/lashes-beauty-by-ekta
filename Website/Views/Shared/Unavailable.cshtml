@@ -1,19 +1,22 @@
+@using LashesWebsite.Services
 @{
     Layout = null;
+    var L = Context.Lang();
+    var fontHref = "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Jost:wght@300;500" + (L.IsHi ? "&amp;family=Noto+Sans+Devanagari:wght@300;400;500;600&amp;family=Noto+Serif+Devanagari:wght@400;500" : "") + "&amp;display=swap";
 }
 <!DOCTYPE html>
-<html lang="en">
+<html lang="@L.Code">
 <head>
     <meta charset="utf-8" />
-    <title>Temporarily unavailable</title>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Jost:wght@300;500&amp;display=swap" rel="stylesheet" />
+    <title>@L.T("un.title")</title>
+    <link href="@Html.Raw(fontHref)" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
     <div class="unavailable-wrap">
-        <h1 style="font:400 42px/1.1 'Instrument Serif',serif;margin:0">We&rsquo;ll be right back.</h1>
+        <h1 style="font:400 42px/1.1 'Instrument Serif',serif;margin:0">@L.H("un.head")</h1>
         <p style="max-width:420px;font:300 14px/1.7 'Jost',sans-serif;color:#6a5a63;margin-top:16px">
-            This page couldn&rsquo;t load real-time content just now. Please refresh in a moment, or reach us directly.
+            @L.H("un.body")
         </p>
     </div>
 </body>

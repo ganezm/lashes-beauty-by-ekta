@@ -1,4 +1,7 @@
+using System.Globalization;
+using System.Text.Encodings.Web;
 using System.Text.Json;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace LashesWebsite.Services;
@@ -30,10 +33,33 @@ public sealed class SiteLang(string code)
         return QueryHelpers.AddQueryString(request.Path.HasValue ? request.Path.Value! : "/", query);
     }
 
-    /// The strings the booking script needs, as JSON for a script tag.
-    public string BookingJson()
+    /// Fixed site copy written as trusted markup (it may carry entities such as &rsquo;), so it is not encoded again.
+    public HtmlString H(string key) => new(T(key));
+
+    /// As H, with {name} placeholders filled in; the values are HTML encoded the way Razor would encode them.
+    public HtmlString H(string key, params (string Name, object? Value)[] args)
     {
-        var table = SiteText.Table(Code).Where(p => p.Key.StartsWith("bk.")).ToDictionary(p => p.Key, p => p.Value);
+        var text = T(key);
+        foreach (var (name, value) in args)
+            text = text.Replace("{" + name + "}", HtmlEncoder.Default.Encode(Convert.ToString(value, CultureInfo.CurrentCulture) ?? ""));
+        return new HtmlString(text);
+    }
+
+    /// A calendar date, with the month spelled in Hindi when the site is in Hindi.
+    public string Date(DateOnly date, bool withYear)
+    {
+        if (!IsHi) return date.ToString(withYear ? "d MMM yyyy" : "d MMM");
+        var text = $"{date.Day} {SiteText.HiMonths[date.Month - 1]}";
+        return withYear ? $"{text} {date.Year}" : text;
+    }
+
+    /// The strings the booking script needs, as JSON for a script tag.
+    public string BookingJson() => JsonFor("bk.");
+
+    /// The strings a script needs (every key with this prefix), as JSON for a script tag.
+    public string JsonFor(string prefix)
+    {
+        var table = SiteText.Table(Code).Where(p => p.Key.StartsWith(prefix)).ToDictionary(p => p.Key, p => p.Value);
         return JsonSerializer.Serialize(table, new JsonSerializerOptions(JsonSerializerDefaults.Web)
         {
             Encoder = System.Text.Encodings.Web.JavaScriptEncoder.Default
@@ -54,6 +80,11 @@ public static class SiteText
         if (lang == "hi" && Hi.TryGetValue(key, out var hi)) return hi;
         return En.TryGetValue(key, out var en) ? en : key;
     }
+
+    public static readonly string[] HiMonths =
+    {
+        "जनवरी", "फ़रवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"
+    };
 
     public static IReadOnlyDictionary<string, string> Table(string lang)
     {
@@ -123,6 +154,71 @@ public static class SiteText
         ["bk.eNetwork"] = "We could not reach the booking service. Please check your connection and try again.",
         ["bk.sumDeposit"] = "A {percent}% deposit ({amount}) is required to confirm.",
         ["bk.sumCancel"] = "Cancellations within {hours} hours may incur a fee.",
+
+        // Home page
+        ["hm.explore"] = "Explore services", ["hm.bookNow"] = "Book now", ["hm.pauseHero"] = "Pause hero video",
+        ["hm.playing"] = "Playing", ["hm.paused"] = "Paused",
+        ["hm.philosophy"] = "our philosophy", ["hm.story"] = "Discover our story &rarr;",
+        ["hm.edit"] = "the lash edit", ["hm.editTitle"] = "Find the look that feels unmistakably you", ["hm.bookLook"] = "Book this look &rarr;",
+        ["hm.quizEyebrow"] = "find your look", ["hm.quizA"] = "What&rsquo;s your ", ["hm.quizB"] = "lash personality?",
+        ["hm.match"] = "Your match &middot; ", ["hm.bookName"] = "Book {name} &rarr;",
+        ["hm.results"] = "real results", ["hm.beforeAfter"] = "Before &amp; after", ["hm.before"] = "Before", ["hm.after"] = "After",
+        ["hm.memberships"] = "memberships", ["hm.membTitle"] = "Keep the look on retainer", ["hm.perMonth"] = "/ month", ["hm.choosePlan"] = "Choose plan",
+        ["hm.work"] = "work from the chair", ["hm.viewLookbook"] = "View full lookbook",
+        ["hm.theStudio"] = "the studio", ["hm.meet"] = "Meet the artists", ["hm.reviews"] = "reviews", ["hm.follow"] = "Follow the feed &rarr;",
+        ["hm.journal"] = "aftercare journal", ["hm.journalTitle"] = "How to keep them perfect",
+        ["hm.tagAftercare"] = "aftercare", ["hm.tagRetention"] = "retention", ["hm.tagChoosing"] = "choosing",
+        ["hm.art1t"] = "The first 24 hours after your set", ["hm.art1b"] = "No steam, no oil cleanser, no sleeping face-down. What actually damages retention.", ["hm.read4"] = "4 min read",
+        ["hm.art2t"] = "Why lashes shed faster in monsoon", ["hm.art2b"] = "Humidity changes cure time and shedding cycles. How to adjust your infill schedule.", ["hm.read5"] = "5 min read",
+        ["hm.art3t"] = "Classic vs hybrid vs volume", ["hm.art3b"] = "A plain comparison of weight, look and upkeep, so you book the right set once.", ["hm.read6"] = "6 min read",
+        ["hm.gcLine"] = "Digital gift cards delivered instantly, redeemable against any service or infill.", ["hm.gcBuy"] = "Buy a gift card &rarr;",
+
+        // Gift cards
+        ["gc.eyebrow"] = "gift cards", ["gc.cardLower"] = "gift card", ["gc.title"] = "Give the set, not the guesswork.", ["gc.card"] = "Gift card", ["gc.noExpiry"] = "No expiry",
+        ["gc.intro"] = "A digital gift card for {name}, delivered by email or SMS as soon as payment completes &mdash; redeemable against any service.",
+        ["gc.amount"] = "amount", ["gc.custom"] = "Or enter a custom amount", ["gc.recipient"] = "recipient",
+        ["gc.theirName"] = "Their name *", ["gc.theirEmail"] = "Their email", ["gc.theirMobile"] = "Their mobile",
+        ["gc.hintRecipient"] = "Provide at least one of email or mobile so we can deliver the card.",
+        ["gc.fromYou"] = "from you", ["gc.yourName"] = "Your name *", ["gc.yourEmail"] = "Your email", ["gc.yourMobile"] = "Your mobile",
+        ["gc.hintYou"] = "Provide at least one of email or mobile so we can send your receipt.",
+        ["gc.message"] = "A personal message (optional)", ["gc.placeholder"] = "Happy birthday! Treat yourself...",
+        ["gc.continue"] = "Continue to payment &rarr;",
+        ["gc.secure"] = "You&rsquo;ll be redirected to a secure Razorpay payment page. The gift card is delivered automatically once payment is confirmed.",
+        ["gc.side"] = "Redeemable in-studio against any service. Delivered straight to the recipient&rsquo;s inbox or phone &mdash; nothing to print.",
+        ["gc.checking"] = "Confirming your payment&hellip;", ["gc.checkingBody"] = "This only takes a moment.",
+        ["gc.paid"] = "Your gift card is on its way.", ["gc.home"] = "Back to home &rarr;",
+        ["gc.pending"] = "Still confirming with Razorpay&hellip;",
+        ["gc.pendingBody"] = "Your payment is being processed. This page will update automatically &mdash; you can also close it and check your email or SMS shortly.",
+        ["gc.notFound"] = "We couldn&rsquo;t find that order.",
+        ["gc.notFoundBody"] = "If you completed a payment, please check your email/SMS, or get in touch and we&rsquo;ll sort it out.",
+        ["gc.contact"] = "Contact us &rarr;",
+
+        // About, Academy, Lookbook
+        ["ab.eyebrow"] = "about the studio", ["ab.team"] = "The team", ["ab.credentials"] = "Credentials", ["ab.timeline"] = "The studio timeline",
+        ["ac.eyebrow"] = "lash academy", ["ac.title"] = "Train with {name}",
+        ["ac.lead"] = "Small-group certification courses with kit, models and post-course mentoring.",
+        ["ac.reserve"] = "Reserve a seat",
+        ["ac.upcoming"] = "Upcoming dates", ["ac.course"] = "Course", ["ac.seatsLeft"] = "Seats left", ["ac.seatsOf"] = "{left} of {total}", ["ac.enquire"] = "Enquire",
+        ["lb.eyebrow"] = "the work", ["lb.all"] = "All",
+
+        // Services page
+        ["sv.eyebrow"] = "the menu", ["sv.title"] = "Lashes and brows",
+        ["sv.lead"] = "A short menu, kept deliberately short. Every set is mapped in person before a single lash is placed.",
+        ["sv.core"] = "core services", ["sv.window"] = "2&ndash;3 wks", ["sv.windowLbl"] = "infill window", ["sv.consult"] = "30 min", ["sv.consultLbl"] = "consultation, free",
+        ["sv.prices"] = "Prices in INR &middot; patch test 24h prior",
+        ["sv.patchTag"] = "Patch test", ["sv.patchBody"] = "A patch test is required 24 hours before a first set. It takes five minutes and is free.",
+        ["sv.infillTag"] = "Infill window", ["sv.infillBody"] = "Infills are priced by the gap since your last set. Past three weeks, a full set is usually better value.",
+        ["sv.addonsTag"] = "Add-ons", ["sv.addonsBody"] = "Eyelash tint, brow tint and lash lifting can be added to any appointment, subject to time.",
+        ["sv.policy"] = "A {percent}% deposit is required to confirm your appointment. Cancellations within {hours} hours forfeit the deposit.",
+
+        // Page titles (English titles keep their existing wording in the controllers)
+        ["title.about"] = "About", ["title.academy"] = "Academy", ["title.lookbook"] = "Lookbook", ["title.services"] = "Services",
+        ["title.book"] = "Book", ["title.gift"] = "Gift Cards", ["title.thanks"] = "Thank you",
+
+        // Unavailable and error pages
+        ["un.title"] = "Temporarily unavailable", ["un.head"] = "We&rsquo;ll be right back.",
+        ["un.body"] = "This page couldn&rsquo;t load real-time content just now. Please refresh in a moment, or reach us directly.",
+        ["er.title"] = "Error", ["er.head"] = "Error.", ["er.body"] = "An error occurred while processing your request.", ["er.requestId"] = "Request ID:",
     };
 
     private static readonly Dictionary<string, string> Hi = new()
@@ -182,5 +278,89 @@ public static class SiteText
         ["bk.eNetwork"] = "बुकिंग सेवा तक पहुँचा नहीं जा सका। कृपया अपना कनेक्शन जाँचें और दोबारा कोशिश करें।",
         ["bk.sumDeposit"] = "पुष्टि के लिए {percent}% जमा राशि ({amount}) ज़रूरी है।",
         ["bk.sumCancel"] = "{hours} घंटे के भीतर रद्द करने पर शुल्क लग सकता है।",
+
+        // Home page
+        ["hm.explore"] = "सेवाएँ देखें", ["hm.bookNow"] = "अभी बुक करें", ["hm.pauseHero"] = "वीडियो रोकें",
+        ["hm.playing"] = "चल रहा है", ["hm.paused"] = "रुका हुआ है",
+        ["hm.philosophy"] = "हमारा दर्शन", ["hm.story"] = "हमारी कहानी जानें &rarr;",
+        ["hm.edit"] = "लैश संग्रह", ["hm.editTitle"] = "वह लुक चुनिए जो बिल्कुल आपका अपना लगे", ["hm.bookLook"] = "यह लुक बुक करें &rarr;",
+        ["hm.quizEyebrow"] = "अपना लुक खोजें", ["hm.quizA"] = "आपकी ", ["hm.quizB"] = "लैश पर्सनैलिटी क्या है?",
+        ["hm.match"] = "आपका मैच &middot; ", ["hm.bookName"] = "{name} बुक करें &rarr;",
+        ["hm.results"] = "असली नतीजे", ["hm.beforeAfter"] = "पहले और बाद में", ["hm.before"] = "पहले", ["hm.after"] = "बाद में",
+        ["hm.memberships"] = "मेंबरशिप", ["hm.membTitle"] = "अपना लुक हमेशा बनाए रखें", ["hm.perMonth"] = "/ माह", ["hm.choosePlan"] = "प्लान चुनें",
+        ["hm.work"] = "हमारे काम की झलक", ["hm.viewLookbook"] = "पूरी लुकबुक देखें",
+        ["hm.theStudio"] = "स्टूडियो", ["hm.meet"] = "हमारे आर्टिस्ट से मिलिए", ["hm.reviews"] = "समीक्षाएँ", ["hm.follow"] = "हमें फ़ॉलो करें &rarr;",
+        ["hm.journal"] = "आफ्टरकेयर जर्नल", ["hm.journalTitle"] = "इन्हें हमेशा परफ़ेक्ट कैसे रखें",
+        ["hm.tagAftercare"] = "आफ्टरकेयर", ["hm.tagRetention"] = "टिकाऊपन", ["hm.tagChoosing"] = "सही चुनाव",
+        ["hm.art1t"] = "आपके सेट के बाद के पहले 24 घंटे", ["hm.art1b"] = "न भाप, न ऑयल क्लींज़र, न पेट के बल सोना। लैशेज़ के टिकाऊपन को असल में क्या नुकसान पहुँचाता है।", ["hm.read4"] = "पढ़ने में 4 मिनट",
+        ["hm.art2t"] = "मानसून में लैशेज़ जल्दी क्यों झड़ती हैं", ["hm.art2b"] = "नमी से जमने का समय और झड़ने का चक्र बदल जाता है। अपना इनफ़िल शेड्यूल कैसे ठीक करें।", ["hm.read5"] = "पढ़ने में 5 मिनट",
+        ["hm.art3t"] = "क्लासिक, हाइब्रिड और वॉल्यूम में फ़र्क", ["hm.art3b"] = "वज़न, लुक और देखभाल की सीधी तुलना, ताकि आप एक बार में सही सेट बुक करें।", ["hm.read6"] = "पढ़ने में 6 मिनट",
+        ["hm.gcLine"] = "डिजिटल गिफ़्ट कार्ड तुरंत भेजे जाते हैं, किसी भी सेवा या इनफ़िल पर इस्तेमाल करें।", ["hm.gcBuy"] = "गिफ़्ट कार्ड खरीदें &rarr;",
+
+        // Gift cards
+        ["gc.eyebrow"] = "गिफ़्ट कार्ड", ["gc.cardLower"] = "गिफ़्ट कार्ड", ["gc.title"] = "सेट दीजिए, अंदाज़ा नहीं।", ["gc.card"] = "गिफ़्ट कार्ड", ["gc.noExpiry"] = "कोई समाप्ति तिथि नहीं",
+        ["gc.intro"] = "{name} का डिजिटल गिफ़्ट कार्ड, भुगतान पूरा होते ही ईमेल या SMS से भेज दिया जाता है। किसी भी सेवा पर इस्तेमाल किया जा सकता है।",
+        ["gc.amount"] = "राशि", ["gc.custom"] = "या अपनी पसंद की राशि लिखें", ["gc.recipient"] = "पाने वाले",
+        ["gc.theirName"] = "उनका नाम *", ["gc.theirEmail"] = "उनका ईमेल", ["gc.theirMobile"] = "उनका मोबाइल",
+        ["gc.hintRecipient"] = "कृपया ईमेल या मोबाइल में से कम से कम एक दें, ताकि हम कार्ड भेज सकें।",
+        ["gc.fromYou"] = "आपकी ओर से", ["gc.yourName"] = "आपका नाम *", ["gc.yourEmail"] = "आपका ईमेल", ["gc.yourMobile"] = "आपका मोबाइल",
+        ["gc.hintYou"] = "कृपया ईमेल या मोबाइल में से कम से कम एक दें, ताकि हम आपको रसीद भेज सकें।",
+        ["gc.message"] = "व्यक्तिगत संदेश (वैकल्पिक)", ["gc.placeholder"] = "जन्मदिन मुबारक! खुद को कुछ खास तोहफ़ा दीजिए...",
+        ["gc.continue"] = "भुगतान के लिए आगे बढ़ें &rarr;",
+        ["gc.secure"] = "आपको Razorpay के सुरक्षित भुगतान पेज पर ले जाया जाएगा। भुगतान की पुष्टि होते ही गिफ़्ट कार्ड अपने आप भेज दिया जाता है।",
+        ["gc.side"] = "स्टूडियो में किसी भी सेवा पर इस्तेमाल किया जा सकता है। सीधे पाने वाले के इनबॉक्स या फ़ोन पर भेजा जाता है, प्रिंट करने की ज़रूरत नहीं।",
+        ["gc.checking"] = "आपके भुगतान की पुष्टि हो रही है&hellip;", ["gc.checkingBody"] = "बस एक पल लगेगा।",
+        ["gc.paid"] = "आपका गिफ़्ट कार्ड भेजा जा रहा है।", ["gc.home"] = "होम पर वापस जाएँ &rarr;",
+        ["gc.pending"] = "Razorpay से पुष्टि अभी जारी है&hellip;",
+        ["gc.pendingBody"] = "आपका भुगतान प्रोसेस हो रहा है। यह पेज अपने आप अपडेट हो जाएगा, आप इसे बंद करके थोड़ी देर बाद अपना ईमेल या SMS भी देख सकते हैं।",
+        ["gc.notFound"] = "हमें वह ऑर्डर नहीं मिला।",
+        ["gc.notFoundBody"] = "अगर आपने भुगतान किया है, तो कृपया अपना ईमेल या SMS देखें, या हमसे संपर्क करें, हम इसे सुलझा देंगे।",
+        ["gc.contact"] = "हमसे संपर्क करें &rarr;",
+
+        // About, Academy, Lookbook
+        ["ab.eyebrow"] = "स्टूडियो के बारे में", ["ab.team"] = "हमारी टीम", ["ab.credentials"] = "प्रमाणपत्र और योग्यताएँ", ["ab.timeline"] = "स्टूडियो का सफ़र",
+        ["ac.eyebrow"] = "लैश अकादमी", ["ac.title"] = "{name} के साथ सीखिए",
+        ["ac.lead"] = "छोटे समूहों में प्रमाणित कोर्स, किट, मॉडल और कोर्स के बाद मार्गदर्शन के साथ।",
+        ["ac.reserve"] = "सीट बुक करें",
+        ["ac.upcoming"] = "आने वाली तारीख़ें", ["ac.course"] = "कोर्स", ["ac.seatsLeft"] = "बची हुई सीटें", ["ac.seatsOf"] = "{total} में से {left}", ["ac.enquire"] = "पूछताछ करें",
+        ["lb.eyebrow"] = "हमारा काम", ["lb.all"] = "सभी",
+
+        // Services page
+        ["sv.eyebrow"] = "मेन्यू", ["sv.title"] = "लैश और ब्रो",
+        ["sv.lead"] = "एक छोटा सा मेन्यू, जानबूझकर छोटा रखा गया है। हर सेट एक भी लैश लगाने से पहले आपके सामने नापकर तय किया जाता है।",
+        ["sv.core"] = "मुख्य सेवाएँ", ["sv.window"] = "2&ndash;3 हफ़्ते", ["sv.windowLbl"] = "इनफ़िल का अंतराल", ["sv.consult"] = "30 मिनट", ["sv.consultLbl"] = "परामर्श, मुफ़्त",
+        ["sv.prices"] = "कीमतें INR में &middot; पैच टेस्ट 24 घंटे पहले",
+        ["sv.patchTag"] = "पैच टेस्ट", ["sv.patchBody"] = "पहले सेट से 24 घंटे पहले पैच टेस्ट ज़रूरी है। इसमें पाँच मिनट लगते हैं और यह मुफ़्त है।",
+        ["sv.infillTag"] = "इनफ़िल का अंतराल", ["sv.infillBody"] = "इनफ़िल की कीमत पिछले सेट के बाद बीते समय के हिसाब से तय होती है। तीन हफ़्ते के बाद आमतौर पर पूरा सेट लगवाना ज़्यादा फ़ायदेमंद रहता है।",
+        ["sv.addonsTag"] = "ऐड-ऑन", ["sv.addonsBody"] = "आईलैश टिंट, ब्रो टिंट और लैश लिफ़्टिंग किसी भी अपॉइंटमेंट में जोड़ी जा सकती है, समय के अनुसार।",
+        ["sv.policy"] = "आपका अपॉइंटमेंट पक्का करने के लिए {percent}% जमा राशि ज़रूरी है। {hours} घंटे के भीतर रद्द करने पर जमा राशि वापस नहीं होगी।",
+
+        // Fixed text kept in the views next to the owner's own wording (em dash lines)
+        ["ac.soon"] = "कोर्स की तारीख़ें तय की जा रही हैं, कृपया जल्द ही दोबारा देखें।",
+        ["lb.soon"] = "नया काम जल्द आ रहा है, कृपया दोबारा देखें।",
+        ["sv.updating"] = "सेवाएँ अपडेट की जा रही हैं, कृपया थोड़ी देर में देखें, या सीधे हमसे संपर्क करें।",
+
+        // Page titles
+        ["title.about"] = "हमारे बारे में", ["title.academy"] = "अकादमी", ["title.lookbook"] = "लुकबुक", ["title.services"] = "सेवाएँ",
+        ["title.book"] = "बुकिंग", ["title.gift"] = "गिफ़्ट कार्ड", ["title.thanks"] = "धन्यवाद",
+
+        // Unavailable and error pages
+        ["un.title"] = "अस्थायी रूप से उपलब्ध नहीं", ["un.head"] = "हम जल्द ही लौटेंगे।",
+        ["un.body"] = "इस पेज पर अभी असली समय की जानकारी लोड नहीं हो सकी। कृपया थोड़ी देर में रिफ़्रेश करें, या हमसे सीधे संपर्क करें।",
+        ["er.title"] = "त्रुटि", ["er.head"] = "त्रुटि।", ["er.body"] = "आपका अनुरोध प्रोसेस करते समय एक त्रुटि हुई।", ["er.requestId"] = "रिक्वेस्ट आईडी:",
+
+        // Strings used by site.js (English defaults live in the script)
+        ["sj.match"] = "आपका मैच · ", ["sj.bookName"] = "{name} बुक करें →",
+
+        // Strings used by giftcards.js (English defaults live in the script)
+        ["gcjs.errAmount"] = "कृपया ₹500 से ₹50,000 के बीच की राशि लिखें।",
+        ["gcjs.errRecipientName"] = "कृपया पाने वाले का नाम लिखें।",
+        ["gcjs.errRecipientContact"] = "कृपया पाने वाले का ईमेल या मोबाइल नंबर दें।",
+        ["gcjs.errPurchaserName"] = "कृपया अपना नाम लिखें।",
+        ["gcjs.errPurchaserContact"] = "कृपया अपना ईमेल या मोबाइल नंबर दें।",
+        ["gcjs.wait"] = "कृपया प्रतीक्षा करें…", ["gcjs.continue"] = "भुगतान के लिए आगे बढ़ें →",
+        ["gcjs.fallback"] = "हम इसे प्रोसेस नहीं कर सके। कृपया अपनी जानकारी जाँचकर दोबारा कोशिश करें।",
+        ["gcjs.network"] = "भुगतान सेवा तक पहुँचा नहीं जा सका। कृपया अपना कनेक्शन जाँचें और दोबारा कोशिश करें।",
+        ["gcjs.codeSent"] = "कोड {code} पाने वाले को भेज दिया गया है।",
     };
 }

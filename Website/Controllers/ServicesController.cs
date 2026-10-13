@@ -9,7 +9,7 @@ public sealed class ServicesController(IGessFlowApiClient api) : SiteControllerB
     [HttpGet("")]
     public IActionResult Index()
     {
-        ViewData["Title"] = $"Services — {SiteContent!.BusinessName}";
+        ViewData["Title"] = PageTitle("title.services", $"Services — {SiteContent!.BusinessName}");
         return View(Storefront);
     }
 }

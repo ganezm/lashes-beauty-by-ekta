@@ -9,7 +9,7 @@ public sealed class AcademyController(IGessFlowApiClient api) : SiteControllerBa
     [HttpGet("")]
     public IActionResult Index()
     {
-        ViewData["Title"] = $"Academy — {SiteContent!.BusinessName}";
+        ViewData["Title"] = PageTitle("title.academy", $"Academy — {SiteContent!.BusinessName}");
         return View(SiteContent);
     }
 }

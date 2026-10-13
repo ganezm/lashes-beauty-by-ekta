@@ -1,7 +1,11 @@
 @model LashesWebsite.Models.PublicWebsiteContent
+@using LashesWebsite.Services
+@{
+    var L = Context.Lang();
+}
 <section class="section" data-reveal>
     <div class="container">
-        <div class="eyebrow">about the studio</div>
+        <div class="eyebrow">@L.T("ab.eyebrow")</div>
         <h1 class="section-title">@Model.BusinessName</h1>
         @if (!string.IsNullOrWhiteSpace(Model.MetaDescription))
         {
@@ -14,7 +18,7 @@
 {
     <section class="section soft" data-reveal>
         <div class="container">
-            <h2 class="section-title" style="font-size:36px">The team</h2>
+            <h2 class="section-title" style="font-size:36px">@L.T("ab.team")</h2>
             <div class="grid grid-3" style="margin-top:36px">
                 @foreach (var t in Model.Team)
                 {
@@ -40,7 +44,7 @@
 {
     <section class="section" data-reveal>
         <div class="container">
-            <h2 class="section-title" style="font-size:36px">Credentials</h2>
+            <h2 class="section-title" style="font-size:36px">@L.T("ab.credentials")</h2>
             <div class="grid grid-4" style="margin-top:36px">
                 @foreach (var cred in Model.Credentials)
                 {
@@ -55,7 +59,7 @@
 {
     <section class="section soft" data-reveal>
         <div class="container">
-            <h2 class="section-title" style="font-size:36px">The studio timeline</h2>
+            <h2 class="section-title" style="font-size:36px">@L.T("ab.timeline")</h2>
             <div class="grid grid-4" style="margin-top:36px">
                 @foreach (var t in Model.TimelineEntries)
                 {

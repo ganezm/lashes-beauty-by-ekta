@@ -1,5 +1,7 @@
 @model LashesWebsite.Controllers.HomeViewModel
+@using LashesWebsite.Services
 @{
+    var L = Context.Lang();
     var c = Model.Content;
     var s = Model.Storefront;
     var featured = s.Services.Where(x => x.Featured).ToList();
@@ -29,8 +31,8 @@
             <h1 class="hero-title">@c.HeroSlides[0].HeadlineLine1 <em>@c.HeroSlides[0].HeadlineLine2</em></h1>
             <p class="hero-body">@c.HeroSlides[0].Body</p>
             <div class="hero-actions">
-                <a href="/book" class="btn btn-primary">Book appointment &rarr;</a>
-                <a href="/services" class="btn btn-secondary">Explore services</a>
+                <a href="/book" class="btn btn-primary">@L.T("nav.book") &rarr;</a>
+                <a href="/services" class="btn btn-secondary">@L.T("hm.explore")</a>
             </div>
         </div>
         @if (c.HeroSlides.Count > 1)
@@ -46,9 +48,9 @@
                 }
             </div>
         }
-        <div class="hero-play-control" data-hero-play>
-            <span data-hero-play-label>Playing</span>
-            <button type="button" aria-label="Pause hero video">&#10074;&#10074;</button>
+        <div class="hero-play-control" data-hero-play data-playing="@(L.IsHi ? L.T("hm.playing") : null)" data-paused="@(L.IsHi ? L.T("hm.paused") : null)">
+            <span data-hero-play-label>@L.T("hm.playing")</span>
+            <button type="button" aria-label="@L.T("hm.pauseHero")">&#10074;&#10074;</button>
         </div>
     </section>
 }
@@ -58,7 +60,7 @@ else
         <div class="container">
             <h1 class="section-title" style="color:#fff">@c.BusinessName</h1>
             <p class="section-copy" style="color:rgba(255,255,255,.75)">@c.CtaBody</p>
-            <a href="/book" class="btn btn-primary" style="margin-top:20px">Book appointment &rarr;</a>
+            <a href="/book" class="btn btn-primary" style="margin-top:20px">@L.T("nav.book") &rarr;</a>
         </div>
     </section>
 }
@@ -77,13 +79,13 @@ else
 {
     <section class="split-section @(string.IsNullOrWhiteSpace(c.PhilosophyImageUrl) ? "no-image" : "")" data-reveal>
             <div class="split-text">
-                <div class="eyebrow">our philosophy</div>
+                <div class="eyebrow">@L.T("hm.philosophy")</div>
                 <h2 class="section-title">@c.PhilosophyHeadlineLine1 @if (!string.IsNullOrWhiteSpace(c.PhilosophyHeadlineEmphasis)) { <em>@c.PhilosophyHeadlineEmphasis</em> }</h2>
                 @if (!string.IsNullOrWhiteSpace(c.PhilosophyBody))
                 {
                     <p class="section-copy">@c.PhilosophyBody</p>
                 }
-                <a href="/about" class="btn btn-secondary" style="margin-top:26px">Discover our story &rarr;</a>
+                <a href="/about" class="btn btn-secondary" style="margin-top:26px">@L.H("hm.story")</a>
             </div>
             @if (!string.IsNullOrWhiteSpace(c.PhilosophyImageUrl))
             {
@@ -96,8 +98,8 @@ else
 {
     <section class="section soft" data-reveal>
         <div class="container">
-            <div class="eyebrow">the lash edit</div>
-            <h2 class="section-title">Find the look that feels unmistakably you</h2>
+            <div class="eyebrow">@L.T("hm.edit")</div>
+            <h2 class="section-title">@L.T("hm.editTitle")</h2>
             <div class="grid grid-3" style="margin-top:40px">
                 @{ var fi = 0; }
                 @foreach (var svc in featured)
@@ -109,13 +111,13 @@ else
                             <div class="service-card-photo"><img src="@svc.ImageUrl" alt="" loading="lazy" /><span class="idx">@(fi.ToString("00"))</span></div>
                         }
                         <div class="service-card-body">
-                            <div class="name">@svc.Name</div>
-                            @if (!string.IsNullOrWhiteSpace(svc.Description))
+                            <div class="name">@L.Pick(svc.Name, svc.NameHi)</div>
+                            @if (!string.IsNullOrWhiteSpace(L.Pick(svc.Description, svc.DescriptionHi)))
                             {
-                                <div class="desc">@svc.Description</div>
+                                <div class="desc">@L.Pick(svc.Description, svc.DescriptionHi)</div>
                             }
-                            <div class="row" style="margin-top:14px"><span class="price">&#8377;@svc.Price.ToString("N0")</span><span class="meta">@svc.DurationMinutes min</span></div>
-                            <div class="book-look-cta">Book this look &rarr;</div>
+                            <div class="row" style="margin-top:14px"><span class="price">&#8377;@svc.Price.ToString("N0")</span><span class="meta">@svc.DurationMinutes @L.T("svc.min")</span></div>
+                            <div class="book-look-cta">@L.H("hm.bookLook")</div>
                         </div>
                     </a>
                 }
@@ -128,8 +130,8 @@ else
 {
     <section class="split-section @(string.IsNullOrWhiteSpace(c.QuizImageUrl) ? "no-image" : "")" data-reveal id="find-your-look">
             <div class="split-text">
-                <div class="eyebrow">find your look</div>
-                <h2 class="section-title">What&rsquo;s your <em>lash personality?</em></h2>
+                <div class="eyebrow">@L.T("hm.quizEyebrow")</div>
+                <h2 class="section-title">@L.H("hm.quizA")<em>@L.H("hm.quizB")</em></h2>
                 <div class="grid grid-4" style="margin-top:40px" data-quiz>
                     @for (var i = 0; i < c.QuizResults.Count; i++)
                     {
@@ -141,11 +143,11 @@ else
                         </button>
                     }
                 </div>
-                <div class="card" style="margin-top:20px;padding:26px" data-quiz-result>
-                    <div class="label-sm" data-quiz-name>Your match &middot; @c.QuizResults[0].Name</div>
+                <div class="card" style="margin-top:20px;padding:26px" data-quiz-result data-match-label="@(L.IsHi ? L.T("sj.match") : null)" data-book-template="@(L.IsHi ? L.T("sj.bookName") : null)">
+                    <div class="label-sm" data-quiz-name>@L.H("hm.match")@c.QuizResults[0].Name</div>
                     <p style="margin:10px 0 0;font:300 14px/1.7 'Jost',sans-serif;color:var(--body-text)" data-quiz-copy>@c.QuizResults[0].ResultCopy</p>
                     <a href="/book?service=@c.QuizResults[0].RecommendedServiceId" class="btn btn-primary" style="margin-top:16px" data-quiz-cta>
-                        Book @c.QuizResults[0].RecommendedServiceName &rarr;
+                        @L.H("hm.bookName", ("name", c.QuizResults[0].RecommendedServiceName))
                     </a>
                 </div>
                 <script type="application/json" id="quiz-data">@Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(c.QuizResults.Select(q => new { q.Name, q.ResultCopy, q.RecommendedServiceId, q.RecommendedServiceName })))</script>
@@ -161,13 +163,13 @@ else
 {
     <section class="section soft" data-reveal>
         <div class="container">
-            <div class="eyebrow">real results</div>
-            <h2 class="section-title">Before &amp; after</h2>
+            <div class="eyebrow">@L.T("hm.results")</div>
+            <h2 class="section-title">@L.H("hm.beforeAfter")</h2>
             <div class="before-after" style="margin-top:40px">
                 @foreach (var pair in c.BeforeAfterPairs.Take(2))
                 {
-                    <div class="before-after-card"><img src="@pair.BeforeImageUrl" alt="Before" /><span class="before-after-label">Before</span></div>
-                    <div class="before-after-card"><img src="@pair.AfterImageUrl" alt="After" /><span class="before-after-label">After</span></div>
+                    <div class="before-after-card"><img src="@pair.BeforeImageUrl" alt="@L.T("hm.before")" /><span class="before-after-label">@L.T("hm.before")</span></div>
+                    <div class="before-after-card"><img src="@pair.AfterImageUrl" alt="@L.T("hm.after")" /><span class="before-after-label">@L.T("hm.after")</span></div>
                 }
             </div>
         </div>
@@ -178,8 +180,8 @@ else
 {
     <section class="section" data-reveal id="memberships">
         <div class="container">
-            <div class="eyebrow">memberships</div>
-            <h2 class="section-title">Keep the look on retainer</h2>
+            <div class="eyebrow">@L.T("hm.memberships")</div>
+            <h2 class="section-title">@L.T("hm.membTitle")</h2>
             <div class="grid grid-3" style="margin-top:40px">
                 @foreach (var plan in c.MembershipPlans)
                 {
@@ -191,7 +193,7 @@ else
                         <div class="plan-name">@plan.Name</div>
                         <div class="plan-price">
                             <span class="amt">&#8377;@plan.MonthlyPrice.ToString("N0")</span>
-                            <span class="per">/ month</span>
+                            <span class="per">@L.T("hm.perMonth")</span>
                         </div>
                         @if (!string.IsNullOrWhiteSpace(plan.PerksText))
                         {
@@ -202,7 +204,7 @@ else
                                 }
                             </ul>
                         }
-                        <a href="/contact" class="btn btn-secondary btn-block" style="margin-top:22px">Choose plan</a>
+                        <a href="/contact" class="btn btn-secondary btn-block" style="margin-top:22px">@L.T("hm.choosePlan")</a>
                     </div>
                 }
             </div>
@@ -216,8 +218,8 @@ else
     if (homeGallery.Count == 0) homeGallery = c.GalleryItems.Take(8).ToList();
     <section class="section soft" data-reveal>
         <div class="container">
-            <div class="eyebrow">work from the chair</div>
-            <h2 class="section-title">Lookbook</h2>
+            <div class="eyebrow">@L.T("hm.work")</div>
+            <h2 class="section-title">@L.T("nav.lookbook")</h2>
             <div class="gallery-grid">
                 @foreach (var g in homeGallery)
                 {
@@ -227,7 +229,7 @@ else
                     </div>
                 }
             </div>
-            <div style="text-align:center;margin-top:30px"><a href="/lookbook" class="btn btn-secondary">View full lookbook</a></div>
+            <div style="text-align:center;margin-top:30px"><a href="/lookbook" class="btn btn-secondary">@L.T("hm.viewLookbook")</a></div>
         </div>
     </section>
 }
@@ -236,8 +238,8 @@ else
 {
     <section class="section" data-reveal>
         <div class="container">
-            <div class="eyebrow">the studio</div>
-            <h2 class="section-title">Meet the artists</h2>
+            <div class="eyebrow">@L.T("hm.theStudio")</div>
+            <h2 class="section-title">@L.T("hm.meet")</h2>
             <div class="grid grid-3" style="margin-top:40px">
                 @foreach (var t in c.Team)
                 {
@@ -263,7 +265,7 @@ else
 {
     <section class="section soft" data-reveal data-testimonials>
         <div class="container" style="text-align:center">
-            <div class="eyebrow">reviews</div>
+            <div class="eyebrow">@L.T("hm.reviews")</div>
             <div class="testimonial-quote" style="margin:24px auto 0" data-testimonial-quote>&ldquo;@c.Testimonials[0].QuoteText&rdquo;</div>
             <div class="testimonial-attr" data-testimonial-attr>@c.Testimonials[0].AttributionFreeText</div>
             @if (c.Testimonials.Count > 1)
@@ -283,7 +285,7 @@ else
     <section class="section soft" data-reveal>
         <div class="container" style="text-align:center">
             <div class="eyebrow">@@lashesandbeauty.ekta</div>
-            <a href="@c.SocialInstagramUrl" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top:14px">Follow the feed &rarr;</a>
+            <a href="@c.SocialInstagramUrl" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top:14px">@L.H("hm.follow")</a>
             <div class="grid grid-2" style="max-width:460px;margin:32px auto 0">
                 <div class="reel-tile"><video src="/images/reels/reel-1.mp4" muted loop playsinline autoplay></video></div>
                 <div class="reel-tile"><video src="/images/reels/reel-2.mp4" muted loop playsinline autoplay></video></div>
@@ -294,26 +296,26 @@ else
 
 <section class="section" data-reveal>
     <div class="container">
-        <div class="eyebrow">aftercare journal</div>
-        <h2 class="section-title">How to keep them perfect</h2>
+        <div class="eyebrow">@L.T("hm.journal")</div>
+        <h2 class="section-title">@L.T("hm.journalTitle")</h2>
         <div class="grid grid-3" style="margin-top:40px">
             <div class="card">
-                <div class="tag">aftercare</div>
-                <h3>The first 24 hours after your set</h3>
-                <p>No steam, no oil cleanser, no sleeping face-down. What actually damages retention.</p>
-                <div class="label-sm" style="margin-top:14px">4 min read</div>
+                <div class="tag">@L.T("hm.tagAftercare")</div>
+                <h3>@L.T("hm.art1t")</h3>
+                <p>@L.T("hm.art1b")</p>
+                <div class="label-sm" style="margin-top:14px">@L.T("hm.read4")</div>
             </div>
             <div class="card">
-                <div class="tag">retention</div>
-                <h3>Why lashes shed faster in monsoon</h3>
-                <p>Humidity changes cure time and shedding cycles. How to adjust your infill schedule.</p>
-                <div class="label-sm" style="margin-top:14px">5 min read</div>
+                <div class="tag">@L.T("hm.tagRetention")</div>
+                <h3>@L.T("hm.art2t")</h3>
+                <p>@L.T("hm.art2b")</p>
+                <div class="label-sm" style="margin-top:14px">@L.T("hm.read5")</div>
             </div>
             <div class="card">
-                <div class="tag">choosing</div>
-                <h3>Classic vs hybrid vs volume</h3>
-                <p>A plain comparison of weight, look and upkeep, so you book the right set once.</p>
-                <div class="label-sm" style="margin-top:14px">6 min read</div>
+                <div class="tag">@L.T("hm.tagChoosing")</div>
+                <h3>@L.T("hm.art3t")</h3>
+                <p>@L.T("hm.art3b")</p>
+                <div class="label-sm" style="margin-top:14px">@L.T("hm.read6")</div>
             </div>
         </div>
     </div>
@@ -323,16 +325,16 @@ else
     <div class="container">
         <div class="giftcards-layout" style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center">
             <div>
-                <div class="eyebrow">gift cards</div>
-                <h2 class="section-title">Give the set, not the guesswork.</h2>
-                <p class="section-copy">Digital gift cards delivered instantly, redeemable against any service or infill.</p>
+                <div class="eyebrow">@L.T("gc.eyebrow")</div>
+                <h2 class="section-title">@L.T("gc.title")</h2>
+                <p class="section-copy">@L.T("hm.gcLine")</p>
                 <div class="giftcard-denoms">
                     @foreach (var amount in new[] { 2000, 3800, 5000, 7100 })
                     {
                         <span class="giftcard-denom">&#8377;@amount.ToString("N0")</span>
                     }
                 </div>
-                <a href="/gift-cards" class="btn btn-primary" style="margin-top:26px">Buy a gift card &rarr;</a>
+                <a href="/gift-cards" class="btn btn-primary" style="margin-top:26px">@L.H("hm.gcBuy")</a>
             </div>
             <div class="giftcard-photo" style="@(string.IsNullOrWhiteSpace(c.GiftCardImageUrl) ? "background:var(--blush-1)" : $"background-image:url('{c.GiftCardImageUrl}')")">
                 <div class="giftcard-visual">
@@ -344,7 +346,7 @@ else
                         @c.BusinessName
                     </div>
                     <div class="amt">&#8377;5,000</div>
-                    <div class="footer-row"><span>Gift card</span><span>No expiry</span></div>
+                    <div class="footer-row"><span>@L.T("gc.card")</span><span>@L.T("gc.noExpiry")</span></div>
                 </div>
             </div>
         </div>
@@ -357,7 +359,7 @@ else
         <div class="container">
             <h2>@c.CtaHeadline</h2>
             <p>@c.CtaBody</p>
-            <a href="/book" class="btn btn-primary">@(c.CtaButtonLabel ?? "Book now")</a>
+            <a href="/book" class="btn btn-primary">@(c.CtaButtonLabel ?? L.T("hm.bookNow"))</a>
         </div>
     </section>
 }

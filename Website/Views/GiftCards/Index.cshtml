@@ -1,21 +1,22 @@
 @model LashesWebsite.Models.PublicWebsiteContent
+@using LashesWebsite.Services
 @{
+    var L = Context.Lang();
     var apiBase = ViewData["GessFlowApiBase"] as string ?? "";
     var slug = ViewData["GessFlowSlug"] as string ?? "";
 }
 <section class="section tight" data-reveal>
     <div class="container">
-        <div class="eyebrow">gift cards</div>
-        <h1 class="section-title" style="font-size:42px">Give the set, not the guesswork.</h1>
+        <div class="eyebrow">@L.T("gc.eyebrow")</div>
+        <h1 class="section-title" style="font-size:42px">@L.T("gc.title")</h1>
         <p class="section-copy" style="max-width:560px">
-            A digital gift card for @Model.BusinessName, delivered by email or SMS as soon as payment
-            completes &mdash; redeemable against any service.
+            @L.H("gc.intro", ("name", Model.BusinessName))
         </p>
 
         <div class="booking-shell" style="margin-top:36px">
             <div class="booking-panel">
                 <form id="giftCardForm">
-                    <div class="eyebrow">amount</div>
+                    <div class="eyebrow">@L.T("gc.amount")</div>
                     <div class="giftcard-denoms" data-amount-chips>
                         <button type="button" class="giftcard-denom" data-amount="2000">&#8377;2,000</button>
                         <button type="button" class="giftcard-denom" data-amount="3800">&#8377;3,800</button>
@@ -23,45 +24,44 @@
                         <button type="button" class="giftcard-denom" data-amount="7100">&#8377;7,100</button>
                     </div>
                     <div class="book-field" style="max-width:240px">
-                        <label>Or enter a custom amount</label>
+                        <label>@L.T("gc.custom")</label>
                         <input type="number" id="gcAmount" min="500" max="50000" step="100" value="5000" data-field="amount" />
                     </div>
 
-                    <div class="eyebrow" style="margin-top:32px">recipient</div>
+                    <div class="eyebrow" style="margin-top:32px">@L.T("gc.recipient")</div>
                     <div class="grid grid-2" style="margin-top:10px">
-                        <div class="book-field"><label>Their name *</label><input data-field="recipientName" required /></div>
-                        <div class="book-field"><label>Their email</label><input data-field="recipientEmail" type="email" /></div>
-                        <div class="book-field"><label>Their mobile</label><input data-field="recipientPhone" /></div>
+                        <div class="book-field"><label>@L.T("gc.theirName")</label><input data-field="recipientName" required /></div>
+                        <div class="book-field"><label>@L.T("gc.theirEmail")</label><input data-field="recipientEmail" type="email" /></div>
+                        <div class="book-field"><label>@L.T("gc.theirMobile")</label><input data-field="recipientPhone" /></div>
                     </div>
-                    <p class="pageSub" style="font-size:12px;margin-top:6px">Provide at least one of email or mobile so we can deliver the card.</p>
+                    <p class="pageSub" style="font-size:12px;margin-top:6px">@L.T("gc.hintRecipient")</p>
 
-                    <div class="eyebrow" style="margin-top:32px">from you</div>
+                    <div class="eyebrow" style="margin-top:32px">@L.T("gc.fromYou")</div>
                     <div class="grid grid-2" style="margin-top:10px">
-                        <div class="book-field"><label>Your name *</label><input data-field="purchaserName" required /></div>
-                        <div class="book-field"><label>Your email</label><input data-field="purchaserEmail" type="email" /></div>
-                        <div class="book-field"><label>Your mobile</label><input data-field="purchaserPhone" /></div>
+                        <div class="book-field"><label>@L.T("gc.yourName")</label><input data-field="purchaserName" required /></div>
+                        <div class="book-field"><label>@L.T("gc.yourEmail")</label><input data-field="purchaserEmail" type="email" /></div>
+                        <div class="book-field"><label>@L.T("gc.yourMobile")</label><input data-field="purchaserPhone" /></div>
                     </div>
-                    <p class="pageSub" style="font-size:12px;margin-top:6px">Provide at least one of email or mobile so we can send your receipt.</p>
+                    <p class="pageSub" style="font-size:12px;margin-top:6px">@L.T("gc.hintYou")</p>
 
                     <div class="book-field" style="margin-top:22px">
-                        <label>A personal message (optional)</label>
-                        <textarea data-field="message" rows="3" maxlength="280" placeholder="Happy birthday! Treat yourself..."></textarea>
+                        <label>@L.T("gc.message")</label>
+                        <textarea data-field="message" rows="3" maxlength="280" placeholder="@L.T("gc.placeholder")"></textarea>
                     </div>
 
                     <div id="giftCardError" class="booking-error" style="display:none"></div>
 
                     <button type="submit" class="btn btn-primary" style="margin-top:28px" id="gcSubmit">
-                        Continue to payment &rarr;
+                        @L.H("gc.continue")
                     </button>
                     <p class="pageSub" style="font-size:11.5px;margin-top:12px">
-                        You&rsquo;ll be redirected to a secure Razorpay payment page. The gift card is delivered
-                        automatically once payment is confirmed.
+                        @L.H("gc.secure")
                     </p>
                 </form>
             </div>
 
             <div class="booking-summary">
-                <div class="eyebrow">gift card</div>
+                <div class="eyebrow">@L.T("gc.cardLower")</div>
                 <div class="giftcard-visual" style="margin-top:16px">
                     <div class="brand">
                         @if (!string.IsNullOrWhiteSpace(Model.LogoUrl))
@@ -71,11 +71,10 @@
                         @Model.BusinessName
                     </div>
                     <div class="amt" data-preview-amount>&#8377;5,000</div>
-                    <div class="footer-row"><span>Gift card</span><span>No expiry</span></div>
+                    <div class="footer-row"><span>@L.T("gc.card")</span><span>@L.T("gc.noExpiry")</span></div>
                 </div>
                 <p class="pageSub" style="margin-top:16px">
-                    Redeemable in-studio against any service. Delivered straight to the recipient&rsquo;s
-                    inbox or phone &mdash; nothing to print.
+                    @L.H("gc.side")
                 </p>
             </div>
         </div>
@@ -84,6 +83,7 @@
 
 @section Scripts {
     <script>
+        @if (L.IsHi) { <text>window.GC_I18N = @Html.Raw(L.JsonFor("gcjs."));</text> }
         window.GESSFLOW_API_BASE = @Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(apiBase));
         window.BOOKING_SLUG = @Html.Raw(LashesWebsite.Services.JsonHelper.ToCamelJson(slug));
     </script>

@@ -85,7 +85,7 @@
       var btn = playControl.querySelector("button");
       btn.addEventListener("click", function () {
         paused = !paused;
-        if (label) label.textContent = paused ? "Paused" : "Playing";
+        if (label) label.textContent = paused ? (playControl.getAttribute("data-paused") || "Paused") : (playControl.getAttribute("data-playing") || "Playing");
         btn.innerHTML = paused ? "&#9654;" : "&#10074;&#10074;";
         var active = media[current];
         if (active && active.tagName === "VIDEO") { paused ? active.pause() : active.play().catch(function () {}); }
@@ -108,6 +108,9 @@
     var nameEl = document.querySelector("[data-quiz-name]");
     var copyEl = document.querySelector("[data-quiz-copy]");
     var ctaEl = document.querySelector("[data-quiz-cta]");
+    var resultEl = document.querySelector("[data-quiz-result]");
+    var matchLabel = (resultEl && resultEl.getAttribute("data-match-label")) || "Your match · ";
+    var bookTemplate = (resultEl && resultEl.getAttribute("data-book-template")) || "Book {name} →";
     var results = [];
     if (dataEl) { try { results = JSON.parse(dataEl.textContent) || []; } catch (e) { results = []; } }
 
@@ -118,10 +121,10 @@
 
         var result = results[i];
         if (!result || !nameEl || !copyEl || !ctaEl) return;
-        nameEl.textContent = "Your match · " + result.name;
+        nameEl.textContent = matchLabel + result.name;
         copyEl.textContent = result.resultCopy;
         ctaEl.setAttribute("href", "/book?service=" + result.recommendedServiceId);
-        ctaEl.textContent = "Book " + result.recommendedServiceName + " →";
+        ctaEl.textContent = bookTemplate.replace("{name}", result.recommendedServiceName);
       });
     });
   })();
