@@ -1,6 +1,8 @@
 @using LashesWebsite.Models
 @using LashesWebsite.Services
+@inject IConfiguration Config
 @{
+    var hindiOn = Config.GetValue<bool>("Site:HindiEnabled");
     var L = Context.Lang();
     var content = ViewData["Content"] as PublicWebsiteContent;
     var path = Context.Request.Path.Value ?? "/";
@@ -61,10 +63,12 @@
         <a href="/contact" class="@(IsActive("/contact") ? "active" : "")">@L.T("nav.studio")</a>
     </nav>
     <div style="display:flex;align-items:center;gap:14px">
+        @if (hindiOn) {
         <div class="lang-switch" role="group" aria-label="@L.T("nav.language")">
             <a href="@SiteLang.SwitchUrl(Context.Request, "en")" class="@(L.IsHi ? "" : "active")" hreflang="en" lang="en">English</a>
             <a href="@SiteLang.SwitchUrl(Context.Request, "hi")" class="@(L.IsHi ? "active" : "")" hreflang="hi" lang="hi">हिन्दी</a>
         </div>
+        }
         <a href="/book" class="btn btn-primary nav-cta">@L.T("nav.book")</a>
         <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="@L.T("nav.menu")">&#9776;</button>
     </div>
@@ -79,10 +83,12 @@
     <a href="/about">@L.T("nav.about")</a>
     <a href="/contact">@L.T("nav.studio")</a>
     <a href="/book">@L.T("nav.book")</a>
+    @if (hindiOn) {
     <div class="lang-switch lang-switch-menu">
         <a href="@SiteLang.SwitchUrl(Context.Request, "en")" class="@(L.IsHi ? "" : "active")" hreflang="en" lang="en">English</a>
         <a href="@SiteLang.SwitchUrl(Context.Request, "hi")" class="@(L.IsHi ? "active" : "")" hreflang="hi" lang="hi">हिन्दी</a>
     </div>
+    }
 </div>
 
 <main>
@@ -122,10 +128,12 @@
     <div class="container footer-bottom">
         <span>@(content?.CopyrightText ?? $"© {DateTime.UtcNow.Year} {content?.BusinessName}")</span>
         <span>
+            @if (hindiOn) {
             <span class="lang-switch lang-switch-footer" style="margin-right:16px">
                 <a href="@SiteLang.SwitchUrl(Context.Request, "en")" class="@(L.IsHi ? "" : "active")" hreflang="en" lang="en">English</a>
                 <a href="@SiteLang.SwitchUrl(Context.Request, "hi")" class="@(L.IsHi ? "active" : "")" hreflang="hi" lang="hi">हिन्दी</a>
             </span>
+            }
             @if (!string.IsNullOrWhiteSpace(content?.SocialInstagramUrl)) { <a href="@content.SocialInstagramUrl" style="margin-right:16px">@L.T("footer.instagram")</a> }
             @if (!string.IsNullOrWhiteSpace(content?.SocialFacebookUrl)) { <a href="@content.SocialFacebookUrl">@L.T("footer.facebook")</a> }
         </span>

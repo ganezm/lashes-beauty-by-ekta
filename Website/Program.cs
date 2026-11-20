@@ -25,12 +25,15 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseRouting();
 
+// Hindi is switched off until Site:HindiEnabled is true; everyone gets English.
+var hindiEnabled = builder.Configuration.GetValue<bool>("Site:HindiEnabled");
 // Language: ?lang=hi|en wins and is remembered in a cookie; otherwise the cookie; otherwise English.
 app.Use(async (context, next) =>
 {
     var requested = context.Request.Query["lang"].ToString().ToLowerInvariant();
     string code;
-    if (requested is "hi" or "en")
+    if (!hindiEnabled) code = "en";
+    else if (requested is "hi" or "en")
     {
         code = requested;
         context.Response.Cookies.Append(SiteLang.CookieName, code, new CookieOptions
