@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using Microsoft.AspNetCore.Html;
@@ -218,7 +218,7 @@ public static class SiteText
         // Unavailable and error pages
         ["un.title"] = "Temporarily unavailable", ["un.head"] = "We&rsquo;ll be right back.",
         ["un.body"] = "This page couldn&rsquo;t load real-time content just now. Please refresh in a moment, or reach us directly.",
-        ["er.title"] = "Error", ["er.head"] = "Error.", ["er.body"] = "An error occurred while processing your request.", ["er.requestId"] = "Request ID:",
+        ["er.404.title"] = "Page not found", ["er.404.head"] = "We could not find that page.", ["er.404.body"] = "The address may have changed or been typed a little differently. Head back to the home page, or book or get in touch from here.", ["er.500.title"] = "Something went wrong", ["er.500.head"] = "Something went wrong on our side.", ["er.500.body"] = "Please try again in a moment. If it keeps happening, call or message the studio and we will help you directly.", ["er.home"] = "Back to home", ["er.title"] = "Error", ["er.head"] = "Error.", ["er.body"] = "An error occurred while processing your request.", ["er.requestId"] = "Request ID:",
     };
 
     private static readonly Dictionary<string, string> Hi = new()
@@ -347,7 +347,7 @@ public static class SiteText
         // Unavailable and error pages
         ["un.title"] = "अस्थायी रूप से उपलब्ध नहीं", ["un.head"] = "हम जल्द ही लौटेंगे।",
         ["un.body"] = "इस पेज पर अभी असली समय की जानकारी लोड नहीं हो सकी। कृपया थोड़ी देर में रिफ़्रेश करें, या हमसे सीधे संपर्क करें।",
-        ["er.title"] = "त्रुटि", ["er.head"] = "त्रुटि।", ["er.body"] = "आपका अनुरोध प्रोसेस करते समय एक त्रुटि हुई।", ["er.requestId"] = "रिक्वेस्ट आईडी:",
+        ["er.404.title"] = "पेज नहीं मिला", ["er.404.head"] = "यह पेज हमें नहीं मिला।", ["er.404.body"] = "हो सकता है पता बदल गया हो या थोड़ा अलग लिखा गया हो। होम पेज पर लौटें, या यहीं से बुक करें या संपर्क करें।", ["er.500.title"] = "कुछ गड़बड़ हो गई", ["er.500.head"] = "हमारी तरफ़ कुछ गड़बड़ हो गई।", ["er.500.body"] = "कृपया थोड़ी देर बाद फिर कोशिश करें। अगर बार-बार हो, तो स्टूडियो को कॉल या मैसेज करें।", ["er.home"] = "होम पर लौटें", ["er.title"] = "त्रुटि", ["er.head"] = "त्रुटि।", ["er.body"] = "आपका अनुरोध प्रोसेस करते समय एक त्रुटि हुई।", ["er.requestId"] = "रिक्वेस्ट आईडी:",
 
         // Strings used by site.js (English defaults live in the script)
         ["sj.match"] = "आपका मैच · ", ["sj.bookName"] = "{name} बुक करें →",

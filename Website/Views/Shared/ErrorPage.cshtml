@@ -1,0 +1,16 @@
+@model int
+@using LashesWebsite.Services
+@{
+    var L = Context.Lang();
+    var notFound = Model == 404;
+}
+<section class="page-section" style="min-height:50vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:16px;padding-top:80px;padding-bottom:80px">
+    <p style="font:500 12px/1 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--magenta);margin:0">@Model</p>
+    <h1 style="font:400 clamp(36px,6vw,64px)/1.05 'Instrument Serif',serif;margin:0">@(notFound ? L.T("er.404.head") : L.T("er.500.head"))</h1>
+    <p style="max-width:520px;font:300 15px/1.7 'Jost',sans-serif;margin:0">@(notFound ? L.T("er.404.body") : L.T("er.500.body"))</p>
+    <p style="display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 0">
+        <a class="btn btn-primary" href="/">@L.T("er.home")</a>
+        <a class="btn" href="/book">@L.T("nav.book")</a>
+        <a class="btn" href="/contact">@L.T("nav.studio")</a>
+    </p>
+</section>

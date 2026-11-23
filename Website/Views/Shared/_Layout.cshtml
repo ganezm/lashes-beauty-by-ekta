@@ -15,10 +15,69 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="@brandColor" />
-    <title>@(ViewData["Title"] as string ?? content?.BusinessName ?? "Lashes & Beauty")</title>
-    @if (!string.IsNullOrWhiteSpace(content?.MetaDescription))
+    @{
+        var noIndex = Config.GetValue<bool>("Site:NoIndex") || ViewData["NoIndex"] is true;
+        var origin = $"{Context.Request.Scheme}://{Context.Request.Host}";
+        var canonical = origin + (path.Length > 1 ? path.TrimEnd('/').ToLowerInvariant() : "/");
+        var pageTitle = ViewData["Title"] as string ?? content?.BusinessName ?? "Lashes & Beauty";
+        var pageDescription = (ViewData["Description"] as string) is { Length: > 0 } own && !L.IsHi ? own : content?.MetaDescription;
+        string Abs(string? u) => string.IsNullOrWhiteSpace(u) ? "" : (u.StartsWith("http", StringComparison.OrdinalIgnoreCase) ? u : origin + (u.StartsWith('/') ? u : "/" + u));
+        var shareImage = Abs(content?.HeroSlides.Select(x => x.PosterImageUrl).FirstOrDefault(x => !string.IsNullOrWhiteSpace(x)) ?? content?.LogoUrl);
+        var storefront = ViewData["Storefront"] as PublicBookingStorefront;
+        var place = storefront?.Locations.FirstOrDefault();
+        var sameAs = new[] { content?.SocialInstagramUrl, content?.SocialFacebookUrl }.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
+        var salon = new Dictionary<string, object?>
+        {
+            ["@context"] = "https://schema.org",
+            ["@type"] = "BeautySalon",
+            ["name"] = content?.BusinessName,
+            ["url"] = origin + "/",
+            ["image"] = string.IsNullOrEmpty(shareImage) ? null : shareImage,
+            ["description"] = content?.MetaDescription,
+            ["telephone"] = place?.Phone,
+            ["email"] = place?.Email,
+            ["address"] = string.IsNullOrWhiteSpace(place?.Address) ? null : new Dictionary<string, object?> { ["@type"] = "PostalAddress", ["streetAddress"] = place!.Address, ["addressCountry"] = "IN" },
+            ["sameAs"] = sameAs.Length == 0 ? null : sameAs
+        };
+        var salonJson = System.Text.Json.JsonSerializer.Serialize(salon.Where(kv => kv.Value is not null).ToDictionary(kv => kv.Key, kv => kv.Value), new System.Text.Json.JsonSerializerOptions { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping }).Replace("</", "<\\/");
+    }
+    <title>@pageTitle</title>
+    @if (!string.IsNullOrWhiteSpace(pageDescription))
     {
-        <meta name="description" content="@content.MetaDescription" />
+        <meta name="description" content="@pageDescription" />
+    }
+    @if (noIndex)
+    {
+        <meta name="robots" content="noindex, nofollow" />
+    }
+    else
+    {
+        <link rel="canonical" href="@canonical" />
+    }
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="@content?.BusinessName" />
+    <meta property="og:title" content="@pageTitle" />
+    @if (!string.IsNullOrWhiteSpace(pageDescription))
+    {
+        <meta property="og:description" content="@pageDescription" />
+    }
+    <meta property="og:url" content="@canonical" />
+    <meta property="og:locale" content="@(L.IsHi ? "hi_IN" : "en_IN")" />
+    @if (!string.IsNullOrEmpty(shareImage))
+    {
+        <meta property="og:image" content="@shareImage" />
+        <meta name="twitter:image" content="@shareImage" />
+    }
+    <meta name="twitter:card" content="@(string.IsNullOrEmpty(shareImage) ? "summary" : "summary_large_image")" />
+    <meta name="twitter:title" content="@pageTitle" />
+    @if (!string.IsNullOrWhiteSpace(pageDescription))
+    {
+        <meta name="twitter:description" content="@pageDescription" />
+    }
+    @if (!noIndex && !string.IsNullOrWhiteSpace(content?.BusinessName))
+    {
+        @Html.Raw("<script type=\"application/ld+json\">" + salonJson + "</script>")
     }
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

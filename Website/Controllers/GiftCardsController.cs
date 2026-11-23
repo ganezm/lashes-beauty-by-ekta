@@ -14,6 +14,7 @@ public sealed class GiftCardsController(IGessFlowApiClient api, IOptions<GessFlo
     public IActionResult Index()
     {
         ViewData["Title"] = PageTitle("title.gift", $"Gift Cards — {SiteContent!.BusinessName}");
+        ViewData["Description"] = $"Give the gift of lashes and brows. Buy a {SiteContent!.BusinessName} gift card online and send it by email or message.";
         ViewData["GessFlowApiBase"] = options.Value.BaseUrl;
         ViewData["GessFlowSlug"] = options.Value.Slug;
         return View(SiteContent);
@@ -23,6 +24,7 @@ public sealed class GiftCardsController(IGessFlowApiClient api, IOptions<GessFlo
     public IActionResult ThankYou()
     {
         ViewData["Title"] = PageTitle("title.thanks", $"Thank you — {SiteContent!.BusinessName}");
+        ViewData["NoIndex"] = true;
         ViewData["GessFlowApiBase"] = options.Value.BaseUrl;
         ViewData["GessFlowSlug"] = options.Value.Slug;
         return View(SiteContent);

@@ -11,6 +11,7 @@ public sealed class BookController(IGessFlowApiClient api, IOptions<GessFlowApiO
     public IActionResult Index(Guid? service)
     {
         ViewData["Title"] = PageTitle("title.book", $"Book — {SiteContent!.BusinessName}");
+        ViewData["Description"] = $"Book your lash or brow appointment online at {SiteContent!.BusinessName}. Choose a service, an artist and a time that suits you.";
         ViewData["GessFlowApiBase"] = options.Value.BaseUrl;
         ViewData["GessFlowSlug"] = options.Value.Slug;
         ViewData["PreselectedServiceId"] = service;

@@ -10,6 +10,7 @@ public sealed class AboutController(IGessFlowApiClient api) : SiteControllerBase
     public IActionResult Index()
     {
         ViewData["Title"] = PageTitle("title.about", $"About — {SiteContent!.BusinessName}");
+        ViewData["Description"] = $"Meet the artists behind {SiteContent!.BusinessName} and the thinking that goes into every set.";
         return View(SiteContent);
     }
 }

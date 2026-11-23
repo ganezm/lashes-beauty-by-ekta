@@ -10,6 +10,7 @@ public sealed class AcademyController(IGessFlowApiClient api) : SiteControllerBa
     public IActionResult Index()
     {
         ViewData["Title"] = PageTitle("title.academy", $"Academy — {SiteContent!.BusinessName}");
+        ViewData["Description"] = $"Lash artistry training at {SiteContent!.BusinessName}: what the course covers, intake dates and how to enquire.";
         return View(SiteContent);
     }
 }

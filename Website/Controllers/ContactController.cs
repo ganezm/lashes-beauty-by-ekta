@@ -93,6 +93,7 @@ public sealed partial class ContactController(IGessFlowApiClient api) : SiteCont
     private IActionResult Page(EnquiryForm form, Dictionary<string, string> errors, bool sent, string? error)
     {
         ViewData["Title"] = $"{HttpContext.Lang().T("nav.studio")} | {SiteContent!.BusinessName}";
+        ViewData["Description"] = $"Visit or contact {SiteContent!.BusinessName}: address, opening hours, phone, and a form for bridal and event enquiries.";
         return View("Index", new ContactViewModel(SiteContent!, Storefront!, form, errors, sent, error));
     }
 }
