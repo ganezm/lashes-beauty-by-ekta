@@ -37,6 +37,7 @@ public sealed partial class ContactController(IGessFlowApiClient api) : SiteCont
 
         if (name.Length == 0 || name.Length > 120) errors[nameof(form.Name)] = lang.T("ct.errName");
         if (phone.Length == 0 && email.Length == 0) errors[nameof(form.Phone)] = lang.T("ct.errContact");
+        if (phone.Length > 0 && !LooksLikePhone(phone)) errors[nameof(form.Phone)] = lang.T("ct.errPhone");
         if (email.Length > 0 && (email.Length > 200 || !EmailPattern().IsMatch(email))) errors[nameof(form.Email)] = lang.T("ct.errEmail");
         if (message.Length > MaxMessage) errors[nameof(form.Message)] = lang.T("ct.errMessage");
 
@@ -79,6 +80,14 @@ public sealed partial class ContactController(IGessFlowApiClient api) : SiteCont
 
         // Post, redirect, get: a refresh must not send the enquiry twice.
         return RedirectToAction(nameof(Index), new { sent = true });
+    }
+
+    /// Digits with an optional + and the usual spaces, dashes and brackets; 7 to 15 digits. The platform applies the same rule.
+    private static bool LooksLikePhone(string phone)
+    {
+        if (phone.Length > 30 || phone.Any(ch => !(char.IsAsciiDigit(ch) || ch is '+' or ' ' or '-' or '(' or ')' or '.'))) return false;
+        var digits = phone.Count(char.IsAsciiDigit);
+        return digits is >= 7 and <= 15;
     }
 
     private IActionResult Page(EnquiryForm form, Dictionary<string, string> errors, bool sent, string? error)
